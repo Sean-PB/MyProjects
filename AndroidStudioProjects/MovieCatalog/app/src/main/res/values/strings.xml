@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Movie Catalog</string>
+    <string name="watchlist"><u>Watchlist</u></string>
+    <string name="seen_list"><u>Seen List</u></string>
+    <string name="watchlist_button">Watchlist</string>
+    <string name="seen_list_button">Seen List</string>
+    <string name="add_movie"><u>Add Movie</u></string>
+</resources>

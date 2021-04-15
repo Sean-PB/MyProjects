@@ -1,0 +1,18 @@
+Name, speed, attack, health
+
+Grandmas: Stats = 1, 10, 60,
+
+
+Lions: Stats = 6, 40, 75,
+
+
+Ricks: Stats = 2, 100, 90,
+
+
+Mortys: Stats = 4, 25, 70,
+
+
+Spartans: Stats = 5, 35, 80,
+
+
+Zombies: Stats = 3, 25, 100,

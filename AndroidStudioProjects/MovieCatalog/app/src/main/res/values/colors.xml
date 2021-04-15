@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#000000</color>
+    <color name="colorPrimaryDark">#000000</color>
+    <color name="colorAccent">#000000</color>
+    <color name="seenListText">#FFFFFF</color>
+    <color name="watchlistText">#FFFFFF</color>
+    <color name="green">#047C09</color>
+    <color name="highlighted">#FFE500</color>
+    <color name="grey">#6A6A6A</color>
+</resources>

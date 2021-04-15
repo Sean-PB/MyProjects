@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name">List Tutorial</string>
+
+    // List items
+    <string-array name="items">
+        <item>Star Wars</item>
+        <item>Fight Club</item>
+        <item>Finding Nemo</item>
+    </string-array>
+
+    // genre list (parallel to items)
+    <string-array name="genres">
+        <item>Sci-Fi/Action</item>
+        <item>Drama/Thriller/Action</item>
+        <item>Family/Animated</item>
+    </string-array>
+
+    // Release date list (parallel to items)
+    <string-array name="dates">
+        <item>1977</item>
+        <item>1999</item>
+        <item>2003</item>
+    </string-array>
+</resources>

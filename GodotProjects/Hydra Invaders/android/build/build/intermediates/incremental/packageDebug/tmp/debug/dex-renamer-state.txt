@@ -1,0 +1,4 @@
+#Thu Dec 31 11:17:54 PST 2020
+base.0=C\:\\Users\\Sean\\Desktop\\CS Repository\\GodotProjects\\Hydra Invaders\\android\\build\\build\\intermediates\\dex\\debug\\mergeDexDebug\\out\\classes.dex
+renamed.0=classes.dex
+path.0=classes.dex
