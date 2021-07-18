@@ -1,4 +1,4 @@
-#Fri Apr 02 18:01:49 PDT 2021
-base.0=C\:\\Users\\Sean\\Desktop\\CS Repository\\GodotProjects\\Duel\\android\\build\\build\\intermediates\\dex\\release\\mergeDexRelease\\out\\classes.dex
+#Tue Jun 01 19:22:40 PDT 2021
+base.0=C\:\\Users\\Sean\\Desktop\\Personal Repository\\MyProjects\\GodotProjects\\Duel\\android\\build\\build\\intermediates\\dex\\release\\mergeDexRelease\\out\\classes.dex
 renamed.0=classes.dex
 path.0=classes.dex

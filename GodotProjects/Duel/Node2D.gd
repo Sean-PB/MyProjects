@@ -9,6 +9,8 @@ var player_bullets
 var rng = RandomNumberGenerator.new()
 var player_choice
 var random_number
+var mute
+var help
 
 
 # Called when the node enters the scene tree for the first time.
@@ -18,9 +20,11 @@ func _ready():
 	player_choice = ""
 	$Cylinder.animation = "Empty"
 	$AdMob.load_banner()
+	mute = false
+	help = false
 
 
-# Game process (second by second) 610
+# Game process (second by second)
 func _process(delta):
 	# If player dies or draws
 	if started == true and player_alive == false:
@@ -114,10 +118,10 @@ func _on_Rumble2_timeout():
 	
 	# Enable buttons
 	if player_bullets > 0:
-		$Camera2D/Fire.visible = true
+		$Fire.visible = true
 	if player_bullets < 6:
-		$Camera2D/Load.visible = true
-	$Camera2D/Dodge.visible = true
+		$Load.visible = true
+	$Dodge.visible = true
 
 
 func _on_PlayerMoveTimer_timeout():
@@ -126,9 +130,9 @@ func _on_PlayerMoveTimer_timeout():
 
 func show_moves():
 	# Disable buttons
-	$Camera2D/Fire.visible = false
-	$Camera2D/Load.visible = false
-	$Camera2D/Dodge.visible = false
+	$Fire.visible = false
+	$Load.visible = false
+	$Dodge.visible = false
 	
 	# Show enemy move
 	# 0 = Dodge
@@ -163,7 +167,7 @@ func show_moves():
 		$Music.stop()
 		$WinSound.play()
 		$Camera2D/MessageArt.frame = 0
-		$Camera2D/Pause.visible = false
+		$Pause.visible = false
 		$Cylinder.visible = false
 		$Background/Foreground/Enemy.play("die")
 		$Camera2D/FadeAnimation.play("FadeToWhite")
@@ -181,7 +185,7 @@ func show_moves():
 		$Camera2D/MessageArt.frame = 2
 		player_alive = false
 		$Cylinder.visible = false
-		$Camera2D/Pause.visible = false
+		$Pause.visible = false
 		$DeadTimer.start()
 	# Loss
 	elif (player_choice == "LOAD" or player_choice == "") and random_number == 2:
@@ -190,7 +194,7 @@ func show_moves():
 		$Camera2D/MessageArt.frame = 1
 		player_alive = false
 		$Cylinder.visible = false
-		$Camera2D/Pause.visible = false
+		$Pause.visible = false
 		$DeadTimer.start()
 	# Keep playing
 	else:
@@ -208,9 +212,9 @@ func _on_ShowTimer_timeout():
 # Buttons
 func _on_Fire_released():
 	# Disable buttons
-	$Camera2D/Fire.visible = false
-	$Camera2D/Load.visible = false
-	$Camera2D/Dodge.visible = false
+	$Fire.visible = false
+	$Load.visible = false
+	$Dodge.visible = false
 	match player_bullets:
 		1:
 			$Cylinder.play("Empty-One", true)
@@ -234,9 +238,9 @@ func _on_Fire_released():
 
 func _on_Load_released():
 	# Disable buttons
-	$Camera2D/Fire.visible = false
-	$Camera2D/Load.visible = false
-	$Camera2D/Dodge.visible = false
+	$Fire.visible = false
+	$Load.visible = false
+	$Dodge.visible = false
 	match player_bullets:
 		0:
 			$Cylinder.play("Empty-One")
@@ -260,9 +264,9 @@ func _on_Load_released():
 
 func _on_Dodge_released():
 	# Disable buttons
-	$Camera2D/Fire.visible = false
-	$Camera2D/Load.visible = false
-	$Camera2D/Dodge.visible = false
+	$Fire.visible = false
+	$Load.visible = false
+	$Dodge.visible = false
 	dodged = false
 	player_choice = "DODGE"
 	$PlayerMoveTimer.stop()
@@ -293,12 +297,18 @@ func _on_Restart_released():
 	$Camera2D/FadeColor.color = "00ffffff"
 	$Background/Foreground.scale = Vector2(1, 1)
 	$Camera2D.position = Vector2(240, 450)
-	$Camera2D/Load.visible = false
-	$Camera2D/Fire.visible = false
-	$Camera2D/Dodge.visible = false
+	$Load.visible = false
+	$Fire.visible = false
+	$Dodge.visible = false
 	$Camera2D/MessageArt.visible = false
 	$Camera2D/MessageArt/DeadMessage.visible = false
 	$Camera2D/MessageArt/VictoryMessage.visible = false
+	if mute:
+		$Sound.visible = true
+	else:
+		$Mute.visible = true
+		$Mute
+	$Help.visible = true
 
 
 func _on_Draw_released():
@@ -306,7 +316,10 @@ func _on_Draw_released():
 	player_bullets = 0
 	started = true
 	$Draw.visible = false
-	$Camera2D/Pause.visible = true
+	$Sound.visible = false
+	$Mute.visible = false
+	$Help.visible = false
+	$Pause.visible = true
 	$Cylinder.visible = true
 	$Rumble1.start()
 	$Background/Foreground/Enemy.play("draw")
@@ -315,17 +328,58 @@ func _on_Draw_released():
 
 func _on_Pause_released():
 	get_tree().paused = true        # Pause game
-	$Camera2D/GrayscaleShader.visible = true
-	$Camera2D/Pause.visible = false
-	$Camera2D/Unpause.visible = true
+	$GrayscaleShader.visible = true
+	$Pause.visible = false
+	$Unpause.visible = true
+	if mute:
+		$Sound.visible = true
+	else:
+		$Mute.visible = true
+	$Help.visible = true
 
 
 func _on_Unpause_released():
 	get_tree().paused = false        # Unpause game
-	$Camera2D/GrayscaleShader.visible = false
-	$Camera2D/Unpause.visible = false
-	$Camera2D/Pause.visible = true
+	$GrayscaleShader.visible = false
+	$GrayscaleShader2.visible = false
+	$Instructions.visible = false
+	help = false
+	$Unpause.visible = false
+	$Pause.visible = true
+	$Sound.visible = false
+	$Mute.visible = false
+	$Help.visible = false
 
 
 func _on_GunfireTimer_timeout():
 	$GunfireFar.play()
+
+
+func _on_Sound_released():
+	mute = false
+	$Mute.show()
+	$Sound.hide()
+	AudioServer.set_bus_mute(0, false)
+
+
+func _on_Mute_released():
+	mute = true
+	$Mute.hide()
+	$Sound.show()
+	AudioServer.set_bus_mute(0, true)
+
+
+
+func _on_Help_released():
+	if help == false:         # clicking it open
+		help = true
+		$Instructions.visible = true
+		$GrayscaleShader2.visible = true
+		if started == false:     # On draw screen
+			get_tree().paused = true        # Pause game
+	else:                     # clicking it closed
+		help = false
+		$Instructions.visible = false
+		$GrayscaleShader2.visible = false
+		if started == false:     # On draw screen
+			get_tree().paused = false       # Unpause game

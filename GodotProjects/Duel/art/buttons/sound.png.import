@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/dead_restart3.png-11a58cfee4c3ba443399960ef2323799.stex"
+path="res://.import/sound.png-a7513ab14f0e05dffe5f00df37a7243c.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/buttons/dead_restart3.png"
-dest_files=[ "res://.import/dead_restart3.png-11a58cfee4c3ba443399960ef2323799.stex" ]
+source_file="res://art/buttons/sound.png"
+dest_files=[ "res://.import/sound.png-a7513ab14f0e05dffe5f00df37a7243c.stex" ]
 
 [params]
 

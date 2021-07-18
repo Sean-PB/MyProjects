@@ -1,8 +1,8 @@
-[gd_scene load_steps=90 format=2]
+[gd_scene load_steps=101 format=2]
 
 [ext_resource path="res://Node2D.gd" type="Script" id=1]
 [ext_resource path="res://art/background_long_dirt.png" type="Texture" id=2]
-[ext_resource path="res://art/buttons/dead_restart3.png" type="Texture" id=3]
+[ext_resource path="res://art/buttons/alive_restart6.png" type="Texture" id=3]
 [ext_resource path="res://art/cylinder/cylinder_empty.png" type="Texture" id=4]
 [ext_resource path="res://art/cylinder/cylinder3.png" type="Texture" id=5]
 [ext_resource path="res://art/cylinder/cylinder4.png" type="Texture" id=6]
@@ -24,7 +24,7 @@
 [ext_resource path="res://art/buttons/load2.png" type="Texture" id=22]
 [ext_resource path="res://art/buttons/shoot3.png" type="Texture" id=23]
 [ext_resource path="res://art/cactus_shadow6.png" type="Texture" id=24]
-[ext_resource path="res://art/buttons/alive_restart1.png" type="Texture" id=25]
+[ext_resource path="res://art/buttons/dead_restart6.png" type="Texture" id=25]
 [ext_resource path="res://art/buttons/draw5.png" type="Texture" id=26]
 [ext_resource path="res://art/buttons/pause.png" type="Texture" id=27]
 [ext_resource path="res://art/buttons/unpause.png" type="Texture" id=28]
@@ -76,6 +76,9 @@
 [ext_resource path="res://art/sound/load_sound2.wav" type="AudioStream" id=74]
 [ext_resource path="res://art/sound/fall_sound_close4.wav" type="AudioStream" id=75]
 [ext_resource path="res://art/sound/fall_sound_far.wav" type="AudioStream" id=76]
+[ext_resource path="res://art/buttons/sound.png" type="Texture" id=77]
+[ext_resource path="res://art/buttons/mute.png" type="Texture" id=78]
+[ext_resource path="res://art/buttons/help_sign.png" type="Texture" id=79]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -111,14 +114,29 @@ font_data = ExtResource( 20 )
 
 [sub_resource type="SpriteFrames" id=3]
 animations = [ {
-"frames": [ ExtResource( 7 ), ExtResource( 12 ), ExtResource( 10 ) ],
+"frames": [ ExtResource( 5 ), ExtResource( 15 ), ExtResource( 6 ) ],
 "loop": false,
-"name": "Five-Six",
+"name": "Three-Four",
 "speed": 10.0
+}, {
+"frames": [ ExtResource( 4 ), ExtResource( 9 ) ],
+"loop": false,
+"name": "Empty-One",
+"speed": 20.0
 }, {
 "frames": [ ExtResource( 8 ), ExtResource( 13 ), ExtResource( 5 ) ],
 "loop": false,
 "name": "Two-Three",
+"speed": 10.0
+}, {
+"frames": [ ExtResource( 6 ), ExtResource( 14 ), ExtResource( 7 ) ],
+"loop": false,
+"name": "Four-Five",
+"speed": 10.0
+}, {
+"frames": [ ExtResource( 9 ), ExtResource( 11 ), ExtResource( 8 ) ],
+"loop": false,
+"name": "One-Two",
 "speed": 10.0
 }, {
 "frames": [ ExtResource( 4 ) ],
@@ -126,40 +144,13 @@ animations = [ {
 "name": "Empty",
 "speed": 0.0
 }, {
-"frames": [ ExtResource( 4 ), ExtResource( 9 ) ],
+"frames": [ ExtResource( 7 ), ExtResource( 12 ), ExtResource( 10 ) ],
 "loop": false,
-"name": "Empty-One",
-"speed": 20.0
-}, {
-"frames": [ ExtResource( 6 ), ExtResource( 14 ), ExtResource( 7 ) ],
-"loop": false,
-"name": "Four-Five",
-"speed": 10.0
-}, {
-"frames": [ ExtResource( 5 ), ExtResource( 15 ), ExtResource( 6 ) ],
-"loop": false,
-"name": "Three-Four",
-"speed": 10.0
-}, {
-"frames": [ ExtResource( 9 ), ExtResource( 11 ), ExtResource( 8 ) ],
-"loop": false,
-"name": "One-Two",
+"name": "Five-Six",
 "speed": 10.0
 } ]
 
-[sub_resource type="DynamicFont" id=4]
-size = 80
-font_data = ExtResource( 20 )
-
-[sub_resource type="DynamicFont" id=5]
-size = 33
-font_data = ExtResource( 20 )
-
-[sub_resource type="DynamicFont" id=6]
-size = 33
-font_data = ExtResource( 20 )
-
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id=4]
 length = 2.0
 tracks/0/type = "bezier"
 tracks/0/path = NodePath("FadeColor:color:r")
@@ -202,7 +193,7 @@ tracks/3/keys = {
 "times": PoolRealArray( 0, 0.5, 2 )
 }
 
-[sub_resource type="Animation" id=8]
+[sub_resource type="Animation" id=5]
 length = 2.0
 tracks/0/type = "bezier"
 tracks/0/path = NodePath("FadeColor:color:r")
@@ -245,7 +236,7 @@ tracks/3/keys = {
 "times": PoolRealArray( 0, 0.5, 2 )
 }
 
-[sub_resource type="SpriteFrames" id=9]
+[sub_resource type="SpriteFrames" id=6]
 animations = [ {
 "frames": [ ExtResource( 30 ), ExtResource( 32 ), ExtResource( 31 ) ],
 "loop": false,
@@ -253,13 +244,25 @@ animations = [ {
 "speed": 0.0
 } ]
 
-[sub_resource type="DynamicFont" id=10]
+[sub_resource type="DynamicFont" id=7]
 size = 96
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 20 )
 
-[sub_resource type="DynamicFont" id=11]
+[sub_resource type="DynamicFont" id=8]
 size = 96
+font_data = ExtResource( 20 )
+
+[sub_resource type="DynamicFont" id=9]
+size = 80
+font_data = ExtResource( 20 )
+
+[sub_resource type="DynamicFont" id=10]
+size = 33
+font_data = ExtResource( 20 )
+
+[sub_resource type="DynamicFont" id=11]
+size = 33
 font_data = ExtResource( 20 )
 
 [sub_resource type="Shader" id=12]
@@ -275,6 +278,43 @@ custom_defines = ""
 [sub_resource type="ShaderMaterial" id=13]
 shader = SubResource( 12 )
 
+[sub_resource type="Shader" id=14]
+code = "shader_type canvas_item;
+
+void fragment() {
+	COLOR = texture(SCREEN_TEXTURE, SCREEN_UV);
+    float avg = (COLOR.r + COLOR.g + COLOR.b) / 7.0;
+    COLOR.rgb = vec3(avg);
+}"
+custom_defines = ""
+
+[sub_resource type="ShaderMaterial" id=15]
+shader = SubResource( 14 )
+
+[sub_resource type="DynamicFont" id=16]
+size = 96
+font_data = ExtResource( 20 )
+
+[sub_resource type="DynamicFont" id=17]
+size = 32
+font_data = ExtResource( 20 )
+
+[sub_resource type="DynamicFont" id=18]
+size = 80
+font_data = ExtResource( 20 )
+
+[sub_resource type="DynamicFont" id=19]
+size = 40
+font_data = ExtResource( 20 )
+
+[sub_resource type="DynamicFont" id=20]
+size = 34
+font_data = ExtResource( 20 )
+
+[sub_resource type="DynamicFont" id=21]
+size = 34
+font_data = ExtResource( 20 )
+
 [node name="Node2D" type="Node2D"]
 script = ExtResource( 1 )
 
@@ -288,7 +328,7 @@ position = Vector2( -1.52588e-05, 305 )
 [node name="Enemy" type="AnimatedSprite" parent="Background/Foreground"]
 position = Vector2( 0, 375 )
 frames = SubResource( 1 )
-animation = "die"
+animation = "draw"
 
 [node name="shadow4" type="Sprite" parent="Background/Foreground"]
 position = Vector2( -204.86, 366.945 )
@@ -381,6 +421,413 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Cylinder" type="AnimatedSprite" parent="."]
+visible = false
+position = Vector2( 60, 680 )
+scale = Vector2( 0.5, 0.5 )
+frames = SubResource( 3 )
+animation = "Three-Four"
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 240, 450 )
+current = true
+
+[node name="FadeAnimation" type="AnimationPlayer" parent="Camera2D"]
+anims/FadeToBlack = SubResource( 4 )
+anims/FadeToWhite = SubResource( 5 )
+
+[node name="FadeColor" type="ColorRect" parent="Camera2D"]
+visible = false
+margin_left = -258.079
+margin_top = -465.079
+margin_right = 260.921
+margin_bottom = 466.921
+color = Color( 0, 0, 0, 0 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MessageArt" type="AnimatedSprite" parent="Camera2D"]
+visible = false
+position = Vector2( 0, -250 )
+frames = SubResource( 6 )
+frame = 1
+
+[node name="DeadMessage" type="Label" parent="Camera2D/MessageArt"]
+visible = false
+margin_left = -220.445
+margin_top = -73.9832
+margin_right = 220.555
+margin_bottom = 22.0168
+custom_fonts/font = SubResource( 7 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+text = "DEAD"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VictoryMessage" type="Label" parent="Camera2D/MessageArt"]
+visible = false
+margin_left = -220.445
+margin_top = -54.4545
+margin_right = 220.555
+margin_bottom = 41.5455
+custom_fonts/font = SubResource( 7 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+text = "Victory"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Restart1" type="TouchScreenButton" parent="Camera2D"]
+visible = false
+position = Vector2( -128.241, -64.0073 )
+scale = Vector2( 0.5, 0.5 )
+normal = ExtResource( 25 )
+
+[node name="Label" type="Label" parent="Camera2D/Restart1"]
+margin_left = 83.1604
+margin_top = 24.0168
+margin_right = 438.16
+margin_bottom = 153.017
+custom_fonts/font = SubResource( 8 )
+text = "Restart"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Restart2" type="TouchScreenButton" parent="Camera2D"]
+visible = false
+position = Vector2( -126.219, -61.0226 )
+scale = Vector2( 0.5, 0.5 )
+normal = ExtResource( 3 )
+
+[node name="Label" type="Label" parent="Camera2D/Restart2"]
+margin_left = 79.6396
+margin_top = 17.7279
+margin_right = 434.64
+margin_bottom = 146.728
+custom_fonts/font = SubResource( 8 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+text = "Restart"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Draw" type="TouchScreenButton" parent="."]
+position = Vector2( 65.3118, 660.061 )
+scale = Vector2( 0.75, 0.75 )
+normal = ExtResource( 26 )
+
+[node name="Label" type="Label" parent="Draw"]
+margin_left = 114.215
+margin_top = 38.5773
+margin_right = 370.215
+margin_bottom = 118.577
+custom_fonts/font = SubResource( 9 )
+custom_colors/font_color = Color( 0.866667, 0.866667, 0.866667, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+text = "DRAW"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Load" type="TouchScreenButton" parent="."]
+visible = false
+position = Vector2( 0, 740 )
+normal = ExtResource( 22 )
+
+[node name="Label" type="Label" parent="Load"]
+anchor_top = 0.0016914
+anchor_bottom = 0.0016914
+margin_left = 40.02
+margin_top = 99.7294
+margin_right = 125.02
+margin_bottom = 130.729
+custom_fonts/font = SubResource( 10 )
+custom_colors/font_color = Color( 0.945098, 0.945098, 0.945098, 1 )
+custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+text = "Load"
+align = 1
+valign = 1
+autowrap = true
+clip_text = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Dodge" type="TouchScreenButton" parent="."]
+visible = false
+position = Vector2( 320, 740 )
+normal = ExtResource( 19 )
+
+[node name="abel2" type="Label" parent="Dodge"]
+margin_left = 24.3858
+margin_top = 102.597
+margin_right = 136.386
+margin_bottom = 136.597
+custom_fonts/font = SubResource( 11 )
+custom_colors/font_color = Color( 0.866667, 0.866667, 0.866667, 1 )
+custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+text = "Dodge"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Fire" type="TouchScreenButton" parent="."]
+visible = false
+position = Vector2( 160, 740 )
+normal = ExtResource( 23 )
+
+[node name="Label" type="Label" parent="Fire"]
+margin_left = 25.4763
+margin_top = 102.336
+margin_right = 137.476
+margin_bottom = 136.336
+custom_fonts/font = SubResource( 11 )
+custom_colors/font_color = Color( 0.866667, 0.866667, 0.866667, 1 )
+custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+text = "Shoot"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GrayscaleShader" type="TextureRect" parent="."]
+visible = false
+material = SubResource( 13 )
+margin_right = 480.0
+margin_bottom = 900.0
+texture = ExtResource( 29 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GrayscaleShader2" type="TextureRect" parent="."]
+visible = false
+material = SubResource( 15 )
+margin_right = 480.0
+margin_bottom = 900.0
+texture = ExtResource( 29 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Help" type="TouchScreenButton" parent="."]
+pause_mode = 2
+position = Vector2( 160.445, 50 )
+scale = Vector2( 0.5, 0.5 )
+normal = ExtResource( 79 )
+
+[node name="Label" type="Label" parent="Help"]
+margin_left = 64.6103
+margin_top = 33.5222
+margin_right = 259.61
+margin_bottom = 129.522
+custom_fonts/font = SubResource( 16 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+text = "HELP"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Pause" type="TouchScreenButton" parent="."]
+visible = false
+position = Vector2( 410, 55 )
+normal = ExtResource( 27 )
+
+[node name="Unpause" type="TouchScreenButton" parent="."]
+pause_mode = 2
+visible = false
+position = Vector2( 410, 55 )
+normal = ExtResource( 28 )
+
+[node name="Sound" type="TouchScreenButton" parent="."]
+pause_mode = 2
+visible = false
+position = Vector2( 15, 55 )
+normal = ExtResource( 77 )
+
+[node name="Mute" type="TouchScreenButton" parent="."]
+pause_mode = 2
+position = Vector2( 15, 55 )
+normal = ExtResource( 78 )
+
+[node name="Instructions" type="Label" parent="."]
+visible = false
+margin_left = -0.490173
+margin_top = 180.0
+margin_right = 482.51
+margin_bottom = 724.847
+custom_fonts/font = SubResource( 17 )
+custom_colors/font_color = Color( 1, 0.984314, 0.00784314, 1 )
+custom_colors/font_color_shadow = Color( 1, 0, 0, 1 )
+text = "  - Press              to start.
+
+  - Choose         ,         , or        
+   after your device
+				   vibrates. You have one
+				   second to choose.
+				
+  - The enemy's choice will
+				   show after you choose.
+
+  -         To load a bullet. Must
+     load before shooting.
+
+  -         To shoot enemy.
+
+  -         To dodge enemy shots."
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="DrawButtonEx" type="Sprite" parent="Instructions"]
+position = Vector2( 180, 15 )
+scale = Vector2( 0.2, 0.2 )
+texture = ExtResource( 26 )
+
+[node name="Label" type="Label" parent="Instructions/DrawButtonEx"]
+margin_left = -97.5195
+margin_top = -118.848
+margin_right = 104.481
+margin_bottom = -38.8477
+custom_fonts/font = SubResource( 18 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+text = "Draw"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LoadButtonEx" type="Sprite" parent="Instructions"]
+position = Vector2( 205, 70 )
+scale = Vector2( 0.4, 0.4 )
+texture = ExtResource( 22 )
+
+[node name="Label" type="Label" parent="Instructions/LoadButtonEx"]
+margin_left = -47.274
+margin_top = 17.6246
+margin_right = 50.726
+margin_bottom = 57.6246
+custom_fonts/font = SubResource( 19 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+text = "Load"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LoadButtonEx2" type="Sprite" parent="Instructions"]
+position = Vector2( 65, 355 )
+scale = Vector2( 0.4, 0.4 )
+texture = ExtResource( 22 )
+
+[node name="Label" type="Label" parent="Instructions/LoadButtonEx2"]
+margin_left = -47.274
+margin_top = 17.6246
+margin_right = 50.726
+margin_bottom = 57.6246
+custom_fonts/font = SubResource( 19 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+text = "Load"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ShootButtonEx" type="Sprite" parent="Instructions"]
+position = Vector2( 280, 70 )
+scale = Vector2( 0.4, 0.4 )
+texture = ExtResource( 23 )
+
+[node name="Label" type="Label" parent="Instructions/ShootButtonEx"]
+margin_left = -54.375
+margin_top = 21.875
+margin_right = 63.625
+margin_bottom = 57.875
+custom_fonts/font = SubResource( 20 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+text = "Shoot"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ShootButtonEx2" type="Sprite" parent="Instructions"]
+position = Vector2( 65, 460 )
+scale = Vector2( 0.4, 0.4 )
+texture = ExtResource( 23 )
+
+[node name="Label" type="Label" parent="Instructions/ShootButtonEx2"]
+margin_left = -54.375
+margin_top = 21.875
+margin_right = 63.625
+margin_bottom = 57.875
+custom_fonts/font = SubResource( 20 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+text = "Shoot"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="DodgeButtonEx" type="Sprite" parent="Instructions"]
+position = Vector2( 415, 70 )
+scale = Vector2( 0.4, 0.4 )
+texture = ExtResource( 19 )
+
+[node name="Label" type="Label" parent="Instructions/DodgeButtonEx"]
+margin_left = -53.3936
+margin_top = 20.0226
+margin_right = 74.6064
+margin_bottom = 59.0226
+custom_fonts/font = SubResource( 21 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+text = "Dodge"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="DodgeButtonEx2" type="Sprite" parent="Instructions"]
+position = Vector2( 65, 530 )
+scale = Vector2( 0.4, 0.4 )
+texture = ExtResource( 19 )
+
+[node name="Label" type="Label" parent="Instructions/DodgeButtonEx2"]
+margin_left = -53.3936
+margin_top = 20.0226
+margin_right = 74.6064
+margin_bottom = 59.0226
+custom_fonts/font = SubResource( 21 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+text = "Dodge"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="PlayerMoveTimer" type="Timer" parent="."]
 one_shot = true
 
@@ -403,226 +850,9 @@ one_shot = true
 wait_time = 0.5
 one_shot = true
 
-[node name="Cylinder" type="AnimatedSprite" parent="."]
-visible = false
-position = Vector2( 60, 680 )
-scale = Vector2( 0.5, 0.5 )
-frames = SubResource( 3 )
-animation = "Three-Four"
-
-[node name="Draw" type="TouchScreenButton" parent="."]
-position = Vector2( 65.3118, 660.061 )
-scale = Vector2( 0.75, 0.75 )
-normal = ExtResource( 26 )
-
-[node name="Label" type="Label" parent="Draw"]
-margin_left = 114.215
-margin_top = 38.5773
-margin_right = 370.215
-margin_bottom = 118.577
-custom_fonts/font = SubResource( 4 )
-custom_colors/font_color = Color( 0.866667, 0.866667, 0.866667, 1 )
-custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
-text = "DRAW"
-align = 1
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2( 240, 450 )
-current = true
-
-[node name="Load" type="TouchScreenButton" parent="Camera2D"]
-visible = false
-position = Vector2( -240, 290 )
-normal = ExtResource( 22 )
-
-[node name="Label" type="Label" parent="Camera2D/Load"]
-anchor_top = 0.0016914
-anchor_bottom = 0.0016914
-margin_left = 40.02
-margin_top = 99.7294
-margin_right = 125.02
-margin_bottom = 130.729
-custom_fonts/font = SubResource( 5 )
-custom_colors/font_color = Color( 0.945098, 0.945098, 0.945098, 1 )
-custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
-custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
-text = "Load"
-align = 1
-valign = 1
-autowrap = true
-clip_text = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Fire" type="TouchScreenButton" parent="Camera2D"]
-visible = false
-position = Vector2( -80, 290 )
-normal = ExtResource( 23 )
-
-[node name="Label" type="Label" parent="Camera2D/Fire"]
-margin_left = 25.4763
-margin_top = 102.336
-margin_right = 137.476
-margin_bottom = 136.336
-custom_fonts/font = SubResource( 6 )
-custom_colors/font_color = Color( 0.866667, 0.866667, 0.866667, 1 )
-custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
-custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
-text = "Shoot"
-align = 1
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Dodge" type="TouchScreenButton" parent="Camera2D"]
-visible = false
-position = Vector2( 80, 290 )
-normal = ExtResource( 19 )
-
-[node name="abel2" type="Label" parent="Camera2D/Dodge"]
-margin_left = 24.3858
-margin_top = 102.597
-margin_right = 136.386
-margin_bottom = 136.597
-custom_fonts/font = SubResource( 6 )
-custom_colors/font_color = Color( 0.866667, 0.866667, 0.866667, 1 )
-custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
-custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
-text = "Dodge"
-align = 1
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Pause" type="TouchScreenButton" parent="Camera2D"]
-visible = false
-position = Vector2( 175, -395 )
-scale = Vector2( 0.75, 0.75 )
-normal = ExtResource( 27 )
-
-[node name="Unpause" type="TouchScreenButton" parent="Camera2D"]
-pause_mode = 2
-visible = false
-position = Vector2( 175, -394.333 )
-scale = Vector2( 0.75, 0.75 )
-normal = ExtResource( 28 )
-
-[node name="FadeAnimation" type="AnimationPlayer" parent="Camera2D"]
-anims/FadeToBlack = SubResource( 7 )
-anims/FadeToWhite = SubResource( 8 )
-
-[node name="FadeColor" type="ColorRect" parent="Camera2D"]
-visible = false
-margin_left = -258.079
-margin_top = -465.079
-margin_right = 260.921
-margin_bottom = 466.921
-color = Color( 0, 0, 0, 0 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="MessageArt" type="AnimatedSprite" parent="Camera2D"]
-visible = false
-position = Vector2( 0, -250 )
-frames = SubResource( 9 )
-frame = 1
-
-[node name="DeadMessage" type="Label" parent="Camera2D/MessageArt"]
-visible = false
-margin_left = -220.445
-margin_top = -73.9832
-margin_right = 220.555
-margin_bottom = 22.0168
-custom_fonts/font = SubResource( 10 )
-custom_colors/font_color = Color( 1, 1, 1, 1 )
-custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
-text = "DEAD"
-align = 1
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="VictoryMessage" type="Label" parent="Camera2D/MessageArt"]
-visible = false
-margin_left = -220.445
-margin_top = -54.4545
-margin_right = 220.555
-margin_bottom = 41.5455
-custom_fonts/font = SubResource( 10 )
-custom_colors/font_color = Color( 0, 0, 0, 1 )
-custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
-text = "Victory"
-align = 1
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Restart1" type="TouchScreenButton" parent="Camera2D"]
-visible = false
-position = Vector2( -128.241, -64.0073 )
-scale = Vector2( 0.5, 0.5 )
-normal = ExtResource( 3 )
-
-[node name="Label" type="Label" parent="Camera2D/Restart1"]
-margin_left = 83.1604
-margin_top = 24.0168
-margin_right = 438.16
-margin_bottom = 153.017
-custom_fonts/font = SubResource( 11 )
-text = "Restart"
-align = 1
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Restart2" type="TouchScreenButton" parent="Camera2D"]
-visible = false
-position = Vector2( -126.78, -61.0226 )
-scale = Vector2( 0.5, 0.5 )
-normal = ExtResource( 25 )
-
-[node name="Label" type="Label" parent="Camera2D/Restart2"]
-margin_left = 79.6396
-margin_top = 17.7279
-margin_right = 434.64
-margin_bottom = 146.728
-custom_fonts/font = SubResource( 11 )
-custom_colors/font_color = Color( 0, 0, 0, 1 )
-custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
-custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
-text = "Restart"
-align = 1
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="GrayscaleShader" type="TextureRect" parent="Camera2D"]
-visible = false
-material = SubResource( 13 )
-margin_left = -240.0
-margin_top = -450.0
-margin_right = 240.0
-margin_bottom = 450.0
-texture = ExtResource( 29 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="AdMob" type="Node" parent="."]
-script = ExtResource( 33 )
-banner_id = "ca-app-pub-3940256099942544/6300978111"
+[node name="GunfireTimer" type="Timer" parent="."]
+wait_time = 0.3
+one_shot = true
 
 [node name="GunfireClose" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 69 )
@@ -637,7 +867,6 @@ stream = ExtResource( 76 )
 
 [node name="FallSoundClose" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 75 )
-volume_db = -10.0
 
 [node name="LoadSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 74 )
@@ -645,7 +874,7 @@ volume_db = -10.0
 
 [node name="EnemyLoadSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 74 )
-volume_db = -30.0
+volume_db = -20.0
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 72 )
@@ -659,19 +888,22 @@ volume_db = -10.0
 stream = ExtResource( 70 )
 volume_db = -1.0
 
-[node name="GunfireTimer" type="Timer" parent="."]
-wait_time = 0.3
-one_shot = true
+[node name="AdMob" type="Node" parent="."]
+script = ExtResource( 33 )
+banner_id = "ca-app-pub-3940256099942544/6300978111"
+[connection signal="released" from="Camera2D/Restart1" to="." method="_on_Restart_released"]
+[connection signal="released" from="Camera2D/Restart2" to="." method="_on_Restart_released"]
+[connection signal="released" from="Draw" to="." method="_on_Draw_released"]
+[connection signal="released" from="Load" to="." method="_on_Load_released"]
+[connection signal="released" from="Dodge" to="." method="_on_Dodge_released"]
+[connection signal="released" from="Fire" to="." method="_on_Fire_released"]
+[connection signal="released" from="Help" to="." method="_on_Help_released"]
+[connection signal="released" from="Pause" to="." method="_on_Pause_released"]
+[connection signal="released" from="Unpause" to="." method="_on_Unpause_released"]
+[connection signal="released" from="Sound" to="." method="_on_Sound_released"]
+[connection signal="released" from="Mute" to="." method="_on_Mute_released"]
 [connection signal="timeout" from="PlayerMoveTimer" to="." method="_on_PlayerMoveTimer_timeout"]
 [connection signal="timeout" from="ShowTimer" to="." method="_on_ShowTimer_timeout"]
 [connection signal="timeout" from="Rumble1" to="." method="_on_Rumble1_timeout"]
 [connection signal="timeout" from="Rumble2" to="." method="_on_Rumble2_timeout"]
-[connection signal="released" from="Draw" to="." method="_on_Draw_released"]
-[connection signal="released" from="Camera2D/Load" to="." method="_on_Load_released"]
-[connection signal="released" from="Camera2D/Fire" to="." method="_on_Fire_released"]
-[connection signal="released" from="Camera2D/Dodge" to="." method="_on_Dodge_released"]
-[connection signal="released" from="Camera2D/Pause" to="." method="_on_Pause_released"]
-[connection signal="released" from="Camera2D/Unpause" to="." method="_on_Unpause_released"]
-[connection signal="released" from="Camera2D/Restart1" to="." method="_on_Restart_released"]
-[connection signal="released" from="Camera2D/Restart2" to="." method="_on_Restart_released"]
 [connection signal="timeout" from="GunfireTimer" to="." method="_on_GunfireTimer_timeout"]
