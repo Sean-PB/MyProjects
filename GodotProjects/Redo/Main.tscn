@@ -1,0 +1,62 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://CharacterSelection.tscn" type="PackedScene" id=1]
+[ext_resource path="res://World.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Player.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Main.gd" type="Script" id=4]
+[ext_resource path="res://Art/Menus/pause.png" type="Texture" id=5]
+[ext_resource path="res://Art/Menus/play.png" type="Texture" id=6]
+[ext_resource path="res://Art/World/Dock.png" type="Texture" id=7]
+[ext_resource path="res://Art/Menus/edit.png" type="Texture" id=8]
+
+[node name="Main" type="Node2D"]
+script = ExtResource( 4 )
+
+[node name="World" parent="." instance=ExtResource( 2 )]
+
+[node name="Dock" type="Sprite" parent="."]
+position = Vector2( 119.743, 1111.62 )
+rotation = -3.14159
+texture = ExtResource( 7 )
+
+[node name="Dock" type="Sprite" parent="Dock"]
+position = Vector2( -64.0629, -0.293579 )
+texture = ExtResource( 7 )
+
+[node name="Player" parent="." instance=ExtResource( 3 )]
+position = Vector2( 245, 1165 )
+rotation = 1.5708
+scale = Vector2( 1.35, 1.35 )
+
+[node name="EditCharacter" type="TouchScreenButton" parent="."]
+pause_mode = 2
+position = Vector2( 25, 100 )
+scale = Vector2( 0.3, 0.3 )
+normal = ExtResource( 8 )
+
+[node name="CharacterSelection" parent="." instance=ExtResource( 1 )]
+pause_mode = 2
+visible = false
+position = Vector2( 360, 700 )
+
+[node name="Start" type="TouchScreenButton" parent="."]
+position = Vector2( 240, 670 )
+scale = Vector2( 0.5, 0.5 )
+normal = ExtResource( 6 )
+
+[node name="Pause" type="TouchScreenButton" parent="."]
+visible = false
+position = Vector2( 585, 120 )
+scale = Vector2( 0.22, 0.22 )
+normal = ExtResource( 5 )
+
+[node name="Play" type="TouchScreenButton" parent="."]
+pause_mode = 2
+visible = false
+position = Vector2( 585, 120 )
+scale = Vector2( 0.22, 0.22 )
+normal = ExtResource( 6 )
+[connection signal="released" from="EditCharacter" to="." method="_on_EditCharacter_released"]
+[connection signal="released" from="Start" to="." method="_on_Start_released"]
+[connection signal="released" from="Pause" to="." method="_on_Pause_released"]
+[connection signal="released" from="Play" to="." method="_on_Play_released"]

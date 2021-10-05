@@ -3,6 +3,7 @@ extends CanvasLayer
 var skin = "middle"           # middle by default
 var hair = "bald"             # bald by default
 var character_file = "user://character.txt"   # Declaring file to save character
+var started = false
 
 
 func _ready():
@@ -12,6 +13,7 @@ func _ready():
 
 
 func _on_Start_pressed():        # Start button pressed
+	started = true
 	$Start.hide()
 	$CharacterSelector.hide()
 	$Message.hide()
@@ -55,24 +57,39 @@ func _on_CharacterSelector_pressed():      # Character selector button pressed
 func _on_DarkBlack_pressed():
 	skin = "dark_black"
 	$CharacterSelectContainer.hide()
+	$CharacterSelector.show()                  # Show button
+	if started == true:
+		$Resume.show()                             # Show resume when done
 
 
 func _on_LightBlack_pressed():
 	skin = "light_black"
 	$CharacterSelectContainer.hide()
+	$CharacterSelector.show()                  # Show button
+	if started == true:
+		$Resume.show()                             # Show resume when done
 
 
 func _on_Middle_pressed():
 	skin = "middle"
 	$CharacterSelectContainer.hide()
+	$CharacterSelector.show()                  # Show button
+	if started == true:
+		$Resume.show()                             # Show resume when done
 
 
 func _on_DarkWhite_pressed():
 	skin = "dark_white"
 	$CharacterSelectContainer.hide()
+	$CharacterSelector.show()                  # Show button
+	if started == true:
+		$Resume.show()                             # Show resume when done
 
 
 func _on_LightWhite_pressed():
 	skin = "light_white"
 	$CharacterSelectContainer.hide()
+	$CharacterSelector.show()                  # Show button
+	if started == true:
+		$Resume.show()                             # Show resume when done
 

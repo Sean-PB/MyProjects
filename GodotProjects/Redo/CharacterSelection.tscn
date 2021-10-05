@@ -1,0 +1,128 @@
+[gd_scene load_steps=23 format=2]
+
+[ext_resource path="res://Art/Menus/CharacterSelectorBackground.png" type="Texture" id=1]
+[ext_resource path="res://Art/Player/2/idle.png" type="Texture" id=2]
+[ext_resource path="res://Art/Player/3/idle.png" type="Texture" id=3]
+[ext_resource path="res://Art/Player/1/idle.png" type="Texture" id=4]
+[ext_resource path="res://Art/Player/4/idle.png" type="Texture" id=5]
+[ext_resource path="res://Art/Player/5/idle.png" type="Texture" id=6]
+[ext_resource path="res://Art/Player/hair/blonde.png" type="Texture" id=7]
+[ext_resource path="res://Art/Player/hair/red.png" type="Texture" id=8]
+[ext_resource path="res://Art/Player/hair/black.png" type="Texture" id=9]
+[ext_resource path="res://Art/Menus/black.png" type="Texture" id=10]
+[ext_resource path="res://Art/Player/hair/brown.png" type="Texture" id=11]
+[ext_resource path="res://CharacterSelection.gd" type="Script" id=12]
+[ext_resource path="res://Art/Menus/bald.png" type="Texture" id=13]
+[ext_resource path="res://Art/Menus/red.png" type="Texture" id=14]
+[ext_resource path="res://Art/Menus/blonde.png" type="Texture" id=15]
+[ext_resource path="res://Art/Menus/brown.png" type="Texture" id=16]
+[ext_resource path="res://Art/Menus/CharacterSelectorBackground2.png" type="Texture" id=17]
+[ext_resource path="res://Art/Menus/exit.png" type="Texture" id=18]
+[ext_resource path="res://Art/Menus/confirm.png" type="Texture" id=19]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 1 ), ExtResource( 17 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="SpriteFrames" id=2]
+animations = [ {
+"frames": [ ExtResource( 4 ), ExtResource( 2 ), ExtResource( 3 ), ExtResource( 5 ), ExtResource( 6 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="SpriteFrames" id=3]
+animations = [ {
+"frames": [ ExtResource( 9 ), ExtResource( 11 ), ExtResource( 7 ), ExtResource( 8 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[node name="CharacterSelection" type="AnimatedSprite"]
+frames = SubResource( 1 )
+script = ExtResource( 12 )
+
+[node name="1" type="TouchScreenButton" parent="."]
+position = Vector2( -305.308, 205 )
+scale = Vector2( 2, 2 )
+normal = ExtResource( 4 )
+
+[node name="2" type="TouchScreenButton" parent="."]
+position = Vector2( -185.308, 205 )
+scale = Vector2( 2, 2 )
+normal = ExtResource( 2 )
+
+[node name="3" type="TouchScreenButton" parent="."]
+position = Vector2( -65.3078, 205 )
+scale = Vector2( 2, 2 )
+normal = ExtResource( 3 )
+
+[node name="4" type="TouchScreenButton" parent="."]
+position = Vector2( 54.6922, 205 )
+scale = Vector2( 2, 2 )
+normal = ExtResource( 5 )
+
+[node name="5" type="TouchScreenButton" parent="."]
+position = Vector2( 174.482, 205 )
+scale = Vector2( 2, 2 )
+normal = ExtResource( 6 )
+
+[node name="Black" type="TouchScreenButton" parent="."]
+position = Vector2( 181.002, -217.415 )
+normal = ExtResource( 10 )
+
+[node name="Brown" type="TouchScreenButton" parent="."]
+position = Vector2( 181.002, -147.415 )
+normal = ExtResource( 16 )
+
+[node name="Red" type="TouchScreenButton" parent="."]
+position = Vector2( 181.002, -77.4147 )
+normal = ExtResource( 14 )
+
+[node name="Blonde" type="TouchScreenButton" parent="."]
+position = Vector2( 181.002, -7.41466 )
+normal = ExtResource( 15 )
+
+[node name="Bald" type="TouchScreenButton" parent="."]
+position = Vector2( 181.002, 67.5854 )
+scale = Vector2( 0.8, 0.8 )
+normal = ExtResource( 13 )
+
+[node name="Skin" type="AnimatedSprite" parent="."]
+position = Vector2( -111.546, -44.5735 )
+scale = Vector2( 6, 6 )
+frames = SubResource( 2 )
+
+[node name="Hair" type="AnimatedSprite" parent="."]
+position = Vector2( -111, -45 )
+scale = Vector2( 6, 6 )
+frames = SubResource( 3 )
+
+[node name="Confirm" type="TouchScreenButton" parent="."]
+visible = false
+position = Vector2( 156.408, -380.77 )
+scale = Vector2( 0.2, 0.2 )
+normal = ExtResource( 19 )
+
+[node name="Exit" type="TouchScreenButton" parent="."]
+position = Vector2( -257.641, -383.398 )
+scale = Vector2( 0.2, 0.2 )
+normal = ExtResource( 18 )
+[connection signal="released" from="1" to="." method="_on_1_released"]
+[connection signal="released" from="2" to="." method="_on_2_released"]
+[connection signal="released" from="3" to="." method="_on_3_released"]
+[connection signal="released" from="4" to="." method="_on_4_released"]
+[connection signal="released" from="5" to="." method="_on_5_released"]
+[connection signal="released" from="Black" to="." method="_on_Black_released"]
+[connection signal="released" from="Brown" to="." method="_on_Brown_released"]
+[connection signal="released" from="Red" to="." method="_on_Red_released"]
+[connection signal="released" from="Blonde" to="." method="_on_Blonde_released"]
+[connection signal="released" from="Bald" to="." method="_on_Bald_released"]
+[connection signal="released" from="Confirm" to="." method="_on_Confirm_released"]
+[connection signal="released" from="Exit" to="." method="_on_Exit_released"]
