@@ -1,5 +1,5 @@
 extends Node2D
-
+# Trying tredmill style. DELETE THIS COMMENT LATER!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 var skin
 var started
