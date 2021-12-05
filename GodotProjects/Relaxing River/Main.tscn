@@ -28,35 +28,40 @@ position = Vector2( 245, 1165 )
 rotation = 1.5708
 scale = Vector2( 1.35, 1.35 )
 
-[node name="EditCharacter" type="TouchScreenButton" parent="."]
-pause_mode = 2
-position = Vector2( 25, 100 )
-scale = Vector2( 0.3, 0.3 )
-normal = ExtResource( 8 )
-
-[node name="CharacterSelection" parent="." instance=ExtResource( 1 )]
-pause_mode = 2
-visible = false
-position = Vector2( 360, 700 )
-
 [node name="Start" type="TouchScreenButton" parent="."]
 position = Vector2( 240, 670 )
 scale = Vector2( 0.5, 0.5 )
 normal = ExtResource( 6 )
 
-[node name="Pause" type="TouchScreenButton" parent="."]
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 360, 950 )
+offset = Vector2( 0, -310 )
+
+[node name="EditCharacter" type="TouchScreenButton" parent="Camera2D"]
+pause_mode = 2
+position = Vector2( -340, -865 )
+rotation = 3.78956e-13
+scale = Vector2( 0.3, 0.3 )
+normal = ExtResource( 8 )
+
+[node name="CharacterSelection" parent="Camera2D" instance=ExtResource( 1 )]
+pause_mode = 2
 visible = false
-position = Vector2( 585, 120 )
+position = Vector2( 0, -250 )
+
+[node name="Pause" type="TouchScreenButton" parent="Camera2D"]
+visible = false
+position = Vector2( 220, -845 )
 scale = Vector2( 0.22, 0.22 )
 normal = ExtResource( 5 )
 
-[node name="Play" type="TouchScreenButton" parent="."]
+[node name="Play" type="TouchScreenButton" parent="Camera2D"]
 pause_mode = 2
 visible = false
-position = Vector2( 585, 120 )
+position = Vector2( 220, -845 )
 scale = Vector2( 0.22, 0.22 )
 normal = ExtResource( 6 )
-[connection signal="released" from="EditCharacter" to="." method="_on_EditCharacter_released"]
 [connection signal="released" from="Start" to="." method="_on_Start_released"]
-[connection signal="released" from="Pause" to="." method="_on_Pause_released"]
-[connection signal="released" from="Play" to="." method="_on_Play_released"]
+[connection signal="released" from="Camera2D/EditCharacter" to="." method="_on_EditCharacter_released"]
+[connection signal="released" from="Camera2D/Pause" to="." method="_on_Pause_released"]
+[connection signal="released" from="Camera2D/Play" to="." method="_on_Play_released"]

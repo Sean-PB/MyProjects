@@ -58,14 +58,24 @@ animations = [ {
 "name": "right5",
 "speed": 5.0
 }, {
+"frames": [ ExtResource( 28 ), ExtResource( 14 ), ExtResource( 35 ), ExtResource( 32 ), ExtResource( 13 ), ExtResource( 26 ), ExtResource( 30 ), ExtResource( 16 ), ExtResource( 28 ) ],
+"loop": true,
+"name": "straight2",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 19 ), ExtResource( 27 ), ExtResource( 31 ), ExtResource( 29 ), ExtResource( 8 ), ExtResource( 3 ) ],
+"loop": true,
+"name": "left3",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 7 ), ExtResource( 44 ), ExtResource( 39 ), ExtResource( 41 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 1 ), ExtResource( 4 ), ExtResource( 7 ) ],
+"loop": true,
+"name": "straight4",
+"speed": 5.0
+}, {
 "frames": [ ExtResource( 22 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 1 ), ExtResource( 4 ), ExtResource( 7 ) ],
 "loop": true,
 "name": "left4",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 17 ), ExtResource( 13 ), ExtResource( 26 ), ExtResource( 30 ), ExtResource( 16 ), ExtResource( 28 ) ],
-"loop": true,
-"name": "left2",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 15 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 2 ) ],
@@ -88,6 +98,11 @@ animations = [ {
 "name": "right3",
 "speed": 5.0
 }, {
+"frames": [ ExtResource( 17 ), ExtResource( 13 ), ExtResource( 26 ), ExtResource( 30 ), ExtResource( 16 ), ExtResource( 28 ) ],
+"loop": true,
+"name": "left2",
+"speed": 5.0
+}, {
 "frames": [ ExtResource( 17 ), ExtResource( 28 ), ExtResource( 14 ), ExtResource( 35 ), ExtResource( 32 ), ExtResource( 13 ) ],
 "loop": true,
 "name": "right2",
@@ -101,21 +116,6 @@ animations = [ {
 "frames": [ ExtResource( 22 ), ExtResource( 7 ), ExtResource( 44 ), ExtResource( 39 ), ExtResource( 41 ), ExtResource( 5 ) ],
 "loop": true,
 "name": "right4",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 28 ), ExtResource( 14 ), ExtResource( 35 ), ExtResource( 32 ), ExtResource( 13 ), ExtResource( 26 ), ExtResource( 30 ), ExtResource( 16 ), ExtResource( 28 ) ],
-"loop": true,
-"name": "straight2",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 7 ), ExtResource( 44 ), ExtResource( 39 ), ExtResource( 41 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 1 ), ExtResource( 4 ), ExtResource( 7 ) ],
-"loop": true,
-"name": "straight4",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 19 ), ExtResource( 27 ), ExtResource( 31 ), ExtResource( 29 ), ExtResource( 8 ), ExtResource( 3 ) ],
-"loop": true,
-"name": "left3",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 18 ), ExtResource( 21 ), ExtResource( 37 ), ExtResource( 36 ), ExtResource( 42 ), ExtResource( 23 ) ],

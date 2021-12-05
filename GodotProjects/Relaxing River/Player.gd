@@ -6,6 +6,9 @@ var skin
 var hair
 var animation
 var frame
+var sensitivity = 2.5
+var drag = 0
+var playing = false
 var speed = 50
 var velocity = Vector2()
 
@@ -17,8 +20,21 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+func _process(delta):
+	if playing == true:
+		rotation_degrees += drag * delta
+		rotation_degrees = clamp(rotation_degrees, -30, 30)
+		velocity = move_and_slide(Vector2(0, -speed).rotated(rotation))
+
+
+func _input(event):
+	if playing: # To make sure you can't set drag before starting
+		# Finding out how much to rotate player based on drag
+		if event is InputEventScreenDrag:
+			drag = event.relative.x * sensitivity
+		# Stopping rotation once player stops dragging
+		elif event is InputEventScreenTouch and not event.is_pressed():
+			drag = 0
 
 
 func load_character():
@@ -64,8 +80,4 @@ func leave_dock(delta):
 		velocity = move_and_slide(Vector2(0, -speed).rotated(rotation))
 	elif position.y > 950:			# Moving into finished position
 		velocity = move_and_slide(Vector2(0, -speed).rotated(rotation))
-
-
-func move(delta):
-	velocity = move_and_slide(Vector2(0, -speed).rotated(rotation))
 
