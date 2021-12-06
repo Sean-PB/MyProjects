@@ -1,9 +1,13 @@
 extends Node2D
-# Trying tredmill style. DELETE THIS COMMENT LATER!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+const STRIP = preload("res://Strip.tscn")
 
 var skin
 var started
 var playing
+var last_player_pos = 950
+var last_strip_pos = -384
+var count = 1
 
 
 # Called when the node enters the scene tree for the first time.
@@ -31,6 +35,9 @@ func _process(delta):
 	if playing == true:
 		$Camera2D/Pause.show()
 		$Camera2D.position.y = $Player.position.y
+		spawn_world()
+		if $Player.position.y == 700:
+			$Dock.queue_free()
 
 
 
@@ -68,3 +75,28 @@ func _on_EditCharacter_released():
 func exit_CharacterSelector():
 	$Camera2D/EditCharacter.show()
 
+
+# ------------------------------------------------------------------------------
+# This function spawns in the world one strip at a time.
+# ------------------------------------------------------------------------------
+# Whenever the player has moved up 1 strip length (128), we mark down the new 
+# most recent player position benchmark to check against in the future then 
+# create a new instance of the world strip. Then we take the position of the 
+# most recent strip addition, move it up by 128, and place the new strip 
+# instance there.
+func spawn_world():
+	if last_player_pos - $Player.position.y >= 128:
+		last_player_pos -= 128
+		var strip = STRIP.instance()
+		last_strip_pos -= 128
+		strip.position.y = last_strip_pos
+		$Strips.add_child(strip)
+		
+		# CHANGE LATER!!!!!!!!!!!!!!!!!!
+		# I can use different logic to make river splits using different
+		# kinds of strips at different x coordinates.
+		if count % 2 == 1:
+			strip.position.x = -768
+		else:
+			strip.position.x = 0
+		count += 1
