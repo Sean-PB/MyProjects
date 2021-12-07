@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://CharacterSelection.tscn" type="PackedScene" id=1]
-[ext_resource path="res://World.tscn" type="PackedScene" id=2]
+[ext_resource path="res://WorldStart.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Player.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Main.gd" type="Script" id=4]
 [ext_resource path="res://Art/Menus/pause.png" type="Texture" id=5]
@@ -12,9 +12,9 @@
 [node name="Main" type="Node2D"]
 script = ExtResource( 4 )
 
-[node name="Strips" type="Node2D" parent="."]
+[node name="World" type="Node2D" parent="."]
 
-[node name="World" parent="." instance=ExtResource( 2 )]
+[node name="WorldStart" parent="World" instance=ExtResource( 2 )]
 
 [node name="Dock" type="Sprite" parent="."]
 position = Vector2( 119.743, 1111.62 )
@@ -38,6 +38,7 @@ normal = ExtResource( 6 )
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( 360, 950 )
 offset = Vector2( 0, -310 )
+rotating = true
 
 [node name="EditCharacter" type="TouchScreenButton" parent="Camera2D"]
 pause_mode = 2

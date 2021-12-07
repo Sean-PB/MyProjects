@@ -1,19 +1,25 @@
 extends Node2D
 
 const STRIP = preload("res://Strip.tscn")
+const BEND = preload("res://Bend.tscn")
 
 var skin
 var started
 var playing
-var last_player_pos = 950
-var last_strip_pos = -384
-var count = 1
+var straight_length
+#var strip_count = 0
+var river_top = -128
+var rng = RandomNumberGenerator.new()
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$Player.load_character()
 	started = false
+	
+	# Setting random length of straiht river section
+	rng.randomize()                 # Randomize rng
+	straight_length = rng.randi_range(0, 1) # set straight_length to new random number
 	
 	# Getting signal of when character editing is finished
 	var CharacterDone = get_tree().get_root().find_node("CharacterSelection", true, false)
@@ -35,7 +41,7 @@ func _process(delta):
 	if playing == true:
 		$Camera2D/Pause.show()
 		$Camera2D.position.y = $Player.position.y
-		spawn_world()
+		spawn_world(delta)
 		if $Player.position.y == 700:
 			$Dock.queue_free()
 
@@ -84,19 +90,31 @@ func exit_CharacterSelector():
 # create a new instance of the world strip. Then we take the position of the 
 # most recent strip addition, move it up by 128, and place the new strip 
 # instance there.
-func spawn_world():
-	if last_player_pos - $Player.position.y >= 128:
-		last_player_pos -= 128
-		var strip = STRIP.instance()
-		last_strip_pos -= 128
-		strip.position.y = last_strip_pos
-		$Strips.add_child(strip)
-		
-		# CHANGE LATER!!!!!!!!!!!!!!!!!!
-		# I can use different logic to make river splits using different
-		# kinds of strips at different x coordinates.
-		if count % 2 == 1:
-			strip.position.x = -768
-		else:
-			strip.position.x = 0
-		count += 1
+func spawn_world(delta):
+	#print("Player pos: " + str($Player.position.y))
+	#print("River top: " + str(river_top))
+	# If were at a position to spawn something new
+	if $Player.position.y - 1280 <= river_top:
+		# Decide what to spawn (bend or straight)
+#		if straight_length > 0:    # Straight
+			var strip = STRIP.instance()    # New strip instance
+			strip.position.y = river_top    # Move strip to correct positoin
+			$World.add_child(strip)         # Spawn strip into world
+			river_top -= 128                # Adjust top of river position
+#			straight_length -= 1            # keep track of how many straight strips left before bend
+			
+#		elif straight_length == 0:  # Bend
+#			var bend = BEND.instance()      # New bend instance
+#			bend.position.y = river_top     # Move bend to correct position
+#			$World.add_child(bend)         # Spawn bend into world
+#			bend.connect("left", self, "turn_left", [delta])
+#			bend.connect("right", self, "turn_right", [delta])
+
+#func turn_right(delta):
+#	print("right")
+#	$Camera2D.rotation_degrees += 90
+
+
+#func turn_left(delta):
+#	print("left")
+#	$Camera2D.rotation_degrees -= 90
