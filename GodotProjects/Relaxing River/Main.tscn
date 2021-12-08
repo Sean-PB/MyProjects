@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://CharacterSelection.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Art/Sound/song3.wav" type="AudioStream" id=2]
 [ext_resource path="res://Player.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Main.gd" type="Script" id=4]
 [ext_resource path="res://Art/Menus/pause.png" type="Texture" id=5]
@@ -62,8 +63,13 @@ visible = false
 position = Vector2( 220, -845 )
 scale = Vector2( 0.22, 0.22 )
 normal = ExtResource( 6 )
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 2 )
+volume_db = -20.0
 [connection signal="screen_exited" from="Dock/VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]
 [connection signal="released" from="Start" to="." method="_on_Start_released"]
 [connection signal="released" from="Camera2D/EditCharacter" to="." method="_on_EditCharacter_released"]
 [connection signal="released" from="Camera2D/Pause" to="." method="_on_Pause_released"]
 [connection signal="released" from="Camera2D/Play" to="." method="_on_Play_released"]
+[connection signal="finished" from="Music" to="." method="_on_Music_finished"]

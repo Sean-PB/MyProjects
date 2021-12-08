@@ -6,12 +6,12 @@ var skin
 var hair
 var animation
 var frame
-var sensitivity = 2.5
+var sensitivity = 5
 var drag = 0
 var speed_start = 15
 var rotation_accel = 0
 var playing = false
-var speed = 50
+var speed = 35
 
 
 # Called when the node enters the scene tree for the first time.
@@ -27,7 +27,7 @@ func _process(delta):
 		rotation_degrees = clamp(rotation_degrees, -30, 30)
 		move_and_slide(Vector2(0, -speed).rotated(rotation))
 
-
+# Swiping functionality
 func _input(event):
 	if playing: # To make sure you can't set drag before starting
 		# Finding out how much to rotate player based on drag

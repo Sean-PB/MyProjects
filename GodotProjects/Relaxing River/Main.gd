@@ -31,6 +31,7 @@ func _ready():
 	# Setting random length of straiht river section
 	rng.randomize()                 # Randomize rng
 	straight_length = rng.randi_range(1, 1) # set straight_length to new random number
+	
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -57,6 +58,8 @@ func _on_Start_released():
 	$Start.hide()
 	$Camera2D/EditCharacter.hide()
 	started = true
+	# Play music (CHANGE TO BE RANDOM SONG ORDER LATER) !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+	$Music.play()
 
 
 func _on_Pause_released():
@@ -108,3 +111,7 @@ func spawn_world():
 # De-spawns dock when off screen
 func _on_VisibilityNotifier2D_screen_exited():
 	$Dock.queue_free()
+
+# Maybe I can use this to make the 3 random order songs follow each other.
+func _on_Music_finished():
+	pass # Replace with function body.
