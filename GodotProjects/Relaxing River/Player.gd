@@ -8,9 +8,10 @@ var animation
 var frame
 var sensitivity = 2.5
 var drag = 0
+var speed_start = 15
+var rotation_accel = 0
 var playing = false
 var speed = 50
-var velocity = Vector2()
 
 
 # Called when the node enters the scene tree for the first time.
@@ -24,7 +25,7 @@ func _process(delta):
 	if playing == true:
 		rotation_degrees += drag * delta
 		rotation_degrees = clamp(rotation_degrees, -30, 30)
-		velocity = move_and_slide(Vector2(0, -speed).rotated(rotation))
+		move_and_slide(Vector2(0, -speed).rotated(rotation))
 
 
 func _input(event):
@@ -69,15 +70,19 @@ func load_character():
 		$Skin/Hair.hide()
 
 
+# This function takes the player away from the dock and into the starting 
+# position for the game"
+#----------------------------------------------------------------------------------------------
+# If the player hasn't turned to be straight yet, accelerate their speed and 
+# turning rate. Else, just have the player go straight until they reach the
+# starting spot.
 func leave_dock(delta):
-	if rotation_degrees > 45:		# Turning left
+	if rotation_degrees > 0:
 		$Skin.play("left" + skin)
-		rotation_degrees -= 25 * delta
-		velocity = move_and_slide(Vector2(0, -speed).rotated(rotation))
-	elif rotation_degrees > 0:		# Turning left
+		rotation_degrees = clamp(rotation_degrees - rotation_accel, 0, 90) # Turn speed
+		speed_start = clamp(speed_start + (40 * delta), 0, speed)          # Speed
+		move_and_slide(Vector2(0, -speed_start).rotated(rotation))
+		rotation_accel += .35 * delta
+	else:
 		$Skin.play("straight" + skin)
-		rotation_degrees -= 30 * delta
-		velocity = move_and_slide(Vector2(0, -speed).rotated(rotation))
-	elif position.y > 950:			# Moving into finished position
-		velocity = move_and_slide(Vector2(0, -speed).rotated(rotation))
-
+		move_and_slide(Vector2(0, -speed).rotated(rotation))

@@ -44,7 +44,7 @@ func load_character():
 func save_character(skin_color, hair_color):
 	var f = File.new()
 	f.open(character_file, File.WRITE)
-	f.store_string((str(skin) + "/" + hair))
+	f.store_string((str(skin_color) + "/" + hair_color))
 	f.close()
 
 

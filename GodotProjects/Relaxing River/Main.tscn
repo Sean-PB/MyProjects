@@ -1,7 +1,6 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://CharacterSelection.tscn" type="PackedScene" id=1]
-[ext_resource path="res://WorldStart.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Player.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Main.gd" type="Script" id=4]
 [ext_resource path="res://Art/Menus/pause.png" type="Texture" id=5]
@@ -14,30 +13,29 @@ script = ExtResource( 4 )
 
 [node name="World" type="Node2D" parent="."]
 
-[node name="WorldStart" parent="World" instance=ExtResource( 2 )]
-
 [node name="Dock" type="Sprite" parent="."]
-position = Vector2( 119.743, 1111.62 )
-rotation = -3.14159
+position = Vector2( 69.7819, 560.022 )
+scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 7 )
 
-[node name="Dock" type="Sprite" parent="Dock"]
-position = Vector2( -64.0629, -0.293579 )
-texture = ExtResource( 7 )
+[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="Dock"]
+position = Vector2( -0.0131264, 0.148315 )
+scale = Vector2( 9.61658, 3.60721 )
 
 [node name="Player" parent="." instance=ExtResource( 3 )]
-position = Vector2( 245, 1165 )
+position = Vector2( 102.435, 587.574 )
 rotation = 1.5708
-scale = Vector2( 1.35, 1.35 )
+scale = Vector2( 0.675, 0.675 )
 
 [node name="Start" type="TouchScreenButton" parent="."]
-position = Vector2( 240, 670 )
-scale = Vector2( 0.5, 0.5 )
+position = Vector2( 130, 300 )
+scale = Vector2( 0.25, 0.25 )
 normal = ExtResource( 6 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2( 360, 950 )
-offset = Vector2( 0, -310 )
+position = Vector2( 192, 475 )
+scale = Vector2( 0.5, 0.5 )
+offset = Vector2( 0, -155 )
 rotating = true
 
 [node name="EditCharacter" type="TouchScreenButton" parent="Camera2D"]
@@ -64,6 +62,7 @@ visible = false
 position = Vector2( 220, -845 )
 scale = Vector2( 0.22, 0.22 )
 normal = ExtResource( 6 )
+[connection signal="screen_exited" from="Dock/VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]
 [connection signal="released" from="Start" to="." method="_on_Start_released"]
 [connection signal="released" from="Camera2D/EditCharacter" to="." method="_on_EditCharacter_released"]
 [connection signal="released" from="Camera2D/Pause" to="." method="_on_Pause_released"]
