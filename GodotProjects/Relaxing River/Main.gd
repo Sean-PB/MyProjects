@@ -31,10 +31,8 @@ func _ready():
 	$Player.load_character()
 	
 	# Connecting signals for Character Selection and Settings menus
-	var CharacterDone = get_tree().get_root().find_node("CharacterSelection", true, false)
-	CharacterDone.connect("exited", self, "exit_CharacterSelector")
-	var SettingsDone = get_tree().get_root().find_node("SettingsMenu", true, false)
-	SettingsDone.connect("exited", self, "exit_Settings")
+	$Camera2D/CharacterSelection.connect("character_exited", self, "exit_CharacterSelector")
+	$Camera2D/SettingsMenu.connect("settings_exited", self, "exit_Settings")
 	
 	# Setting random length of straiht river section
 	rng.randomize()                 # Randomize rng
@@ -98,7 +96,9 @@ func _on_Play_released():
 	$Camera2D/Pause.show()
 	$Camera2D/Play.hide()
 	$Camera2D/CharacterSelection.hide()
+	$Camera2D/CharacterSelection._on_Exit_released()
 	$Camera2D/SettingsMenu.hide()
+	$Camera2D/SettingsMenu._on_Cancel_released()
 	$Camera2D/EditCharacter.hide()
 	$Camera2D/Blur.hide()
 	$Camera2D/Settings.hide()
@@ -107,9 +107,12 @@ func _on_Play_released():
 # ------------------------------------------------------------------------------
 # This brings up the Character Selection menu
 # ------------------------------------------------------------------------------
+# This function hides the button that brought it up, brings up the edit 
+# character menu, and closes the settings menu without saving it.
 func _on_EditCharacter_released():
 	$Camera2D/EditCharacter.hide()
 	$Camera2D/CharacterSelection.show()
+	$Camera2D/SettingsMenu._on_Cancel_released()
 
 
 # ------------------------------------------------------------------------------
@@ -126,9 +129,12 @@ func exit_CharacterSelector():
 # ------------------------------------------------------------------------------
 # This brings up the settings menu
 # ------------------------------------------------------------------------------
+# This function hides the button that brought it up, brings up the edit settings
+# menu, and closes the edit character menu without saving it.
 func _on_Settings_released():
 	$Camera2D/Settings.hide()
 	$Camera2D/SettingsMenu.show()
+	$Camera2D/CharacterSelection._on_Exit_released()
 
 
 # ------------------------------------------------------------------------------

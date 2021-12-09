@@ -1,8 +1,8 @@
 extends AnimatedSprite
 
 
-signal confirmed
-signal exited
+signal character_confirmed
+signal character_exited
 
 
 var character_file = "user://character.txt"   # Declaring file to save character
@@ -124,15 +124,15 @@ func _on_Bald_released():
 
 func _on_Confirm_released():
 	save_character(skin, hair)
-	emit_signal("confirmed")
+	emit_signal("character_confirmed")
 	$Confirm.hide()
 	set_frame(0)
-	emit_signal("exited")
+	emit_signal("character_exited")
 	hide()
 
 
 func _on_Exit_released():
-	emit_signal("exited")
+	emit_signal("character_exited")
 	$Confirm.hide()
 	set_frame(0)
 	load_character()

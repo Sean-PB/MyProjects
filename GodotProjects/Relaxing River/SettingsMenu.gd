@@ -1,8 +1,8 @@
 extends AnimatedSprite
 
 
-signal confirmed
-signal exited
+signal settings_confirmed
+signal settings_exited
 
 
 # ------------------------------------------------------------------------------
@@ -27,7 +27,6 @@ func _ready():
 func load_settings():
 	var f = File.new()
 	if f.file_exists(file):
-		print("exisits")
 		f.open(file, File.READ)
 		var content = f.get_as_text()
 		sound = content.split("/")[0]
@@ -52,7 +51,6 @@ func load_settings():
 		
 		
 	else:
-		print("doesn't exist")
 		$Unmute/Outline.show()
 		$Invincible/Outline.show()
 
@@ -72,7 +70,7 @@ func save_settings(new_sound, new_death, new_swipe, new_speed):
 # It emits the signal exited for the Main scene and then resets the settings
 # menu and sliders before hiding itself.
 func _on_Cancel_released():
-	emit_signal("exited")
+	emit_signal("settings_exited")
 	$Confirm.hide()
 	set_frame(0)
 	load_settings()
@@ -86,11 +84,11 @@ func _on_Cancel_released():
 # settings then it saves the settings to the file, emits the signal "exited" to
 # the main scene, and hides itself.
 func _on_Confirm_released():
-	emit_signal("confirmed")
+	emit_signal("settings_confirmed")
 	save_settings(sound, death, swipe, speed)
 	$Confirm.hide()
 	set_frame(0)
-	emit_signal("exited")
+	emit_signal("settings_exited")
 	hide()
 
 
