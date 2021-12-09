@@ -43,7 +43,6 @@ func _process(delta):
 		$Player.leave_dock(delta)
 		if $Player.position.y < 475:
 			playing = true
-			$Camera2D.current = true
 		
 	if playing == true:
 		$Camera2D/Pause.show()
@@ -55,11 +54,12 @@ func _process(delta):
 func _on_Start_released():
 	# Show things
 	$Player.show()
-	$Start.hide()
+	$Camera2D/Start.hide()
 	$Camera2D/EditCharacter.hide()
 	started = true
 	# Play music (CHANGE TO BE RANDOM SONG ORDER LATER) !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 	$Music.play()
+	$Camera2D/Blur.visible = false
 
 
 func _on_Pause_released():
@@ -68,6 +68,7 @@ func _on_Pause_released():
 	$Camera2D/Pause.hide()
 	$Camera2D/Play.show()
 	$Camera2D/EditCharacter.show()
+	$Camera2D/Blur.visible = true
 	
 
 
@@ -78,6 +79,7 @@ func _on_Play_released():
 	$Camera2D/Play.hide()
 	$Camera2D/CharacterSelection.hide()
 	$Camera2D/EditCharacter.hide()
+	$Camera2D/Blur.visible = false
 
 
 func _on_EditCharacter_released():
