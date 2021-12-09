@@ -1,5 +1,9 @@
 extends Node2D
 
+
+# ------------------------------------------------------------------------------
+# Variables
+# ------------------------------------------------------------------------------
 const STRIP = preload("res://Strip.tscn")
 
 var skin
@@ -10,7 +14,9 @@ var river_top = 576
 var rng = RandomNumberGenerator.new()
 
 
+# ------------------------------------------------------------------------------
 # Called when the node enters the scene tree for the first time.
+# ------------------------------------------------------------------------------
 func _ready():
 	started = false
 	
@@ -24,9 +30,11 @@ func _ready():
 	# Loading character
 	$Player.load_character()
 	
-	# Getting signal of when character editing is finished
+	# Connecting signals for Character Selection and Settings menus
 	var CharacterDone = get_tree().get_root().find_node("CharacterSelection", true, false)
 	CharacterDone.connect("exited", self, "exit_CharacterSelector")
+	var SettingsDone = get_tree().get_root().find_node("SettingsMenu", true, false)
+	SettingsDone.connect("exited", self, "exit_Settings")
 	
 	# Setting random length of straiht river section
 	rng.randomize()                 # Randomize rng
@@ -34,7 +42,9 @@ func _ready():
 	
 
 
+# ------------------------------------------------------------------------------
 # Called every frame. 'delta' is the elapsed time since the previous frame.
+# ------------------------------------------------------------------------------
 func _process(delta):
 	$Player.playing = playing
 	
@@ -50,45 +60,86 @@ func _process(delta):
 		spawn_world()
 
 
-
+# ------------------------------------------------------------------------------
+# Starts game
+# ------------------------------------------------------------------------------
 func _on_Start_released():
 	# Show things
 	$Player.show()
 	$Camera2D/Start.hide()
 	$Camera2D/EditCharacter.hide()
+	$Camera2D/Blur.hide()
+	$Camera2D/Settings.hide()
+	$Camera2D/Settings.position.x = -64
 	started = true
 	# Play music (CHANGE TO BE RANDOM SONG ORDER LATER) !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 	$Music.play()
-	$Camera2D/Blur.visible = false
 
 
+# ------------------------------------------------------------------------------
+# Pauses game
+# ------------------------------------------------------------------------------
 func _on_Pause_released():
 	playing = false
 	get_tree().paused = true
 	$Camera2D/Pause.hide()
 	$Camera2D/Play.show()
 	$Camera2D/EditCharacter.show()
-	$Camera2D/Blur.visible = true
-	
+	$Camera2D/Blur.show()
+	$Camera2D/Settings.show()
 
 
+# ------------------------------------------------------------------------------
+# Unpauses game
+# ------------------------------------------------------------------------------
 func _on_Play_released():
 	playing = true
 	get_tree().paused = false
 	$Camera2D/Pause.show()
 	$Camera2D/Play.hide()
 	$Camera2D/CharacterSelection.hide()
+	$Camera2D/SettingsMenu.hide()
 	$Camera2D/EditCharacter.hide()
-	$Camera2D/Blur.visible = false
+	$Camera2D/Blur.hide()
+	$Camera2D/Settings.hide()
 
 
+# ------------------------------------------------------------------------------
+# This brings up the Character Selection menu
+# ------------------------------------------------------------------------------
 func _on_EditCharacter_released():
 	$Camera2D/EditCharacter.hide()
 	$Camera2D/CharacterSelection.show()
 
 
+# ------------------------------------------------------------------------------
+# Closes Character Section menu when player confims or cancels changes
+# ------------------------------------------------------------------------------
+# This function is called from a signal emmited by the CharacterSelection scene.
+# The function which sends this signal hides the Character Selector itself so 
+# all this needs to do is unhide the button that brings the Character Selector
+# up.
 func exit_CharacterSelector():
 	$Camera2D/EditCharacter.show()
+
+
+# ------------------------------------------------------------------------------
+# This brings up the settings menu
+# ------------------------------------------------------------------------------
+func _on_Settings_released():
+	$Camera2D/Settings.hide()
+	$Camera2D/SettingsMenu.show()
+
+
+# ------------------------------------------------------------------------------
+# Closes Settings menu when the player confirms or cancels changes
+# ------------------------------------------------------------------------------
+# This function is called from a signal emmited by the SettingsMenu scene.
+# The function which sends this signal hides the Settings menu itself so 
+# all this needs to do is unhide the button that brings the Character Selector
+# up.
+func exit_Settings():
+	$Camera2D/Settings.show()
 
 
 # ------------------------------------------------------------------------------
@@ -110,10 +161,15 @@ func spawn_world():
 			river_top -= 64                # Adjust top of river position
 
 
+# ------------------------------------------------------------------------------
 # De-spawns dock when off screen
+# ------------------------------------------------------------------------------
 func _on_VisibilityNotifier2D_screen_exited():
 	$Dock.queue_free()
 
+
+# ------------------------------------------------------------------------------
 # Maybe I can use this to make the 3 random order songs follow each other.
+# ------------------------------------------------------------------------------
 func _on_Music_finished():
 	pass # Replace with function body.
