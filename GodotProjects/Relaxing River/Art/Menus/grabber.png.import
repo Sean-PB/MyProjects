@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/skull_outline.png-82ca265fb01d5b9604cafa85f04eb22d.stex"
+path="res://.import/grabber.png-6533c59cfb81870df4a18acc8a4f5762.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://skull_outline.png"
-dest_files=[ "res://.import/skull_outline.png-82ca265fb01d5b9604cafa85f04eb22d.stex" ]
+source_file="res://Art/Menus/grabber.png"
+dest_files=[ "res://.import/grabber.png-6533c59cfb81870df4a18acc8a4f5762.stex" ]
 
 [params]
 

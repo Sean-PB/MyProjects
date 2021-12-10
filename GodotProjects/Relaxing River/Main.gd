@@ -110,11 +110,13 @@ func _on_Play_released():
 # This brings up the Character Selection menu
 # ------------------------------------------------------------------------------
 # This function hides the button that brought it up, brings up the edit 
-# character menu, and closes the settings menu without saving it.
+# character menu, and closes the settings menu without saving it if its open.
 func _on_EditCharacter_released():
+	$Camera2D/Start.hide()
 	$Camera2D/EditCharacter.hide()
 	$Camera2D/CharacterSelection.show()
-	$Camera2D/SettingsMenu._on_Cancel_released()
+	if $Camera2D/SettingsMenu.visible:
+		$Camera2D/SettingsMenu._on_Cancel_released()
 
 
 # ------------------------------------------------------------------------------
@@ -126,17 +128,21 @@ func _on_EditCharacter_released():
 # up.
 func exit_CharacterSelector():
 	$Camera2D/EditCharacter.show()
+	if not started:
+		$Camera2D/Start.show()
 
 
 # ------------------------------------------------------------------------------
 # This brings up the settings menu
 # ------------------------------------------------------------------------------
 # This function hides the button that brought it up, brings up the edit settings
-# menu, and closes the edit character menu without saving it.
+# menu, and closes the edit character menu without saving it if its open.
 func _on_Settings_released():
+	$Camera2D/Start.hide()
 	$Camera2D/Settings.hide()
 	$Camera2D/SettingsMenu.show()
-	$Camera2D/CharacterSelection._on_Exit_released()
+	if $Camera2D/CharacterSelection.visible:
+		$Camera2D/CharacterSelection._on_Exit_released()
 
 
 # ------------------------------------------------------------------------------
@@ -148,6 +154,8 @@ func _on_Settings_released():
 # up.
 func exit_Settings():
 	$Camera2D/Settings.show()
+	if not started:
+		$Camera2D/Start.show()
 
 
 # ------------------------------------------------------------------------------

@@ -150,3 +150,13 @@ func _on_Death_released():
 	$Death/Outline.show()
 	$Invincible/Outline.hide()
 	death = 1
+
+
+func _on_Speed_changed():
+	$Confirm.show()
+	set_frame(1)
+
+
+func _on_Swipe_changed():
+	$Confirm.show()
+	set_frame(1)

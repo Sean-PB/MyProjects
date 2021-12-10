@@ -78,11 +78,6 @@ scale = Vector2( 0.25, 0.25 )
 normal = ExtResource( 6 )
 pressed = ExtResource( 5 )
 
-[node name="Start" type="TouchScreenButton" parent="Camera2D"]
-position = Vector2( -124, -350 )
-scale = Vector2( 0.5, 0.5 )
-normal = ExtResource( 6 )
-
 [node name="Settings" type="TouchScreenButton" parent="Camera2D"]
 pause_mode = 2
 position = Vector2( 220, -840 )
@@ -106,13 +101,18 @@ pause_mode = 2
 visible = false
 position = Vector2( 0, -250 )
 
+[node name="Start" type="TouchScreenButton" parent="Camera2D"]
+position = Vector2( -124, -350 )
+scale = Vector2( 0.5, 0.5 )
+normal = ExtResource( 6 )
+
 [node name="Music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 2 )
 volume_db = -20.0
 [connection signal="screen_exited" from="Dock/VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]
 [connection signal="released" from="Camera2D/Pause" to="." method="_on_Pause_released"]
 [connection signal="released" from="Camera2D/Play" to="." method="_on_Play_released"]
-[connection signal="released" from="Camera2D/Start" to="." method="_on_Start_released"]
 [connection signal="released" from="Camera2D/Settings" to="." method="_on_Settings_released"]
 [connection signal="released" from="Camera2D/EditCharacter" to="." method="_on_EditCharacter_released"]
+[connection signal="released" from="Camera2D/Start" to="." method="_on_Start_released"]
 [connection signal="finished" from="Music" to="." method="_on_Music_finished"]

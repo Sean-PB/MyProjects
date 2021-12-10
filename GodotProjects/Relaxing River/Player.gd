@@ -17,7 +17,7 @@ var speed = 35
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	var Selection = get_tree().get_root().find_node("CharacterSelection", true, false)
-	Selection.connect("confirmed", self, "load_character")
+	Selection.connect("character_confirmed", self, "load_character")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
