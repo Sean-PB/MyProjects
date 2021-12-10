@@ -47,7 +47,6 @@ func _ready():
 # ------------------------------------------------------------------------------
 func _process(delta):
 	$Player.playing = playing
-	
 	if started and not playing:
 		# Move player away from doc
 		$Player.leave_dock(delta)

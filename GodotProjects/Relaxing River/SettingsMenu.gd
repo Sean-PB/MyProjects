@@ -11,8 +11,9 @@ signal settings_exited
 var file = "user://settings.txt"   # Declaring file to save settings and score
 var sound
 var death
-var swipe
-var speed
+# This var is to make sure that the initial change for speed and swipe doesn't 
+# cause the confirm button to show.
+var initial_change = true
 
 
 # Called when the node enters the scene tree for the first time.
@@ -31,8 +32,9 @@ func load_settings():
 		var content = f.get_as_text()
 		sound = int(content.split("/")[0])
 		death = int(content.split("/")[1])
-		swipe = int(content.split("/")[2])
-		speed = int(content.split("/")[3])
+		$Swipe.value = int(content.split("/")[2])
+		$Speed.value = int(content.split("/")[3])
+		initial_change = false # has to be changed below the speed and swipe changes
 		f.close()
 		
 		if sound:
@@ -49,14 +51,14 @@ func load_settings():
 			$Invincible/Outline.show()
 			$Death/Outline.hide()
 		
-		$Speed.value = speed
-		$Swipe.value = swipe
-		
 	else:
+		sound = true
 		$Sound/Outline.show()
+		death = false
 		$Invincible/Outline.show()
 		$Speed.value = 40
 		$Swipe.value = 15
+		initial_change = false # has to be changed below the speed and swipe changes
 
 
 # ------------------------------------------------------------------------------
@@ -90,7 +92,7 @@ func _on_Cancel_released():
 # the main scene, and hides itself.
 func _on_Confirm_released():
 	emit_signal("settings_confirmed")
-	save_settings(sound, death, swipe, speed)
+	save_settings(sound, death, $Swipe.value, $Speed.value)
 	$Confirm.hide()
 	set_frame(0)
 	emit_signal("settings_exited")
@@ -158,10 +160,12 @@ func _on_Death_released():
 
 
 func _on_Speed_value_changed(value):
-	$Confirm.show()
-	set_frame(1)
+	if not initial_change:
+		$Confirm.show()
+		set_frame(1)
 
 
 func _on_Swipe_value_changed(value):
-	$Confirm.show()
-	set_frame(1)
+	if not initial_change:
+		$Confirm.show()
+		set_frame(1)
