@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=31 format=2]
 
 [ext_resource path="res://Art/Menus/CharacterSelectorBackground.png" type="Texture" id=1]
 [ext_resource path="res://Art/Player/2/idle.png" type="Texture" id=2]
@@ -9,16 +9,24 @@
 [ext_resource path="res://Art/Player/hair/blonde.png" type="Texture" id=7]
 [ext_resource path="res://Art/Player/hair/red.png" type="Texture" id=8]
 [ext_resource path="res://Art/Player/hair/black.png" type="Texture" id=9]
-[ext_resource path="res://Art/Menus/black.png" type="Texture" id=10]
+[ext_resource path="res://Art/Menus/Hair/short_red.png" type="Texture" id=10]
 [ext_resource path="res://Art/Player/hair/brown.png" type="Texture" id=11]
 [ext_resource path="res://CharacterSelection.gd" type="Script" id=12]
-[ext_resource path="res://Art/Menus/bald.png" type="Texture" id=13]
-[ext_resource path="res://Art/Menus/red.png" type="Texture" id=14]
-[ext_resource path="res://Art/Menus/blonde.png" type="Texture" id=15]
-[ext_resource path="res://Art/Menus/brown.png" type="Texture" id=16]
+[ext_resource path="res://Art/Menus/Hair/bald.png" type="Texture" id=13]
+[ext_resource path="res://Art/Menus/Hair/short_black.png" type="Texture" id=14]
+[ext_resource path="res://Art/Menus/Hair/short_brown.png" type="Texture" id=15]
+[ext_resource path="res://Art/Menus/Hair/short_yellow.png" type="Texture" id=16]
 [ext_resource path="res://Art/Menus/CharacterSelectorBackground2.png" type="Texture" id=17]
 [ext_resource path="res://Art/Menus/exit.png" type="Texture" id=18]
 [ext_resource path="res://Art/Menus/confirm.png" type="Texture" id=19]
+[ext_resource path="res://Art/Menus/Hair/short_hair_outline.png" type="Texture" id=20]
+[ext_resource path="res://Art/Menus/Hair/long_brown.png" type="Texture" id=21]
+[ext_resource path="res://Art/Menus/Hair/short_grey.png" type="Texture" id=22]
+[ext_resource path="res://Art/Menus/Hair/long_hair_outline.png" type="Texture" id=23]
+[ext_resource path="res://Art/Menus/Hair/long_black.png" type="Texture" id=24]
+[ext_resource path="res://Art/Menus/Hair/long_grey.png" type="Texture" id=25]
+[ext_resource path="res://Art/Menus/Hair/long_red.png" type="Texture" id=26]
+[ext_resource path="res://Art/Menus/Hair/long_blonde.png" type="Texture" id=27]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -73,27 +81,6 @@ position = Vector2( 174.482, 205 )
 scale = Vector2( 2, 2 )
 normal = ExtResource( 6 )
 
-[node name="Black" type="TouchScreenButton" parent="."]
-position = Vector2( 181.002, -217.415 )
-normal = ExtResource( 10 )
-
-[node name="Brown" type="TouchScreenButton" parent="."]
-position = Vector2( 181.002, -147.415 )
-normal = ExtResource( 16 )
-
-[node name="Red" type="TouchScreenButton" parent="."]
-position = Vector2( 181.002, -77.4147 )
-normal = ExtResource( 14 )
-
-[node name="Blonde" type="TouchScreenButton" parent="."]
-position = Vector2( 181.002, -7.41466 )
-normal = ExtResource( 15 )
-
-[node name="Bald" type="TouchScreenButton" parent="."]
-position = Vector2( 181.002, 67.5854 )
-scale = Vector2( 0.8, 0.8 )
-normal = ExtResource( 13 )
-
 [node name="Skin" type="AnimatedSprite" parent="."]
 position = Vector2( -111.546, -44.5735 )
 scale = Vector2( 6, 6 )
@@ -104,25 +91,166 @@ position = Vector2( -111, -45 )
 scale = Vector2( 6, 6 )
 frames = SubResource( 3 )
 
-[node name="Confirm" type="TouchScreenButton" parent="."]
-visible = false
-position = Vector2( 156.408, -380.77 )
-scale = Vector2( 0.2, 0.2 )
-normal = ExtResource( 19 )
+[node name="Exit" type="TextureButton" parent="."]
+margin_left = -257.0
+margin_top = -380.0
+margin_right = -157.0
+margin_bottom = -280.0
+texture_normal = ExtResource( 18 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="Exit" type="TouchScreenButton" parent="."]
-position = Vector2( -257.641, -383.398 )
-scale = Vector2( 0.2, 0.2 )
-normal = ExtResource( 18 )
+[node name="Confirm" type="TextureButton" parent="."]
+visible = false
+margin_left = 157.335
+margin_top = -380.0
+margin_right = 257.335
+margin_bottom = -280.0
+texture_normal = ExtResource( 19 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BlackShort" type="TextureButton" parent="."]
+margin_left = 215.0
+margin_top = -225.0
+margin_right = 275.0
+margin_bottom = -165.0
+texture_normal = ExtResource( 14 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BrownShort" type="TextureButton" parent="."]
+margin_left = 215.0
+margin_top = -160.0
+margin_right = 275.0
+margin_bottom = -100.0
+texture_normal = ExtResource( 15 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RedShort" type="TextureButton" parent="."]
+margin_left = 215.0
+margin_top = -95.0
+margin_right = 275.0
+margin_bottom = -35.0
+texture_normal = ExtResource( 10 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BlondeShort" type="TextureButton" parent="."]
+margin_left = 214.405
+margin_top = -30.0
+margin_right = 274.405
+margin_bottom = 30.0
+texture_normal = ExtResource( 16 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Bald" type="TextureButton" parent="."]
+margin_left = 165.0
+margin_top = 80.0
+margin_right = 230.0
+margin_bottom = 145.0
+texture_normal = ExtResource( 13 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GreyShort" type="TextureButton" parent="."]
+margin_left = 214.253
+margin_top = 35.0
+margin_right = 274.253
+margin_bottom = 95.0
+texture_normal = ExtResource( 22 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BlackLong" type="TextureButton" parent="."]
+margin_left = 115.0
+margin_top = -217.0
+margin_right = 179.0
+margin_bottom = -153.0
+texture_normal = ExtResource( 24 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BrownLong" type="TextureButton" parent="."]
+margin_left = 115.0
+margin_top = -153.0
+margin_right = 179.0
+margin_bottom = -89.0
+texture_normal = ExtResource( 21 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RedLong" type="TextureButton" parent="."]
+margin_left = 115.0
+margin_top = -89.0
+margin_right = 179.0
+margin_bottom = -25.0
+texture_normal = ExtResource( 26 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BlondeLong" type="TextureButton" parent="."]
+margin_left = 115.0
+margin_top = -25.0
+margin_right = 179.0
+margin_bottom = 39.0
+texture_normal = ExtResource( 27 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GreyLond" type="TextureButton" parent="."]
+margin_left = 115.0
+margin_top = 39.0
+margin_right = 179.0
+margin_bottom = 103.0
+texture_normal = ExtResource( 25 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ShortHairOutline" type="Sprite" parent="."]
+visible = false
+position = Vector2( 245.058, -195 )
+scale = Vector2( 0.915, 0.915 )
+texture = ExtResource( 20 )
+
+[node name="LongHairOutline" type="Sprite" parent="."]
+visible = false
+position = Vector2( 146.808, -184.14 )
+scale = Vector2( 0.915, 0.915 )
+texture = ExtResource( 23 )
 [connection signal="released" from="1" to="." method="_on_1_released"]
 [connection signal="released" from="2" to="." method="_on_2_released"]
 [connection signal="released" from="3" to="." method="_on_3_released"]
 [connection signal="released" from="4" to="." method="_on_4_released"]
 [connection signal="released" from="5" to="." method="_on_5_released"]
-[connection signal="released" from="Black" to="." method="_on_Black_released"]
-[connection signal="released" from="Brown" to="." method="_on_Brown_released"]
-[connection signal="released" from="Red" to="." method="_on_Red_released"]
-[connection signal="released" from="Blonde" to="." method="_on_Blonde_released"]
-[connection signal="released" from="Bald" to="." method="_on_Bald_released"]
-[connection signal="released" from="Confirm" to="." method="_on_Confirm_released"]
-[connection signal="released" from="Exit" to="." method="_on_Exit_released"]
+[connection signal="pressed" from="Exit" to="." method="_on_Exit_pressed"]
+[connection signal="pressed" from="Confirm" to="." method="_on_Confirm_pressed"]
+[connection signal="pressed" from="BlackShort" to="." method="_on_BlackShort_pressed"]
+[connection signal="pressed" from="BrownShort" to="." method="_on_BrownShort_pressed"]
+[connection signal="pressed" from="RedShort" to="." method="_on_RedShort_pressed"]
+[connection signal="pressed" from="BlondeShort" to="." method="_on_BlondeShort_pressed"]
+[connection signal="pressed" from="Bald" to="." method="_on_Bald_pressed"]

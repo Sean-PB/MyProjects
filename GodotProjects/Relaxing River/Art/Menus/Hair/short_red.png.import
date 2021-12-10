@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/bald.png-6330f4994deb4580e3b84692afd48188.stex"
+path="res://.import/short_red.png-30b77d0eb65fe2d693757d397f5777fc.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/Menus/bald.png"
-dest_files=[ "res://.import/bald.png-6330f4994deb4580e3b84692afd48188.stex" ]
+source_file="res://Art/Menus/Hair/short_red.png"
+dest_files=[ "res://.import/short_red.png-30b77d0eb65fe2d693757d397f5777fc.stex" ]
 
 [params]
 

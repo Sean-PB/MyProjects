@@ -83,46 +83,15 @@ func _on_5_released():
 	set_frame(1)
 
 
-func _on_Black_released():
-	hair = "black"
-	$Hair.show()
-	$Hair.frame = 0
-	$Confirm.show()
-	set_frame(1)
+func _on_Exit_pressed():
+	emit_signal("character_exited")
+	$Confirm.hide()
+	set_frame(0)
+	load_character()
+	hide()
 
 
-func _on_Brown_released():
-	hair = "brown"
-	$Hair.show()
-	$Hair.frame = 1
-	$Confirm.show()
-	set_frame(1)
-
-
-func _on_Blonde_released():
-	hair = "blonde"
-	$Hair.show()
-	$Hair.frame = 2
-	$Confirm.show()
-	set_frame(1)
-
-
-func _on_Red_released():
-	hair = "red"
-	$Hair.show()
-	$Hair.frame = 3
-	$Confirm.show()
-	set_frame(1)
-
-
-func _on_Bald_released():
-	hair = "bald"
-	$Hair.hide()
-	$Confirm.show()
-	set_frame(1)
-
-
-func _on_Confirm_released():
+func _on_Confirm_pressed():
 	save_character(skin, hair)
 	emit_signal("character_confirmed")
 	$Confirm.hide()
@@ -131,9 +100,40 @@ func _on_Confirm_released():
 	hide()
 
 
-func _on_Exit_released():
-	emit_signal("character_exited")
-	$Confirm.hide()
-	set_frame(0)
-	load_character()
-	hide()
+func _on_Bald_pressed():
+	hair = "bald"
+	$Hair.hide()
+	$Confirm.show()
+	set_frame(1)
+
+
+func _on_BlackShort_pressed():
+	hair = "black"
+	$Hair.show()
+	$Hair.frame = 0
+	$Confirm.show()
+	set_frame(1)
+
+
+func _on_BrownShort_pressed():
+	hair = "brown"
+	$Hair.show()
+	$Hair.frame = 1
+	$Confirm.show()
+	set_frame(1)
+
+
+func _on_RedShort_pressed():
+	hair = "red"
+	$Hair.show()
+	$Hair.frame = 3
+	$Confirm.show()
+	set_frame(1)
+
+
+func _on_BlondeShort_pressed():
+	hair = "blonde"
+	$Hair.show()
+	$Hair.frame = 2
+	$Confirm.show()
+	set_frame(1)
