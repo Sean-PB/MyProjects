@@ -95,42 +95,58 @@ func _on_Confirm_released():
 # ------------------------------------------------------------------------------
 # Turns mute on and highlights current selection
 # ------------------------------------------------------------------------------
+# The check to see if the outline is visible has to before its made visible to 
+# actually check. The check is there because I don't want the confirm button to
+# be available unless something actually changed.
 func _on_Mute_released():
+	if $Mute/Outline.visible == false:
+		$Confirm.show()
+		set_frame(1)
 	$Mute/Outline.show()
 	$Sound/Outline.hide()
 	sound = 0
-	$Confirm.show()
-	set_frame(1)
 
 
 # ------------------------------------------------------------------------------
 # Turns sound on and highlights current selection
 # ------------------------------------------------------------------------------
+# The check to see if the outline is visible has to before its made visible to 
+# actually check. The check is there because I don't want the confirm button to
+# be available unless something actually changed.
 func _on_Sound_released():
+	if $Sound/Outline.visible == false:
+		$Confirm.show()
+		set_frame(1)
 	$Sound/Outline.show()
 	$Mute/Outline.hide()
 	sound = 1
-	$Confirm.show()
-	set_frame(1)
 
 
 # ------------------------------------------------------------------------------
 # Turns invincibility on and highlights current selection
 # ------------------------------------------------------------------------------
+# The check to see if the outline is visible has to before its made visible to 
+# actually check. The check is there because I don't want the confirm button to
+# be available unless something actually changed.
 func _on_Invincible_released():
+	if $Invincible/Outline.visible == false:
+		$Confirm.show()
+		set_frame(1)
 	$Invincible/Outline.show()
 	$Death/Outline.hide()
 	death = 0
-	$Confirm.show()
-	set_frame(1)
 
 
 # ------------------------------------------------------------------------------
 # Turns death mode on and highlights current selection
 # ------------------------------------------------------------------------------
+# The check to see if the outline is visible has to before its made visible to 
+# actually check. The check is there because I don't want the confirm button to
+# be available unless something actually changed.
 func _on_Death_released():
+	if $Death/Outline.visible == false:
+		$Confirm.show()
+		set_frame(1)
 	$Death/Outline.show()
 	$Invincible/Outline.hide()
 	death = 1
-	$Confirm.show()
-	set_frame(1)
