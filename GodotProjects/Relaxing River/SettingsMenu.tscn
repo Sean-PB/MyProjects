@@ -37,7 +37,7 @@ scale = Vector2( 0.2, 0.2 )
 normal = ExtResource( 2 )
 
 [node name="Mute" type="TouchScreenButton" parent="."]
-position = Vector2( -275, -200 )
+position = Vector2( -140, -200 )
 scale = Vector2( 0.2, 0.2 )
 normal = ExtResource( 4 )
 
@@ -46,12 +46,12 @@ visible = false
 position = Vector2( 250, 250 )
 texture = ExtResource( 10 )
 
-[node name="Unmute" type="TouchScreenButton" parent="."]
-position = Vector2( -140, -200 )
+[node name="Sound" type="TouchScreenButton" parent="."]
+position = Vector2( -275, -200 )
 scale = Vector2( 0.2, 0.2 )
 normal = ExtResource( 5 )
 
-[node name="Outline" type="Sprite" parent="Unmute"]
+[node name="Outline" type="Sprite" parent="Sound"]
 visible = false
 position = Vector2( 250, 250 )
 texture = ExtResource( 10 )
@@ -82,6 +82,6 @@ texture = ExtResource( 3 )
 [connection signal="released" from="Cancel" to="." method="_on_Cancel_released"]
 [connection signal="released" from="Confirm" to="." method="_on_Confirm_released"]
 [connection signal="released" from="Mute" to="." method="_on_Mute_released"]
-[connection signal="released" from="Unmute" to="." method="_on_Unmute_released"]
+[connection signal="released" from="Sound" to="." method="_on_Sound_released"]
 [connection signal="released" from="Invincible" to="." method="_on_Invincible_released"]
 [connection signal="released" from="Death" to="." method="_on_Death_released"]

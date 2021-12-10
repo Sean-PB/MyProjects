@@ -35,14 +35,14 @@ func load_settings():
 		speed = content.split("/")[3]
 		f.close()
 		
-		if bool(sound):
-			$Unmute/Outline.show()
+		if int(sound):
+			$Sound/Outline.show()
 			$Mute/Outline.hide()
 		else:
 			$Mute/Outline.show()
-			$Unmute/Outline.hide()
+			$Sound/Outline.hide()
 		
-		if bool(death):
+		if int(death):
 			$Death/Outline.show()
 			$Invincible/Outline.hide()
 		else:
@@ -51,7 +51,7 @@ func load_settings():
 		
 		
 	else:
-		$Unmute/Outline.show()
+		$Sound/Outline.show()
 		$Invincible/Outline.show()
 
 
@@ -97,8 +97,8 @@ func _on_Confirm_released():
 # ------------------------------------------------------------------------------
 func _on_Mute_released():
 	$Mute/Outline.show()
-	$Unmute/Outline.hide()
-	sound = false
+	$Sound/Outline.hide()
+	sound = 0
 	$Confirm.show()
 	set_frame(1)
 
@@ -106,10 +106,10 @@ func _on_Mute_released():
 # ------------------------------------------------------------------------------
 # Turns sound on and highlights current selection
 # ------------------------------------------------------------------------------
-func _on_Unmute_released():
-	$Unmute/Outline.show()
+func _on_Sound_released():
+	$Sound/Outline.show()
 	$Mute/Outline.hide()
-	sound = true
+	sound = 1
 	$Confirm.show()
 	set_frame(1)
 
@@ -120,7 +120,7 @@ func _on_Unmute_released():
 func _on_Invincible_released():
 	$Invincible/Outline.show()
 	$Death/Outline.hide()
-	death = false
+	death = 0
 	$Confirm.show()
 	set_frame(1)
 
@@ -131,6 +131,6 @@ func _on_Invincible_released():
 func _on_Death_released():
 	$Death/Outline.show()
 	$Invincible/Outline.hide()
-	death = true
+	death = 1
 	$Confirm.show()
 	set_frame(1)
