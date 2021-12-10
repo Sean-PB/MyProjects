@@ -10,6 +10,7 @@ var skin
 var started
 var playing
 var straight_length
+var challenge_mode
 var river_top = 576
 var rng = RandomNumberGenerator.new()
 
@@ -33,6 +34,7 @@ func _ready():
 	# Connecting signals for Character Selection and Settings menus
 	$Camera2D/CharacterSelection.connect("character_exited", self, "exit_CharacterSelector")
 	$Camera2D/SettingsMenu.connect("settings_exited", self, "exit_Settings")
+	$Camera2D/SettingsMenu.connect("settings_confirmed", self, "confrim_settings")
 	
 	# Setting random length of straiht river section
 	rng.randomize()                 # Randomize rng
@@ -146,6 +148,14 @@ func _on_Settings_released():
 # up.
 func exit_Settings():
 	$Camera2D/Settings.show()
+
+
+# ------------------------------------------------------------------------------
+# Applies settings changes made by player after confimation
+# ------------------------------------------------------------------------------
+func confrim_settings():
+	AudioServer.set_bus_mute(0, not $Camera2D/SettingsMenu.sound)
+	challenge_mode = $Camera2D/SettingsMenu.death
 
 
 # ------------------------------------------------------------------------------
