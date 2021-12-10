@@ -55,55 +55,88 @@ position = Vector2( 0.529755, 0.529724 )
 frames = SubResource( 1 )
 script = ExtResource( 9 )
 
-[node name="Cancel" type="TouchScreenButton" parent="."]
-position = Vector2( -256, -380 )
-scale = Vector2( 0.2, 0.2 )
-normal = ExtResource( 1 )
+[node name="Cancel" type="TextureButton" parent="."]
+margin_left = -257.0
+margin_top = -380.0
+margin_right = -157.0
+margin_bottom = -280.0
+texture_normal = ExtResource( 1 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="Confirm" type="TouchScreenButton" parent="."]
+[node name="Confirm" type="TextureButton" parent="."]
 visible = false
-position = Vector2( 155, -380 )
-scale = Vector2( 0.2, 0.2 )
-normal = ExtResource( 2 )
+margin_left = 155.0
+margin_top = -380.0
+margin_right = 255.0
+margin_bottom = -280.0
+texture_normal = ExtResource( 2 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="Mute" type="TouchScreenButton" parent="."]
-position = Vector2( -140, -200 )
-scale = Vector2( 0.2, 0.2 )
-normal = ExtResource( 4 )
+[node name="Mute" type="TextureButton" parent="."]
+margin_left = -140.0
+margin_top = -200.0
+margin_right = -40.0
+margin_bottom = -100.0
+texture_normal = ExtResource( 4 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="Outline" type="Sprite" parent="Mute"]
-visible = false
-position = Vector2( 250, 250 )
+[node name="Sound" type="TextureButton" parent="."]
+margin_left = -275.0
+margin_top = -200.0
+margin_right = -175.0
+margin_bottom = -100.0
+texture_normal = ExtResource( 5 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SoundMuteOutline" type="Sprite" parent="."]
+position = Vector2( -225, -150 )
+scale = Vector2( 0.2, 0.2 )
 texture = ExtResource( 10 )
 
-[node name="Sound" type="TouchScreenButton" parent="."]
-position = Vector2( -275, -198.586 )
-scale = Vector2( 0.2, 0.2 )
-normal = ExtResource( 5 )
-
-[node name="Outline" type="Sprite" parent="Sound"]
-visible = false
-position = Vector2( 250, 250 )
-texture = ExtResource( 10 )
-
-[node name="Invincible" type="TouchScreenButton" parent="."]
-position = Vector2( 50, -195 )
-scale = Vector2( 1.5, 1.5 )
-normal = ExtResource( 11 )
+[node name="Invincible" type="TextureButton" parent="."]
+margin_left = 50.0
+margin_top = -195.0
+margin_right = 147.0
+margin_bottom = -99.0
+texture_normal = ExtResource( 11 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Outline" type="Sprite" parent="Invincible"]
 visible = false
-position = Vector2( 32, 32 )
+position = Vector2( 48, 48 )
+scale = Vector2( 1.5, 1.5 )
 texture = ExtResource( 3 )
 
-[node name="Death" type="TouchScreenButton" parent="."]
-position = Vector2( 185, -195 )
-scale = Vector2( 1.5, 1.5 )
-normal = ExtResource( 8 )
+[node name="Death" type="TextureButton" parent="."]
+margin_left = 185.0
+margin_top = -195.0
+margin_right = 285.0
+margin_bottom = -95.0
+texture_normal = ExtResource( 8 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Outline" type="Sprite" parent="Death"]
 visible = false
-position = Vector2( 32, 32 )
+position = Vector2( 50, 50 )
+scale = Vector2( 1.5, 1.5 )
 texture = ExtResource( 12 )
 
 [node name="Speed" type="HSlider" parent="."]
@@ -130,7 +163,7 @@ texture = ExtResource( 13 )
 [node name="Swipe" type="HSlider" parent="."]
 margin_left = -125.0
 margin_top = 175.311
-margin_right = 250.0
+margin_right = 274.0
 margin_bottom = 375.311
 custom_icons/grabber_highlight = ExtResource( 17 )
 custom_icons/grabber = ExtResource( 17 )
@@ -147,11 +180,11 @@ __meta__ = {
 [node name="Icon" type="Sprite" parent="Swipe"]
 position = Vector2( -95, 95 )
 texture = ExtResource( 14 )
-[connection signal="released" from="Cancel" to="." method="_on_Cancel_released"]
-[connection signal="released" from="Confirm" to="." method="_on_Confirm_released"]
-[connection signal="released" from="Mute" to="." method="_on_Mute_released"]
-[connection signal="released" from="Sound" to="." method="_on_Sound_released"]
-[connection signal="released" from="Invincible" to="." method="_on_Invincible_released"]
-[connection signal="released" from="Death" to="." method="_on_Death_released"]
+[connection signal="pressed" from="Cancel" to="." method="_on_Cancel_pressed"]
+[connection signal="pressed" from="Confirm" to="." method="_on_Confirm_pressed"]
+[connection signal="pressed" from="Mute" to="." method="_on_Mute_pressed"]
+[connection signal="pressed" from="Sound" to="." method="_on_Sound_pressed"]
+[connection signal="pressed" from="Invincible" to="." method="_on_Invincible_pressed"]
+[connection signal="pressed" from="Death" to="." method="_on_Death_pressed"]
 [connection signal="value_changed" from="Speed" to="." method="_on_Speed_value_changed"]
 [connection signal="value_changed" from="Swipe" to="." method="_on_Swipe_value_changed"]

@@ -54,7 +54,6 @@ func _process(delta):
 			playing = true
 		
 	if playing == true:
-		$Camera2D/Pause.show()
 		$Camera2D.position.y = $Player.position.y
 		spawn_world()
 
@@ -64,7 +63,7 @@ func _process(delta):
 # ------------------------------------------------------------------------------
 func _on_Start_released():
 	# Show things
-	$Player.show()
+	$Camera2D/Pause.show()
 	$Camera2D/Start.hide()
 	$Camera2D/EditCharacter.hide()
 	$Camera2D/Blur.hide()
@@ -100,7 +99,7 @@ func _on_Play_released():
 	$Camera2D/CharacterSelection.hide()
 	$Camera2D/CharacterSelection._on_Exit_released()
 	$Camera2D/SettingsMenu.hide()
-	$Camera2D/SettingsMenu._on_Cancel_released()
+	$Camera2D/SettingsMenu._on_Cancel_pressed()
 	$Camera2D/EditCharacter.hide()
 	$Camera2D/Blur.hide()
 	$Camera2D/Settings.hide()

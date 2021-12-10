@@ -11,6 +11,8 @@ signal settings_exited
 var file = "user://settings.txt"   # Declaring file to save settings and score
 var sound
 var death
+var sound_outline_pos = Vector2(-225, -150)
+var mute_outline_pos = Vector2(-90, -150)
 # This var is to make sure that the initial change for speed and swipe doesn't 
 # cause the confirm button to show.
 var initial_change = true
@@ -38,11 +40,9 @@ func load_settings():
 		f.close()
 		
 		if sound:
-			$Sound/Outline.show()
-			$Mute/Outline.hide()
+			$SoundMuteOutline.position = Vector2(-225, -150)
 		else:
-			$Mute/Outline.show()
-			$Sound/Outline.hide()
+			$SoundMuteOutline.position = Vector2(-90, -150)
 		
 		if death:
 			$Death/Outline.show()
@@ -76,7 +76,7 @@ func save_settings(new_sound, new_death, new_swipe, new_speed):
 # ------------------------------------------------------------------------------
 # It emits the signal exited for the Main scene and then resets the settings
 # menu and sliders before hiding itself.
-func _on_Cancel_released():
+func _on_Cancel_pressed():
 	emit_signal("settings_exited")
 	$Confirm.hide()
 	set_frame(0)
@@ -90,7 +90,7 @@ func _on_Cancel_released():
 # It emits the signal confirmed to signal that the Main scene should change its
 # settings then it saves the settings to the file, emits the signal "exited" to
 # the main scene, and hides itself.
-func _on_Confirm_released():
+func _on_Confirm_pressed():
 	save_settings(sound, death, $Swipe.value, $Speed.value)
 	emit_signal("settings_confirmed")
 	$Confirm.hide()
@@ -99,19 +99,30 @@ func _on_Confirm_released():
 	hide()
 
 
+func _on_Speed_value_changed(_value):
+	if not initial_change:
+		$Confirm.show()
+		set_frame(1)
+
+
+func _on_Swipe_value_changed(_value):
+	if not initial_change:
+		$Confirm.show()
+		set_frame(1)
+
+
 # ------------------------------------------------------------------------------
 # Turns mute on and highlights current selection
 # ------------------------------------------------------------------------------
 # The check to see if the outline is visible has to before its made visible to 
 # actually check. The check is there because I don't want the confirm button to
 # be available unless something actually changed.
-func _on_Mute_released():
-	if $Mute/Outline.visible == false:
+func _on_Mute_pressed():
+	if $SoundMuteOutline.position == sound_outline_pos: # If not already selected
 		$Confirm.show()
 		set_frame(1)
-	$Mute/Outline.show()
-	$Sound/Outline.hide()
-	sound = 0
+		$SoundMuteOutline.position = mute_outline_pos # Change position
+		sound = 0
 
 
 # ------------------------------------------------------------------------------
@@ -120,13 +131,12 @@ func _on_Mute_released():
 # The check to see if the outline is visible has to before its made visible to 
 # actually check. The check is there because I don't want the confirm button to
 # be available unless something actually changed.
-func _on_Sound_released():
-	if $Sound/Outline.visible == false:
+func _on_Sound_pressed():
+	if $SoundMuteOutline.position == mute_outline_pos: # If not already selected
 		$Confirm.show()
 		set_frame(1)
-	$Sound/Outline.show()
-	$Mute/Outline.hide()
-	sound = 1
+		$SoundMuteOutline.position = sound_outline_pos # Change position
+		sound = 1
 
 
 # ------------------------------------------------------------------------------
@@ -135,7 +145,7 @@ func _on_Sound_released():
 # The check to see if the outline is visible has to before its made visible to 
 # actually check. The check is there because I don't want the confirm button to
 # be available unless something actually changed.
-func _on_Invincible_released():
+func _on_Invincible_pressed():
 	if $Invincible/Outline.visible == false:
 		$Confirm.show()
 		set_frame(1)
@@ -150,22 +160,10 @@ func _on_Invincible_released():
 # The check to see if the outline is visible has to before its made visible to 
 # actually check. The check is there because I don't want the confirm button to
 # be available unless something actually changed.
-func _on_Death_released():
+func _on_Death_pressed():
 	if $Death/Outline.visible == false:
 		$Confirm.show()
 		set_frame(1)
 	$Death/Outline.show()
 	$Invincible/Outline.hide()
 	death = 1
-
-
-func _on_Speed_value_changed(_value):
-	if not initial_change:
-		$Confirm.show()
-		set_frame(1)
-
-
-func _on_Swipe_value_changed(_value):
-	if not initial_change:
-		$Confirm.show()
-		set_frame(1)

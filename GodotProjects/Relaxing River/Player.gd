@@ -91,6 +91,7 @@ func load_character():
 		elif hair == "red":
 			$Skin/Hair.frame = 3
 	else:
+		skin = "3"
 		$Skin.frame = 3
 		$Skin/Hair.hide()
 
