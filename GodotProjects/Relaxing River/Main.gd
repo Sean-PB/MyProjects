@@ -74,6 +74,7 @@ func _on_Start_released():
 	started = true
 	# Play music (CHANGE TO BE RANDOM SONG ORDER LATER) !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 	$Music.play()
+	AudioServer.set_bus_mute(0, not $Camera2D/SettingsMenu.sound) # Whether to start muted or not
 
 
 # ------------------------------------------------------------------------------

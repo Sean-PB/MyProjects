@@ -34,15 +34,15 @@ region_rect = Rect2( 0, 0, 399, 27 )
 texture = ExtResource( 16 )
 region_rect = Rect2( 0, 0, 399, 27 )
 
-[sub_resource type="StyleBoxTexture" id=6]
+[sub_resource type="StyleBoxTexture" id=4]
 texture = ExtResource( 16 )
 region_rect = Rect2( 0, 0, 399, 27 )
 
-[sub_resource type="StyleBoxTexture" id=4]
+[sub_resource type="StyleBoxTexture" id=5]
 texture = ExtResource( 15 )
 region_rect = Rect2( 0, 0, 399, 27 )
 
-[sub_resource type="StyleBoxTexture" id=5]
+[sub_resource type="StyleBoxTexture" id=6]
 texture = ExtResource( 16 )
 region_rect = Rect2( 0, 0, 399, 27 )
 
@@ -115,7 +115,10 @@ custom_icons/grabber_highlight = ExtResource( 17 )
 custom_icons/grabber = ExtResource( 17 )
 custom_styles/slider = SubResource( 2 )
 custom_styles/grabber_area_highlight = SubResource( 3 )
-custom_styles/grabber_area = SubResource( 6 )
+custom_styles/grabber_area = SubResource( 4 )
+min_value = 15.0
+max_value = 115.0
+value = 15.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -131,9 +134,12 @@ margin_right = 250.0
 margin_bottom = 375.311
 custom_icons/grabber_highlight = ExtResource( 17 )
 custom_icons/grabber = ExtResource( 17 )
-custom_styles/slider = SubResource( 4 )
-custom_styles/grabber_area_highlight = SubResource( 5 )
+custom_styles/slider = SubResource( 5 )
+custom_styles/grabber_area_highlight = SubResource( 6 )
 custom_styles/grabber_area = SubResource( 7 )
+min_value = 2.0
+max_value = 50.0
+value = 2.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -147,5 +153,5 @@ texture = ExtResource( 14 )
 [connection signal="released" from="Sound" to="." method="_on_Sound_released"]
 [connection signal="released" from="Invincible" to="." method="_on_Invincible_released"]
 [connection signal="released" from="Death" to="." method="_on_Death_released"]
-[connection signal="changed" from="Speed" to="." method="_on_Speed_changed"]
-[connection signal="changed" from="Swipe" to="." method="_on_Swipe_changed"]
+[connection signal="value_changed" from="Speed" to="." method="_on_Speed_value_changed"]
+[connection signal="value_changed" from="Swipe" to="." method="_on_Swipe_value_changed"]

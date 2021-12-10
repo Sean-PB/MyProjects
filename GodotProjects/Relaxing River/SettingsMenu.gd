@@ -29,30 +29,34 @@ func load_settings():
 	if f.file_exists(file):
 		f.open(file, File.READ)
 		var content = f.get_as_text()
-		sound = content.split("/")[0]
-		death = content.split("/")[1]
-		swipe = content.split("/")[2]
-		speed = content.split("/")[3]
+		sound = int(content.split("/")[0])
+		death = int(content.split("/")[1])
+		swipe = int(content.split("/")[2])
+		speed = int(content.split("/")[3])
 		f.close()
 		
-		if int(sound):
+		if sound:
 			$Sound/Outline.show()
 			$Mute/Outline.hide()
 		else:
 			$Mute/Outline.show()
 			$Sound/Outline.hide()
 		
-		if int(death):
+		if death:
 			$Death/Outline.show()
 			$Invincible/Outline.hide()
 		else:
 			$Invincible/Outline.show()
 			$Death/Outline.hide()
 		
+		$Speed.value = speed
+		$Swipe.value = swipe
 		
 	else:
 		$Sound/Outline.show()
 		$Invincible/Outline.show()
+		$Speed.value = 40
+		$Swipe.value = 15
 
 
 # ------------------------------------------------------------------------------
@@ -60,7 +64,8 @@ func load_settings():
 func save_settings(new_sound, new_death, new_swipe, new_speed):
 	var f = File.new()
 	f.open(file, File.WRITE)
-	f.store_string((str(new_sound) + "/" + str(new_death) + "/" + str(new_swipe) + "/" + str(new_speed)))
+	f.store_string((str(new_sound) + "/" + str(new_death) + "/" + str(new_swipe)
+		 + "/" + str(new_speed)))
 	f.close()
 
 
@@ -152,11 +157,11 @@ func _on_Death_released():
 	death = 1
 
 
-func _on_Speed_changed():
+func _on_Speed_value_changed(value):
 	$Confirm.show()
 	set_frame(1)
 
 
-func _on_Swipe_changed():
+func _on_Swipe_value_changed(value):
 	$Confirm.show()
 	set_frame(1)

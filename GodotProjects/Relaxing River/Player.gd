@@ -16,8 +16,8 @@ var speed = 35
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	var Selection = get_tree().get_root().find_node("CharacterSelection", true, false)
-	Selection.connect("character_confirmed", self, "load_character")
+	var Appearance = get_tree().get_root().find_node("CharacterSelection", true, false)
+	Appearance.connect("character_confirmed", self, "load_character")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -80,7 +80,7 @@ func leave_dock(delta):
 	if rotation_degrees > 0:
 		$Skin.play("left" + skin)
 		rotation_degrees = clamp(rotation_degrees - rotation_accel, 0, 90) # Turn speed
-		speed_start = clamp(speed_start + (40 * delta), 0, speed)          # Speed
+		speed_start = clamp(speed_start + (40 * delta), 0, 50)             # Speed
 		move_and_slide(Vector2(0, -speed_start).rotated(rotation))
 		rotation_accel += .35 * delta
 	else:

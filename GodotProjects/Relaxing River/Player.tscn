@@ -68,54 +68,9 @@ animations = [ {
 "name": "right4",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 21 ), ExtResource( 37 ), ExtResource( 36 ), ExtResource( 42 ), ExtResource( 23 ), ExtResource( 20 ), ExtResource( 24 ), ExtResource( 25 ), ExtResource( 21 ) ],
-"loop": true,
-"name": "straight1",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 2 ), ExtResource( 43 ), ExtResource( 34 ), ExtResource( 38 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 2 ) ],
-"loop": true,
-"name": "straight5",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 22 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 1 ), ExtResource( 4 ), ExtResource( 7 ) ],
-"loop": true,
-"name": "left4",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 19 ), ExtResource( 27 ), ExtResource( 31 ), ExtResource( 29 ), ExtResource( 8 ), ExtResource( 3 ) ],
-"loop": true,
-"name": "left3",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 17 ), ExtResource( 28 ), ExtResource( 14 ), ExtResource( 35 ), ExtResource( 32 ), ExtResource( 13 ) ],
-"loop": true,
-"name": "right2",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 18 ), ExtResource( 23 ), ExtResource( 20 ), ExtResource( 24 ), ExtResource( 25 ), ExtResource( 21 ) ],
-"loop": true,
-"name": "left1",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 3 ), ExtResource( 33 ), ExtResource( 40 ), ExtResource( 45 ), ExtResource( 27 ), ExtResource( 31 ), ExtResource( 29 ), ExtResource( 8 ) ],
-"loop": true,
-"name": "straight3",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 17 ), ExtResource( 13 ), ExtResource( 26 ), ExtResource( 30 ), ExtResource( 16 ), ExtResource( 28 ) ],
-"loop": true,
-"name": "left2",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 19 ), ExtResource( 3 ), ExtResource( 33 ), ExtResource( 40 ), ExtResource( 45 ), ExtResource( 27 ) ],
 "loop": true,
 "name": "right3",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 15 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 2 ) ],
-"loop": true,
-"name": "left5",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 18 ), ExtResource( 21 ), ExtResource( 37 ), ExtResource( 36 ), ExtResource( 42 ), ExtResource( 23 ) ],
@@ -123,9 +78,54 @@ animations = [ {
 "name": "right1",
 "speed": 5.0
 }, {
+"frames": [ ExtResource( 17 ), ExtResource( 13 ), ExtResource( 26 ), ExtResource( 30 ), ExtResource( 16 ), ExtResource( 28 ) ],
+"loop": true,
+"name": "left2",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 2 ), ExtResource( 43 ), ExtResource( 34 ), ExtResource( 38 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 2 ) ],
+"loop": true,
+"name": "straight5",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 15 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 2 ) ],
+"loop": true,
+"name": "left5",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 18 ), ExtResource( 23 ), ExtResource( 20 ), ExtResource( 24 ), ExtResource( 25 ), ExtResource( 21 ) ],
+"loop": true,
+"name": "left1",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 21 ), ExtResource( 37 ), ExtResource( 36 ), ExtResource( 42 ), ExtResource( 23 ), ExtResource( 20 ), ExtResource( 24 ), ExtResource( 25 ), ExtResource( 21 ) ],
+"loop": true,
+"name": "straight1",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 17 ), ExtResource( 28 ), ExtResource( 14 ), ExtResource( 35 ), ExtResource( 32 ), ExtResource( 13 ) ],
+"loop": true,
+"name": "right2",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 19 ), ExtResource( 27 ), ExtResource( 31 ), ExtResource( 29 ), ExtResource( 8 ), ExtResource( 3 ) ],
+"loop": true,
+"name": "left3",
+"speed": 5.0
+}, {
 "frames": [ ExtResource( 7 ), ExtResource( 44 ), ExtResource( 39 ), ExtResource( 41 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 1 ), ExtResource( 4 ), ExtResource( 7 ) ],
 "loop": true,
 "name": "straight4",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 22 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 1 ), ExtResource( 4 ), ExtResource( 7 ) ],
+"loop": true,
+"name": "left4",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 3 ), ExtResource( 33 ), ExtResource( 40 ), ExtResource( 45 ), ExtResource( 27 ), ExtResource( 31 ), ExtResource( 29 ), ExtResource( 8 ) ],
+"loop": true,
+"name": "straight3",
 "speed": 5.0
 } ]
 
