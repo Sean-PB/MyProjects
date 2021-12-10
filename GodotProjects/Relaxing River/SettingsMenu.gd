@@ -18,8 +18,8 @@ var initial_change = true
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	load_settings()
 	set_frame(0)
+	load_settings()
 
 
 # ------------------------------------------------------------------------------
@@ -52,9 +52,9 @@ func load_settings():
 			$Death/Outline.hide()
 		
 	else:
-		sound = true
+		sound = 1
 		$Sound/Outline.show()
-		death = false
+		death = 0
 		$Invincible/Outline.show()
 		$Speed.value = 40
 		$Swipe.value = 15
@@ -91,8 +91,8 @@ func _on_Cancel_released():
 # settings then it saves the settings to the file, emits the signal "exited" to
 # the main scene, and hides itself.
 func _on_Confirm_released():
-	emit_signal("settings_confirmed")
 	save_settings(sound, death, $Swipe.value, $Speed.value)
+	emit_signal("settings_confirmed")
 	$Confirm.hide()
 	set_frame(0)
 	emit_signal("settings_exited")
@@ -159,13 +159,13 @@ func _on_Death_released():
 	death = 1
 
 
-func _on_Speed_value_changed(value):
+func _on_Speed_value_changed(_value):
 	if not initial_change:
 		$Confirm.show()
 		set_frame(1)
 
 
-func _on_Swipe_value_changed(value):
+func _on_Swipe_value_changed(_value):
 	if not initial_change:
 		$Confirm.show()
 		set_frame(1)
