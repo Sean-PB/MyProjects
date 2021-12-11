@@ -137,3 +137,27 @@ func _on_BlondeShort_pressed():
 	$Hair.frame = 2
 	$Confirm.show()
 	set_frame(1)
+
+
+func _on_GreyShort_pressed():
+	pass # Replace with function body.
+
+
+func _on_BlackLong_pressed():
+	pass # Replace with function body.
+
+
+func _on_BrownLong_pressed():
+	pass # Replace with function body.
+
+
+func _on_RedLong_pressed():
+	pass # Replace with function body.
+
+
+func _on_BlondeLong_pressed():
+	pass # Replace with function body.
+
+
+func _on_GreyLond_pressed():
+	pass # Replace with function body.

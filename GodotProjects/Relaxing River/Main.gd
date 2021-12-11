@@ -115,7 +115,7 @@ func _on_EditCharacter_released():
 	$Camera2D/EditCharacter.hide()
 	$Camera2D/CharacterSelection.show()
 	if $Camera2D/SettingsMenu.visible:
-		$Camera2D/SettingsMenu._on_Cancel_released()
+		$Camera2D/SettingsMenu._on_Cancel_pressed()
 
 
 # ------------------------------------------------------------------------------
@@ -127,7 +127,7 @@ func _on_EditCharacter_released():
 # up.
 func exit_CharacterSelector():
 	$Camera2D/EditCharacter.show()
-	if not started:
+	if not started and $Camera2D/SettingsMenu.visible == false:
 		$Camera2D/Start.show()
 
 
@@ -141,7 +141,7 @@ func _on_Settings_released():
 	$Camera2D/Settings.hide()
 	$Camera2D/SettingsMenu.show()
 	if $Camera2D/CharacterSelection.visible:
-		$Camera2D/CharacterSelection._on_Exit_released()
+		$Camera2D/CharacterSelection._on_Exit_pressed()
 
 
 # ------------------------------------------------------------------------------
@@ -153,7 +153,7 @@ func _on_Settings_released():
 # up.
 func exit_Settings():
 	$Camera2D/Settings.show()
-	if not started:
+	if not started and $Camera2D/CharacterSelection.visible == false:
 		$Camera2D/Start.show()
 
 
