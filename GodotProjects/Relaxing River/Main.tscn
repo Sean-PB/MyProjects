@@ -20,7 +20,6 @@ void fragment(){
 	vec4 color = texture(SCREEN_TEXTURE, SCREEN_UV, blur);
 	COLOR = color;
 }"
-custom_defines = ""
 
 [sub_resource type="ShaderMaterial" id=2]
 shader = SubResource( 1 )
@@ -109,6 +108,7 @@ normal = ExtResource( 6 )
 [node name="Music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 2 )
 volume_db = -20.0
+
 [connection signal="screen_exited" from="Dock/VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]
 [connection signal="released" from="Camera2D/Pause" to="." method="_on_Pause_released"]
 [connection signal="released" from="Camera2D/Play" to="." method="_on_Play_released"]

@@ -10,14 +10,12 @@ config_version=4
 
 _global_script_classes=[  ]
 _global_script_class_icons={
-
 }
 
 [application]
 
 config/name="Relaxing River"
 run/main_scene="res://Main.tscn"
-boot_splash/image="res://Art/splash_vertical.png"
 config/icon="res://Art/icon.png"
 run/handheld/orientation="landscape"
 run/image=""
