@@ -141,9 +141,9 @@ texture = ExtResource( 12 )
 
 [node name="Speed" type="HSlider" parent="."]
 margin_left = -125.0
-margin_top = -36.0
-margin_right = 274.0
-margin_bottom = 162.0
+margin_top = 40.0
+margin_right = 272.878
+margin_bottom = 80.0603
 custom_icons/grabber_highlight = ExtResource( 17 )
 custom_icons/grabber = ExtResource( 17 )
 custom_styles/slider = SubResource( 2 )
@@ -157,14 +157,14 @@ __meta__ = {
 }
 
 [node name="Icon" type="Sprite" parent="Speed"]
-position = Vector2( -95, 95 )
+position = Vector2( -95, 15 )
 texture = ExtResource( 13 )
 
 [node name="Swipe" type="HSlider" parent="."]
 margin_left = -125.0
-margin_top = 175.311
-margin_right = 274.0
-margin_bottom = 375.311
+margin_top = 255.91
+margin_right = 268.661
+margin_bottom = 294.91
 custom_icons/grabber_highlight = ExtResource( 17 )
 custom_icons/grabber = ExtResource( 17 )
 custom_styles/slider = SubResource( 5 )
@@ -178,8 +178,9 @@ __meta__ = {
 }
 
 [node name="Icon" type="Sprite" parent="Swipe"]
-position = Vector2( -95, 95 )
+position = Vector2( -95, 15 )
 texture = ExtResource( 14 )
+
 [connection signal="pressed" from="Cancel" to="." method="_on_Cancel_pressed"]
 [connection signal="pressed" from="Confirm" to="." method="_on_Confirm_pressed"]
 [connection signal="pressed" from="Mute" to="." method="_on_Mute_pressed"]

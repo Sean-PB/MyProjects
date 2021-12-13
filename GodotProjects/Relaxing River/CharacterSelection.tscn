@@ -242,6 +242,7 @@ visible = false
 position = Vector2( 146.808, -184.14 )
 scale = Vector2( 0.915, 0.915 )
 texture = ExtResource( 23 )
+
 [connection signal="released" from="1" to="." method="_on_1_released"]
 [connection signal="released" from="2" to="." method="_on_2_released"]
 [connection signal="released" from="3" to="." method="_on_3_released"]
