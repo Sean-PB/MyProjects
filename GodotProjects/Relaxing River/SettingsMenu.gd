@@ -56,8 +56,8 @@ func load_settings():
 		$Sound/Outline.show()
 		death = 0
 		$Invincible/Outline.show()
-		$Speed.value = 40
-		$Swipe.value = 15
+		$Speed.value = 100
+		$Swipe.value = 35
 		initial_change = false # has to be changed below the speed and swipe changes
 
 

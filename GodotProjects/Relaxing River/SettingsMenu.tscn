@@ -141,44 +141,44 @@ texture = ExtResource( 12 )
 
 [node name="Speed" type="HSlider" parent="."]
 margin_left = -125.0
-margin_top = 40.0
-margin_right = 272.878
-margin_bottom = 80.0603
+margin_top = 25.0
+margin_right = 274.0
+margin_bottom = 103.0
 custom_icons/grabber_highlight = ExtResource( 17 )
 custom_icons/grabber = ExtResource( 17 )
 custom_styles/slider = SubResource( 2 )
 custom_styles/grabber_area_highlight = SubResource( 3 )
 custom_styles/grabber_area = SubResource( 4 )
-min_value = 15.0
-max_value = 115.0
-value = 40.0
+min_value = 40.0
+max_value = 175.0
+value = 100.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Icon" type="Sprite" parent="Speed"]
-position = Vector2( -95, 15 )
+position = Vector2( -95, 35 )
 texture = ExtResource( 13 )
 
 [node name="Swipe" type="HSlider" parent="."]
 margin_left = -125.0
-margin_top = 255.91
-margin_right = 268.661
-margin_bottom = 294.91
+margin_top = 225.0
+margin_right = 274.0
+margin_bottom = 303.0
 custom_icons/grabber_highlight = ExtResource( 17 )
 custom_icons/grabber = ExtResource( 17 )
 custom_styles/slider = SubResource( 5 )
 custom_styles/grabber_area_highlight = SubResource( 6 )
 custom_styles/grabber_area = SubResource( 7 )
-min_value = 2.0
-max_value = 50.0
-value = 15.0
+min_value = 8.0
+max_value = 65.0
+value = 35.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Icon" type="Sprite" parent="Swipe"]
-position = Vector2( -95, 15 )
+position = Vector2( -95, 35 )
 texture = ExtResource( 14 )
 
 [connection signal="pressed" from="Cancel" to="." method="_on_Cancel_pressed"]

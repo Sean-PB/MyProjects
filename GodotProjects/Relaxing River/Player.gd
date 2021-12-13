@@ -59,8 +59,8 @@ func load_settings():
 		speed = int(content.split("/")[3])
 		f.close()
 	else:
-		swipe = 15
-		speed = 40
+		swipe = 35
+		speed = 100
 
 
 func load_character():

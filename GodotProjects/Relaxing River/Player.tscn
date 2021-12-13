@@ -53,34 +53,14 @@
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
-"frames": [ ExtResource( 15 ), ExtResource( 2 ), ExtResource( 43 ), ExtResource( 34 ), ExtResource( 38 ), ExtResource( 9 ) ],
+"frames": [ ExtResource( 17 ), ExtResource( 28 ), ExtResource( 14 ), ExtResource( 35 ), ExtResource( 32 ), ExtResource( 13 ) ],
 "loop": true,
-"name": "right5",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 28 ), ExtResource( 14 ), ExtResource( 35 ), ExtResource( 32 ), ExtResource( 13 ), ExtResource( 26 ), ExtResource( 30 ), ExtResource( 16 ), ExtResource( 28 ) ],
-"loop": true,
-"name": "straight2",
+"name": "right2",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 22 ), ExtResource( 7 ), ExtResource( 44 ), ExtResource( 39 ), ExtResource( 41 ), ExtResource( 5 ) ],
 "loop": true,
 "name": "right4",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 19 ), ExtResource( 3 ), ExtResource( 33 ), ExtResource( 40 ), ExtResource( 45 ), ExtResource( 27 ) ],
-"loop": true,
-"name": "right3",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 18 ), ExtResource( 21 ), ExtResource( 37 ), ExtResource( 36 ), ExtResource( 42 ), ExtResource( 23 ) ],
-"loop": true,
-"name": "right1",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 17 ), ExtResource( 13 ), ExtResource( 26 ), ExtResource( 30 ), ExtResource( 16 ), ExtResource( 28 ) ],
-"loop": true,
-"name": "left2",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 2 ), ExtResource( 43 ), ExtResource( 34 ), ExtResource( 38 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 2 ) ],
@@ -98,14 +78,34 @@ animations = [ {
 "name": "left1",
 "speed": 5.0
 }, {
+"frames": [ ExtResource( 17 ), ExtResource( 13 ), ExtResource( 26 ), ExtResource( 30 ), ExtResource( 16 ), ExtResource( 28 ) ],
+"loop": true,
+"name": "left2",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 15 ), ExtResource( 2 ), ExtResource( 43 ), ExtResource( 34 ), ExtResource( 38 ), ExtResource( 9 ) ],
+"loop": true,
+"name": "right5",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 28 ), ExtResource( 14 ), ExtResource( 35 ), ExtResource( 32 ), ExtResource( 13 ), ExtResource( 26 ), ExtResource( 30 ), ExtResource( 16 ), ExtResource( 28 ) ],
+"loop": true,
+"name": "straight2",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 19 ), ExtResource( 3 ), ExtResource( 33 ), ExtResource( 40 ), ExtResource( 45 ), ExtResource( 27 ) ],
+"loop": true,
+"name": "right3",
+"speed": 5.0
+}, {
 "frames": [ ExtResource( 21 ), ExtResource( 37 ), ExtResource( 36 ), ExtResource( 42 ), ExtResource( 23 ), ExtResource( 20 ), ExtResource( 24 ), ExtResource( 25 ), ExtResource( 21 ) ],
 "loop": true,
 "name": "straight1",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 17 ), ExtResource( 28 ), ExtResource( 14 ), ExtResource( 35 ), ExtResource( 32 ), ExtResource( 13 ) ],
+"frames": [ ExtResource( 18 ), ExtResource( 21 ), ExtResource( 37 ), ExtResource( 36 ), ExtResource( 42 ), ExtResource( 23 ) ],
 "loop": true,
-"name": "right2",
+"name": "right1",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 19 ), ExtResource( 27 ), ExtResource( 31 ), ExtResource( 29 ), ExtResource( 8 ), ExtResource( 3 ) ],
@@ -113,14 +113,14 @@ animations = [ {
 "name": "left3",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 7 ), ExtResource( 44 ), ExtResource( 39 ), ExtResource( 41 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 1 ), ExtResource( 4 ), ExtResource( 7 ) ],
-"loop": true,
-"name": "straight4",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 22 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 1 ), ExtResource( 4 ), ExtResource( 7 ) ],
 "loop": true,
 "name": "left4",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 7 ), ExtResource( 44 ), ExtResource( 39 ), ExtResource( 41 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 1 ), ExtResource( 4 ), ExtResource( 7 ) ],
+"loop": true,
+"name": "straight4",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 3 ), ExtResource( 33 ), ExtResource( 40 ), ExtResource( 45 ), ExtResource( 27 ), ExtResource( 31 ), ExtResource( 29 ), ExtResource( 8 ) ],
@@ -142,7 +142,7 @@ collision_layer = 2147483651
 script = ExtResource( 46 )
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-polygon = PoolVector2Array( -0.25, -59, 12.6531, -4.87115, 35.9225, 0.0589447, 12.8891, 14.7142, 0.144638, 59.0145, -13.0674, 14.9502, -36.1924, 0.0841904, -13.0674, -4.39922 )
+polygon = PoolVector2Array( -0.25, -59, 12.899, -18.5121, 13.4943, 18.2958, 0.144638, 59.0145, -12.8716, 19.9814, -12.5986, -18.8097 )
 
 [node name="Skin" type="AnimatedSprite" parent="."]
 scale = Vector2( 2, 2 )

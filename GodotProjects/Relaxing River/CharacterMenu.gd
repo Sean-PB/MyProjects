@@ -32,8 +32,12 @@ func _on_BodyColor_color_changed(color):
 func _on_Short_pressed():
 	$Character/LongHair.hide()
 	$Character/ShortHair.show()
+	$HairOutline.frame = 0
+	$HairOutline.position = Vector2(118, -173)
 
 
 func _on_Long_pressed():
 	$Character/ShortHair.hide()
 	$Character/LongHair.show()
+	$HairOutline.frame = 1
+	$HairOutline.position = Vector2(238, -163)

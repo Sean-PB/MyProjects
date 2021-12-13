@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://Art/Menus/exit.png" type="Texture" id=1]
 [ext_resource path="res://Art/Menus/confirm.png" type="Texture" id=2]
@@ -9,6 +9,8 @@
 [ext_resource path="res://Art/Menus/Hair/long_hair.png" type="Texture" id=7]
 [ext_resource path="res://Art/Menus/Hair/short_hair.png" type="Texture" id=8]
 [ext_resource path="res://CharacterMenu.gd" type="Script" id=9]
+[ext_resource path="res://Art/Menus/Hair/short_hair_outline.png" type="Texture" id=10]
+[ext_resource path="res://Art/Menus/Hair/long_hair_outline.png" type="Texture" id=11]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -71,6 +73,14 @@ void fragment() {
 shader = SubResource( 22 )
 shader_param/OLDCOLOR = Color( 0, 1, 0, 1 )
 shader_param/NEWCOLOR = null
+
+[sub_resource type="SpriteFrames" id=32]
+animations = [ {
+"frames": [ ExtResource( 10 ), ExtResource( 11 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
 
 [sub_resource type="Shader" id=30]
 code = "shader_type canvas_item;
@@ -237,6 +247,12 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="HairOutline" type="AnimatedSprite" parent="."]
+position = Vector2( 238, -163 )
+scale = Vector2( 1.2, 1.2 )
+frames = SubResource( 32 )
+frame = 1
+
 [node name="Skin" type="Sprite" parent="."]
 material = SubResource( 31 )
 position = Vector2( 175.561, 142.525 )
@@ -250,6 +266,7 @@ scale = Vector2( 7, 7 )
 texture = ExtResource( 5 )
 
 [node name="LongHair" type="Sprite" parent="Character"]
+visible = false
 material = SubResource( 25 )
 position = Vector2( 0, 7 )
 scale = Vector2( 0.125714, 0.128571 )
