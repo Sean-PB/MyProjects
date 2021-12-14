@@ -195,6 +195,17 @@ func _on_Confirm_pressed():
 	hide()
 
 
-func _on_HairColor_pressed():
-	print($HairColor.get_picker().rect_position)
-	$HairColor.add_child($HairColor.get_picker())
+func _on_BodyColorButton_pressed():
+	$BodyColor.show()
+	$ColorDown.show()
+
+
+func _on_HairColorButton_pressed():
+	$HairColor.show()
+	$ColorDown.show()
+
+
+func _on_ColorDown_pressed():
+	$HairColor.hide()
+	$BodyColor.hide()
+	$ColorDown.hide()
