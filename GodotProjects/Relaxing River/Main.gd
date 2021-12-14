@@ -53,7 +53,7 @@ func _ready():
 	$Player.load_character()
 	
 	# Connecting signals for Character Selection and Settings menus
-	$Camera2D/CharacterSelection.connect("character_exited", self, "exit_CharacterSelector")
+	$Camera2D/CharacterMenu.connect("character_exited", self, "exit_CharacterMenu")
 	$Camera2D/SettingsMenu.connect("settings_exited", self, "exit_Settings")
 	$Camera2D/SettingsMenu.connect("settings_confirmed", self, "confrim_settings")
 	
@@ -111,8 +111,8 @@ func _on_Play_pressed():
 	get_tree().paused = false
 	$Camera2D/Pause.show()
 	$Camera2D/Play.hide()
-	$Camera2D/CharacterSelection.hide()
-	$Camera2D/CharacterSelection._on_Exit_pressed()
+	$Camera2D/CharacterMenu.hide()
+	$Camera2D/CharacterMenu._on_Cancel_pressed()
 	$Camera2D/SettingsMenu.hide()
 	$Camera2D/SettingsMenu._on_Cancel_pressed()
 	$Camera2D/EditCharacter.hide()
@@ -128,7 +128,7 @@ func _on_Play_pressed():
 func _on_EditCharacter_pressed():
 	$Camera2D/Start.hide()
 	$Camera2D/EditCharacter.hide()
-	$Camera2D/CharacterSelection.show()
+	$Camera2D/CharacterMenu.show()
 	if $Camera2D/SettingsMenu.visible:
 		$Camera2D/SettingsMenu._on_Cancel_pressed()
 
@@ -136,11 +136,11 @@ func _on_EditCharacter_pressed():
 # ------------------------------------------------------------------------------
 # Closes Character Section menu when player confims or cancels changes
 # ------------------------------------------------------------------------------
-# This function is called from a signal emmited by the CharacterSelection scene.
+# This function is called from a signal emmited by the CharacterMenu scene.
 # The function which sends this signal hides the Character Selector itself so 
 # all this needs to do is unhide the button that brings the Character Selector
 # up.
-func exit_CharacterSelector():
+func exit_CharacterMenu():
 	$Camera2D/EditCharacter.show()
 	if not started and $Camera2D/SettingsMenu.visible == false:
 		$Camera2D/Start.show()
@@ -155,8 +155,8 @@ func _on_Settings_pressed():
 	$Camera2D/Start.hide()
 	$Camera2D/Settings.hide()
 	$Camera2D/SettingsMenu.show()
-	if $Camera2D/CharacterSelection.visible:
-		$Camera2D/CharacterSelection._on_Exit_pressed()
+	if $Camera2D/CharacterMenu.visible:
+		$Camera2D/CharacterMenu._on_Cancel_pressed()
 
 
 # ------------------------------------------------------------------------------
@@ -168,7 +168,7 @@ func _on_Settings_pressed():
 # up.
 func exit_Settings():
 	$Camera2D/Settings.show()
-	if not started and $Camera2D/CharacterSelection.visible == false:
+	if not started and $Camera2D/CharacterMenu.visible == false:
 		$Camera2D/Start.show()
 
 

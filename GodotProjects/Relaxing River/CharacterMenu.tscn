@@ -1,16 +1,16 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://Art/Menus/exit.png" type="Texture" id=1]
 [ext_resource path="res://Art/Menus/confirm.png" type="Texture" id=2]
 [ext_resource path="res://Art/Menus/CharacterMenuBackground2.png" type="Texture" id=3]
 [ext_resource path="res://Art/Menus/CharacterMenuBackground.png" type="Texture" id=4]
-[ext_resource path="res://Art/Menus/MenuCharacter.png" type="Texture" id=5]
+[ext_resource path="res://Art/Player/idle.png" type="Texture" id=5]
 [ext_resource path="res://Art/Menus/skin.png" type="Texture" id=6]
-[ext_resource path="res://Art/Menus/Hair/long_hair.png" type="Texture" id=7]
-[ext_resource path="res://Art/Menus/Hair/short_hair.png" type="Texture" id=8]
 [ext_resource path="res://CharacterMenu.gd" type="Script" id=9]
-[ext_resource path="res://Art/Menus/Hair/short_hair_outline.png" type="Texture" id=10]
-[ext_resource path="res://Art/Menus/Hair/long_hair_outline.png" type="Texture" id=11]
+[ext_resource path="res://Art/Menus/short_hair_outline.png" type="Texture" id=10]
+[ext_resource path="res://Art/Menus/long_hair_outline.png" type="Texture" id=11]
+[ext_resource path="res://Art/Player/long_hair.png" type="Texture" id=12]
+[ext_resource path="res://Art/Player/short_hair.png" type="Texture" id=13]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -134,9 +134,9 @@ void fragment() {
 [sub_resource type="ShaderMaterial" id=27]
 shader = SubResource( 26 )
 shader_param/OLDCOLOR = Color( 1, 0, 0, 1 )
-shader_param/NEWCOLOR = Color( 1, 0, 0, 1 )
+shader_param/NEWCOLOR = Color( 0, 0, 0, 1 )
 
-[sub_resource type="Shader" id=24]
+[sub_resource type="Shader" id=33]
 code = "shader_type canvas_item;
 
 uniform vec4 OLDCOLOR : hint_color;
@@ -158,48 +158,29 @@ void fragment() {
 	}
 }"
 
-[sub_resource type="ShaderMaterial" id=25]
-shader = SubResource( 24 )
+[sub_resource type="ShaderMaterial" id=34]
+shader = SubResource( 33 )
 shader_param/OLDCOLOR = Color( 0, 1, 0, 1 )
 shader_param/NEWCOLOR = null
 
-[sub_resource type="Shader" id=28]
-code = "shader_type canvas_item;
+[sub_resource type="SpriteFrames" id=35]
+animations = [ {
+"frames": [ ExtResource( 13 ), ExtResource( 12 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
 
-uniform vec4 OLDCOLOR : hint_color;
-
-uniform vec4 NEWCOLOR : hint_color;
-
-void fragment() {
-	vec4 curr_color = texture(TEXTURE, UV); // Get current color of pixel
-	
-	// Check that current pixel color is any of the OLDCOLORs we want to swap
-	// If our pixel is an old color then swap COLOR to NEWCOLR
-	if (curr_color == OLDCOLOR)
-	{
-		COLOR = NEWCOLOR;
-	}
-	else
-	{
-		COLOR = curr_color;
-	}
-}"
-
-[sub_resource type="ShaderMaterial" id=29]
-shader = SubResource( 28 )
-shader_param/OLDCOLOR = Color( 0, 1, 0, 1 )
-shader_param/NEWCOLOR = null
-
-[node name="AnimatedSprite" type="AnimatedSprite"]
-position = Vector2( 191.843, 245.673 )
+[node name="CharacterMenu" type="AnimatedSprite"]
+pause_mode = 2
 scale = Vector2( 0.573877, 0.611092 )
 frames = SubResource( 1 )
 script = ExtResource( 9 )
 
 [node name="Cancel" type="TextureButton" parent="."]
-margin_left = -256.0
+margin_left = -257.0
 margin_top = -380.0
-margin_right = -216.0
+margin_right = -217.0
 margin_bottom = -340.0
 rect_scale = Vector2( 2.5, 2.5 )
 texture_normal = ExtResource( 1 )
@@ -210,9 +191,9 @@ __meta__ = {
 
 [node name="Confirm" type="TextureButton" parent="."]
 visible = false
-margin_left = 157.0
+margin_left = 155.0
 margin_top = -380.0
-margin_right = 197.0
+margin_right = 195.0
 margin_bottom = -340.0
 rect_scale = Vector2( 2.5, 2.5 )
 texture_normal = ExtResource( 2 )
@@ -228,7 +209,7 @@ margin_top = -213.0
 margin_right = 118.0
 margin_bottom = -173.0
 rect_scale = Vector2( 2, 2 )
-texture_normal = ExtResource( 8 )
+texture_normal = ExtResource( 13 )
 expand = true
 __meta__ = {
 "_edit_use_anchors_": false
@@ -241,17 +222,16 @@ margin_top = -203.0
 margin_right = 238.0
 margin_bottom = -163.0
 rect_scale = Vector2( 2, 2 )
-texture_normal = ExtResource( 7 )
+texture_normal = ExtResource( 12 )
 expand = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="HairOutline" type="AnimatedSprite" parent="."]
-position = Vector2( 238, -163 )
+position = Vector2( 117.799, -172.793 )
 scale = Vector2( 1.2, 1.2 )
 frames = SubResource( 32 )
-frame = 1
 
 [node name="Skin" type="Sprite" parent="."]
 material = SubResource( 31 )
@@ -265,25 +245,17 @@ position = Vector2( -139.47, 55 )
 scale = Vector2( 7, 7 )
 texture = ExtResource( 5 )
 
-[node name="LongHair" type="Sprite" parent="Character"]
-visible = false
-material = SubResource( 25 )
-position = Vector2( 0, 7 )
-scale = Vector2( 0.125714, 0.128571 )
-texture = ExtResource( 7 )
-
-[node name="ShortHair" type="Sprite" parent="Character"]
-visible = false
-material = SubResource( 29 )
+[node name="Hair" type="AnimatedSprite" parent="Character"]
+material = SubResource( 34 )
 position = Vector2( 0, 6 )
-scale = Vector2( 0.125444, 0.126121 )
-texture = ExtResource( 8 )
+frames = SubResource( 35 )
 
 [node name="HairColor" type="ColorPickerButton" parent="."]
 margin_left = 100.0
 margin_top = -25.0
 margin_right = 250.0
 margin_bottom = 25.0
+pressed = true
 expand_icon = true
 color = Color( 0, 1, 0, 1 )
 __meta__ = {
@@ -300,7 +272,10 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[connection signal="pressed" from="Cancel" to="." method="_on_Cancel_pressed"]
+[connection signal="pressed" from="Confirm" to="." method="_on_Confirm_pressed"]
 [connection signal="pressed" from="Short" to="." method="_on_Short_pressed"]
 [connection signal="pressed" from="Long" to="." method="_on_Long_pressed"]
 [connection signal="color_changed" from="HairColor" to="." method="_on_HairColor_color_changed"]
+[connection signal="pressed" from="HairColor" to="." method="_on_HairColor_pressed"]
 [connection signal="color_changed" from="BodyColor" to="." method="_on_BodyColor_color_changed"]

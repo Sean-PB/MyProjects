@@ -53,7 +53,7 @@ func load_settings():
 		
 	else:
 		sound = 1
-		$Sound/Outline.show()
+		$SoundMuteOutline.position = Vector2(-225, -150)
 		death = 0
 		$Invincible/Outline.show()
 		$Speed.value = 100
