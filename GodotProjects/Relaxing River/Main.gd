@@ -10,7 +10,6 @@ const TREE = preload("res://Tree.tscn")
 
 var skin
 var started
-var playing
 var straight_length
 var log_dist            # The RNG distance from the last log to the next
 var challenge_mode
@@ -67,17 +66,14 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 # ------------------------------------------------------------------------------
 func _process(delta):
-	$Player.playing = playing
-	if started and not playing:
-		# Move player away from doc
-		$Player.leave_dock(delta)
-		if $Player.position.y < 475:
-			playing = true
-		
-	if playing == true:
-		$Camera2D/Pause.show()
-		$Camera2D.position.y = $Player.position.y
-		spawn_world()
+	if started:
+		if $Player.position.y >= 475:
+			# Move player away from doc
+			$Player.leave_dock(delta)
+			$Camera2D/Pause.show()
+		else:
+			$Camera2D.position.y = $Player.position.y
+			spawn_world()
 
 
 # ------------------------------------------------------------------------------
@@ -100,7 +96,6 @@ func _on_Start_pressed():
 # Pauses game
 # ------------------------------------------------------------------------------
 func _on_Pause_pressed():
-	playing = false
 	get_tree().paused = true
 	$Camera2D/Pause.hide()
 	$Camera2D/Play.show()
@@ -113,7 +108,6 @@ func _on_Pause_pressed():
 # Unpauses game
 # ------------------------------------------------------------------------------
 func _on_Play_pressed():
-	playing = true
 	get_tree().paused = false
 	$Camera2D/Pause.show()
 	$Camera2D/Play.hide()

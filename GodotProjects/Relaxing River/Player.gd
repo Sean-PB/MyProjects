@@ -113,5 +113,4 @@ func leave_dock(delta):
 		rotation_accel += .35 * delta
 	else:
 		$Skin.play("straight" + skin)
-# warning-ignore:return_value_discarded
-		move_and_slide(Vector2(0, -speed).rotated(rotation))
+		playing = true

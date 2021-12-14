@@ -273,6 +273,7 @@ scale = Vector2( 0.125714, 0.128571 )
 texture = ExtResource( 7 )
 
 [node name="ShortHair" type="Sprite" parent="Character"]
+visible = false
 material = SubResource( 29 )
 position = Vector2( 0, 6 )
 scale = Vector2( 0.125444, 0.126121 )
