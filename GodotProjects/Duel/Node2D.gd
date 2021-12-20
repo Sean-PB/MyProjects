@@ -374,6 +374,7 @@ func _on_Help_released():
 		help = true
 		$Camera2D/Instructions.visible = true
 		$GrayscaleShader2.visible = true
+		$Draw.hide()
 		if started == false:     # On draw screen
 			get_tree().paused = true        # Pause game
 	else:                     # clicking it closed
@@ -382,3 +383,4 @@ func _on_Help_released():
 		$GrayscaleShader2.visible = false
 		if started == false:     # On draw screen
 			get_tree().paused = false       # Unpause game
+			$Draw.show()
