@@ -1,6 +1,10 @@
 extends KinematicBody2D
 
+signal crash
 
+#-------------------------------------------------------------------------------
+# Variables
+#-------------------------------------------------------------------------------
 var character_file = "user://character.txt"   # Declaring file to save character
 var settings_file = "user://settings.txt"
 var skin_r
@@ -13,16 +17,18 @@ var hair_g
 var hair_b
 var hair_a
 var hair_color
-var hair_length       # This will be 0 if short, 1 if long
 var default_hair = Color(0, 0, 0, 1)
 var default_skin = Color(0.74902, 0.560784, 0.403922, 1)
 var Settings
+var challenge_mode
 var swipe
 var speed
+var moving = true
 var drag = 0
 var speed_start = 15
 var rotation_accel = 0
 var playing = false
+var leave_dock = false
 
 
 # Called when the node enters the scene tree for the first time.
@@ -37,11 +43,32 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if playing == true:
+	if leave_dock and not playing:
+		leave_dock(delta)
+	if playing:
+		# Movement
 		rotation_degrees += drag * delta
 		rotation_degrees = clamp(rotation_degrees, -30, 30)
 # warning-ignore:return_value_discarded
-		move_and_slide(Vector2(0, -speed).rotated(rotation))
+		if moving:
+			move_and_slide(Vector2(0, -speed).rotated(rotation))
+		
+		# If challenge mode is on, detect collisions. If collision is a log, play
+		# the flash animation, emit crash signal, stop player for a bit, and
+		# turn off collision for logs.
+		if challenge_mode:
+			for i in get_slide_count():
+				var collision = get_slide_collision(i)
+				if collision.collider.name == "Log" or collision.collider.name.begins_with("@Log"):
+					emit_signal("crash")
+					set_collision_mask_bit(2, false) # Turn off collsion for logs
+					# Check to see if the flash is already going before stopping player.
+					# if it is that means the player has already been stopped and this
+					# shouldn't run
+					if $Character.animation != "flash":
+						$Timer.start()
+						moving = false
+					$Character.play("flash")
 
 # Swiping functionality
 func _input(event):
@@ -65,6 +92,7 @@ func load_settings():
 	if f.file_exists(settings_file):
 		f.open(settings_file, File.READ)
 		var content = f.get_as_text()
+		challenge_mode = int(content.split("/")[1])
 		swipe = int(content.split("/")[2])
 		speed = int(content.split("/")[3])
 		f.close()
@@ -96,23 +124,13 @@ func load_character():
 		hair_b = float(content.split(",")[6])
 		hair_a = float(content.split(",")[7])
 		hair_color = Color(hair_r, hair_g, hair_b, hair_a)
-		hair_length = int(content.split(",")[8])
 		
-		$Character.material.set("shader_param/NEWCOLOR", skin_color)
-		$Character/Hair.material.set("shader_param/NEWCOLOR", hair_color)
-		
-		if int(hair_length):    # Long hair
-			$Character/Hair.frame = 1
-			$Character/Hair.position.y = 7
-		else:                   # Short hair
-			$Character/Hair.frame = 0
-			$Character/Hair.position.y = 6
+		$Character.material.set("shader_param/NEWSKIN", skin_color)
+		$Character.material.set("shader_param/NEWHAIR", hair_color)
 	
 	else:
-		$Character.material.set("shader_param/NEWCOLOR", default_skin)
-		$Character/Hair.material.set("shader_param/NEWCOLOR", default_hair)
-		$Character/Hair.frame = 0
-		$Character/Hair.position.y = 6
+		$Character.material.set("shader_param/NEWSKIN", default_skin)
+		$Character.material.set("shader_param/NEWHAIR", default_hair)
 
 
 #-------------------------------------------------------------------------------
@@ -133,3 +151,19 @@ func leave_dock(delta):
 	else:
 		$Character.play("straight")
 		playing = true
+		leave_dock = false
+
+
+#-------------------------------------------------------------------------------
+# When the flashing animaiton ends
+#-------------------------------------------------------------------------------
+# If the animation that finished is flash, change the animation back to straight 
+# and turn collision for logs back on
+func _on_Character_animation_finished():
+	if $Character.animation == "flash":
+		$Character.play("straight")
+		set_collision_mask_bit(2, true) # Turn on collsion for logs
+
+
+func _on_Timer_timeout():
+	moving = true

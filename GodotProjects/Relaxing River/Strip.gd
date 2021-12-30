@@ -1,20 +1,19 @@
 extends Node2D
 
-
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
+var rng = RandomNumberGenerator.new()
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
-
+	rng.randomize()
+	if rng.randi_range(0, 1):
+		$LeftTree.position = Vector2(rng.randi_range(-10, 35), rng.randi_range(4, 60))
+		$LeftTree.show()
+	rng.randomize()
+	if rng.randi_range(0, 1):
+		$RightTree.position = Vector2(rng.randi_range(345, 395), rng.randi_range(4, 60))
+		$RightTree.show()
+	
 
 #-------------------------------------------------------------------------------
 # Delete Strip once off screen

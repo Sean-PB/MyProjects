@@ -1,52 +1,20 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Art/Player/left.png" type="Texture" id=1]
 [ext_resource path="res://Art/Player/left_up.png" type="Texture" id=2]
-[ext_resource path="res://Art/Player/long_hair.png" type="Texture" id=3]
+[ext_resource path="res://Art/Shaders/Player.tres" type="Material" id=3]
 [ext_resource path="res://Art/Player/idle.png" type="Texture" id=4]
 [ext_resource path="res://Art/Player/front_left.png" type="Texture" id=5]
 [ext_resource path="res://Art/Player/back_left.png" type="Texture" id=6]
-[ext_resource path="res://Art/Player/short_hair.png" type="Texture" id=7]
+[ext_resource path="res://Art/Player/player_flash.png" type="Texture" id=7]
 [ext_resource path="res://Art/Player/right_up.png" type="Texture" id=8]
 [ext_resource path="res://Art/Player/right.png" type="Texture" id=9]
 [ext_resource path="res://Art/Player/front_right.png" type="Texture" id=10]
 [ext_resource path="res://Art/Player/back_right.png" type="Texture" id=11]
 [ext_resource path="res://Player.gd" type="Script" id=46]
 
-[sub_resource type="Shader" id=1]
-code = "shader_type canvas_item;
-
-uniform vec4 OLDCOLOR : hint_color;
-
-uniform vec4 NEWCOLOR : hint_color;
-
-void fragment() {
-	vec4 curr_color = texture(TEXTURE, UV); // Get current color of pixel
-	
-	// Check that current pixel color is any of the OLDCOLORs we want to swap
-	// If our pixel is an old color then swap COLOR to NEWCOLR
-	if (curr_color == OLDCOLOR)
-	{
-		COLOR = NEWCOLOR;
-	}
-	else
-	{
-		COLOR = curr_color;
-	}
-}"
-
-[sub_resource type="ShaderMaterial" id=2]
-shader = SubResource( 1 )
-shader_param/OLDCOLOR = Color( 1, 0, 0, 1 )
-shader_param/NEWCOLOR = Color( 0, 0, 0, 1 )
-
 [sub_resource type="SpriteFrames" id=3]
 animations = [ {
-"frames": [ ExtResource( 4 ), ExtResource( 2 ), ExtResource( 5 ), ExtResource( 1 ), ExtResource( 6 ), ExtResource( 8 ) ],
-"loop": true,
-"name": "right",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 4 ), ExtResource( 8 ), ExtResource( 10 ), ExtResource( 9 ), ExtResource( 11 ), ExtResource( 2 ) ],
 "loop": true,
 "name": "left",
@@ -56,57 +24,30 @@ animations = [ {
 "loop": true,
 "name": "straight",
 "speed": 5.0
-} ]
-
-[sub_resource type="Shader" id=4]
-code = "shader_type canvas_item;
-
-uniform vec4 OLDCOLOR : hint_color;
-
-uniform vec4 NEWCOLOR : hint_color;
-
-void fragment() {
-	vec4 curr_color = texture(TEXTURE, UV); // Get current color of pixel
-	
-	// Check that current pixel color is any of the OLDCOLORs we want to swap
-	// If our pixel is an old color then swap COLOR to NEWCOLR
-	if (curr_color == OLDCOLOR)
-	{
-		COLOR = NEWCOLOR;
-	}
-	else
-	{
-		COLOR = curr_color;
-	}
-}"
-
-[sub_resource type="ShaderMaterial" id=5]
-shader = SubResource( 4 )
-shader_param/OLDCOLOR = Color( 0, 1, 0, 1 )
-shader_param/NEWCOLOR = Color( 0, 0, 0, 1 )
-
-[sub_resource type="SpriteFrames" id=6]
-animations = [ {
-"frames": [ ExtResource( 7 ), ExtResource( 3 ) ],
+}, {
+"frames": [ ExtResource( 7 ), ExtResource( 4 ), ExtResource( 7 ), ExtResource( 4 ), ExtResource( 7 ), ExtResource( 4 ), ExtResource( 7 ), ExtResource( 4 ), ExtResource( 7 ) ],
 "loop": true,
-"name": "default",
+"name": "flash",
 "speed": 5.0
 } ]
 
 [node name="Player" type="KinematicBody2D"]
-collision_layer = 2147483651
+collision_layer = 2147483649
+collision_mask = 14
 script = ExtResource( 46 )
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 polygon = PoolVector2Array( -0.25, -59, 12.899, -18.5121, 13.4943, 18.2958, 0.144638, 59.0145, -12.8716, 19.9814, -12.5986, -18.8097 )
 
 [node name="Character" type="AnimatedSprite" parent="."]
-material = SubResource( 2 )
+material = ExtResource( 3 )
 scale = Vector2( 2, 2 )
 frames = SubResource( 3 )
-animation = "straight"
+animation = "left"
 
-[node name="Hair" type="AnimatedSprite" parent="Character"]
-material = SubResource( 5 )
-position = Vector2( 0, 6 )
-frames = SubResource( 6 )
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[connection signal="animation_finished" from="Character" to="." method="_on_Character_animation_finished"]
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

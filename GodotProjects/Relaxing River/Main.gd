@@ -6,7 +6,6 @@ extends Node2D
 # ------------------------------------------------------------------------------
 const STRIP = preload("res://Strip.tscn")
 const LOG = preload("res://Log.tscn")
-const TREE = preload("res://Tree.tscn")
 
 var skin
 var started
@@ -34,18 +33,6 @@ func _ready():
 		strip.position.y = river_top
 		$World.add_child(strip)
 		river_top -= 64
-		
-		# Tree
-		if rng.randi_range(0, 1):  # Left
-			var tree_left = TREE.instance()
-			tree_left.position.x = rng.randi_range(-10, 35)
-			tree_left.position.y = rng.randi_range(strip.position.y + 4, strip.position.y + 60)
-			$Trees.add_child(tree_left)
-		if rng.randi_range(0, 1):  # Rigth
-			var tree_right = TREE.instance()
-			tree_right.position.x = rng.randi_range(345, 395)
-			tree_right.position.y = rng.randi_range(strip.position.y + 4, strip.position.y + 60)
-			$Trees.add_child(tree_right)
 	
 	log_dist = 0             # Setting log_dist to 0 so theres a log immediately
 	
@@ -56,6 +43,7 @@ func _ready():
 	$Camera2D/CharacterMenu.connect("character_exited", self, "exit_CharacterMenu")
 	$Camera2D/SettingsMenu.connect("settings_exited", self, "exit_Settings")
 	$Camera2D/SettingsMenu.connect("settings_confirmed", self, "confrim_settings")
+	$Player.connect("crash", self, "crash")
 	
 	# Setting random length of straiht river section
 	straight_length = rng.randi_range(1, 1) # set straight_length to new random number
@@ -66,14 +54,11 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 # ------------------------------------------------------------------------------
 func _process(delta):
-	if started:
-		if $Player.position.y >= 475:
-			# Move player away from doc
-			$Player.leave_dock(delta)
-			$Camera2D/Pause.show()
-		else:
-			$Camera2D.position.y = $Player.position.y
-			spawn_world()
+	spawn_world()
+
+	if $Player.position.y <= 475:
+		$Camera2D.position.y = $Player.position.y
+	
 
 
 # ------------------------------------------------------------------------------
@@ -82,6 +67,7 @@ func _process(delta):
 func _on_Start_pressed():
 	# Show things
 	$Camera2D/Start.hide()
+	$Camera2D/Pause.show()
 	$Camera2D/EditCharacter.hide()
 	$Camera2D/Blur.hide()
 	$Camera2D/Settings.hide()
@@ -89,8 +75,9 @@ func _on_Start_pressed():
 	started = true
 	# Play music (CHANGE TO BE RANDOM SONG ORDER LATER) !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 	$Music.play()
-	AudioServer.set_bus_mute(0, not $Camera2D/SettingsMenu.sound) # Whether to start muted or not
-
+	$Music.stream_paused = not $Camera2D/SettingsMenu.sound
+	challenge_mode = $Camera2D/SettingsMenu.challenge_mode                 # Whether challenge mode is on or not
+	$Player.leave_dock = true # Telling the Player scene to leave the dock
 
 # ------------------------------------------------------------------------------
 # Pauses game
@@ -118,6 +105,7 @@ func _on_Play_pressed():
 	$Camera2D/EditCharacter.hide()
 	$Camera2D/Blur.hide()
 	$Camera2D/Settings.hide()
+	$Music.stream_paused = not $Camera2D/SettingsMenu.sound
 
 
 # ------------------------------------------------------------------------------
@@ -176,8 +164,7 @@ func exit_Settings():
 # Applies settings changes made by player after confimation
 # ------------------------------------------------------------------------------
 func confrim_settings():
-	AudioServer.set_bus_mute(0, not $Camera2D/SettingsMenu.sound)
-	challenge_mode = $Camera2D/SettingsMenu.death
+	challenge_mode = $Camera2D/SettingsMenu.challenge_mode
 
 
 # ------------------------------------------------------------------------------
@@ -227,22 +214,19 @@ func spawn_world():
 			else:
 				log_dist -= 1
 			
-			# Tree
-			if rng.randi_range(0, 1):  # Left
-				var tree_left = TREE.instance()
-				tree_left.position.x = rng.randi_range(-10, 35)
-				tree_left.position.y = rng.randi_range(strip.position.y + 4, strip.position.y + 60)
-				$Trees.add_child(tree_left)
-				
-			if rng.randi_range(0, 1):  # Right
-				var tree_right = TREE.instance()
-				tree_right.position.x = rng.randi_range(345, 395)
-				tree_right.position.y = rng.randi_range(strip.position.y + 4, strip.position.y + 60)
-				$Trees.add_child(tree_right)
-			
 			# Bird
 			#if rng.randi_range(1, 20) == 1:
 				# Make the birds position the same as the tree's that was just spawned
+
+
+# ------------------------------------------------------------------------------
+# When the player crashes into a log this function deals with changing the score
+# ------------------------------------------------------------------------------
+# Shake camera
+# Save score if higher than high score
+# Reset score
+func crash():
+	$Camera2D.shake(100, 0.5)
 
 
 # ------------------------------------------------------------------------------

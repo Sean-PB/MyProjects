@@ -10,7 +10,7 @@ signal settings_exited
 # ------------------------------------------------------------------------------
 var file = "user://settings.txt"   # Declaring file to save settings and score
 var sound
-var death
+var challenge_mode
 var sound_outline_pos = Vector2(-225, -150)
 var mute_outline_pos = Vector2(-90, -150)
 # This var is to make sure that the initial change for speed and swipe doesn't 
@@ -33,7 +33,7 @@ func load_settings():
 		f.open(file, File.READ)
 		var content = f.get_as_text()
 		sound = int(content.split("/")[0])
-		death = int(content.split("/")[1])
+		challenge_mode = int(content.split("/")[1])
 		$Swipe.value = int(content.split("/")[2])
 		$Speed.value = int(content.split("/")[3])
 		initial_change = false # has to be changed below the speed and swipe changes
@@ -44,17 +44,17 @@ func load_settings():
 		else:
 			$SoundMuteOutline.position = Vector2(-90, -150)
 		
-		if death:
-			$Death/Outline.show()
+		if challenge_mode:
+			$Skull/Outline.show()
 			$Invincible/Outline.hide()
 		else:
 			$Invincible/Outline.show()
-			$Death/Outline.hide()
+			$Skull/Outline.hide()
 		
 	else:
 		sound = 1
 		$SoundMuteOutline.position = Vector2(-225, -150)
-		death = 0
+		challenge_mode = 0
 		$Invincible/Outline.show()
 		$Speed.value = 100
 		$Swipe.value = 35
@@ -63,10 +63,10 @@ func load_settings():
 
 # ------------------------------------------------------------------------------
 # ------------------------------------------------------------------------------
-func save_settings(new_sound, new_death, new_swipe, new_speed):
+func save_settings(new_sound, new_challenge_mode, new_swipe, new_speed):
 	var f = File.new()
 	f.open(file, File.WRITE)
-	f.store_string((str(new_sound) + "/" + str(new_death) + "/" + str(new_swipe)
+	f.store_string((str(new_sound) + "/" + str(new_challenge_mode) + "/" + str(new_swipe)
 		 + "/" + str(new_speed)))
 	f.close()
 
@@ -91,7 +91,7 @@ func _on_Cancel_pressed():
 # settings then it saves the settings to the file, emits the signal "exited" to
 # the main scene, and hides itself.
 func _on_Confirm_pressed():
-	save_settings(sound, death, $Swipe.value, $Speed.value)
+	save_settings(sound, challenge_mode, $Swipe.value, $Speed.value)
 	emit_signal("settings_confirmed")
 	$Confirm.hide()
 	set_frame(0)
@@ -150,20 +150,20 @@ func _on_Invincible_pressed():
 		$Confirm.show()
 		set_frame(1)
 	$Invincible/Outline.show()
-	$Death/Outline.hide()
-	death = 0
+	$Skull/Outline.hide()
+	challenge_mode = 0
 
 
 # ------------------------------------------------------------------------------
-# Turns death mode on and highlights current selection
+# Turns challenge_mode on and highlights current selection
 # ------------------------------------------------------------------------------
 # The check to see if the outline is visible has to before its made visible to 
 # actually check. The check is there because I don't want the confirm button to
 # be available unless something actually changed.
-func _on_Death_pressed():
-	if $Death/Outline.visible == false:
+func _on_Skull_pressed():
+	if $Skull/Outline.visible == false:
 		$Confirm.show()
 		set_frame(1)
-	$Death/Outline.show()
+	$Skull/Outline.show()
 	$Invincible/Outline.hide()
-	death = 1
+	challenge_mode = 1

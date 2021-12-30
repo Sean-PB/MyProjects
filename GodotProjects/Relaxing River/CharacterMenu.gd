@@ -16,17 +16,12 @@ var hair_g
 var hair_b
 var hair_a
 var hair_color
-var hair_length       # This will be 0 if short, 1 if long
 var default_hair = Color(0, 0, 0, 1)
 var default_skin = Color(0.74902, 0.560784, 0.403922, 1)
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	skin_color = default_skin
-	hair_color = default_hair
-	hair_length = 0
-	set_frame(0)
 	load_character()
 
 
@@ -36,8 +31,7 @@ func _ready():
 # Check if there is a character file. If there is, read from it all the values
 # and put them into variables. Then put those variables into their respective 
 # character part color. Then set the character parts to those colors. Then, set
-# the color picker buttons to their repective colors. Finally, set the correct hair 
-# length.
+# the color picker buttons to their repective colors
 # If there is not a character file, set all values to default.
 func load_character():
 	var f = File.new()
@@ -54,39 +48,20 @@ func load_character():
 		hair_b = float(content.split(",")[6])
 		hair_a = float(content.split(",")[7])
 		hair_color = Color(hair_r, hair_g, hair_b, hair_a)
-		hair_length = int(content.split(",")[8])
 		
-		$Character.material.set("shader_param/NEWCOLOR", skin_color)
-		$Skin.material.set("shader_param/NEWCOLOR", skin_color)
-		$Character/Hair.material.set("shader_param/NEWCOLOR", hair_color)
-		$Long.material.set("shader_param/NEWCOLOR", hair_color)
-		$Short.material.set("shader_param/NEWCOLOR", hair_color)
+		$Character.material.set("shader_param/NEWSKIN", skin_color)
+		$Character.material.set("shader_param/NEWHAIR", hair_color)
+		$Skin.material.set("shader_param/NEWSKIN", skin_color)
+		$Hair.material.set("shader_param/NEWHAIR", hair_color)
 		
 		$HairColor.color = hair_color
 		$BodyColor.color = skin_color
 		
-		if int(hair_length):
-			$Character/Hair.frame = 1
-			$Character/Hair.position.y = 7
-			$HairOutline.frame = 1
-			$HairOutline.position = Vector2(238, -163)
-		else:
-			$Character/Hair.frame = 0
-			$Character/Hair.position.y = 6
-			$HairOutline.frame = 0
-			$HairOutline.position = Vector2(118, -173)
-		
 	else:
-		$Character.material.set("shader_param/NEWCOLOR", default_skin)
-		$Skin.material.set("shader_param/NEWCOLOR", default_skin)
-		
-		$Character/Hair.material.set("shader_param/NEWCOLOR", default_hair)
-		$Character/Hair.frame = 0
-		$Character/Hair.position.y = 6
-		$Long.material.set("shader_param/NEWCOLOR", default_hair)
-		$Short.material.set("shader_param/NEWCOLOR", default_hair)
-		$HairOutline.frame = 0
-		$HairOutline.position = Vector2(118, -173)
+		$Character.material.set("shader_param/NEWSKIN", default_skin)
+		$Character.material.set("shader_param/NEWHAIR", default_hair)
+		$Skin.material.set("shader_param/NEWSKIN", default_skin)
+		$Hair.material.set("shader_param/NEWHAIR", default_hair)
 		
 		$HairColor.color = default_hair
 		$BodyColor.color = default_skin
@@ -99,7 +74,7 @@ func load_character():
 func save_character():
 	var f = File.new()
 	f.open(character_file, File.WRITE)
-	f.store_string(str(skin_color) + "," + str(hair_color) + "," + str(hair_length))
+	f.store_string(str(skin_color) + "," + str(hair_color))
 	f.close()
 
 
@@ -110,9 +85,8 @@ func save_character():
 # long and short hair buttons. Then save the color into the hair_color variable.
 # Finally, show the confirm button
 func _on_HairColor_color_changed(color):
-	$Character/Hair.material.set("shader_param/NEWCOLOR", color)
-	$Long.material.set("shader_param/NEWCOLOR", color)
-	$Short.material.set("shader_param/NEWCOLOR", color)
+	$Character.material.set("shader_param/NEWHAIR", color)
+	$Hair.material.set("shader_param/NEWHAIR", color)
 	hair_color = color
 	$Confirm.show()
 	set_frame(1)
@@ -125,46 +99,11 @@ func _on_HairColor_color_changed(color):
 # Change the body color of the character demo and skin symbol. Finally, show the
 # confirm button
 func _on_BodyColor_color_changed(color):
-	$Character.material.set("shader_param/NEWCOLOR", color)
-	$Skin.material.set("shader_param/NEWCOLOR", color)
+	$Character.material.set("shader_param/NEWSKIN", color)
+	$Skin.material.set("shader_param/NEWSKIN", color)
 	skin_color = color
 	$Confirm.show()
 	set_frame(1)
-	
-
-
-#-------------------------------------------------------------------------------
-# Changes hair length to short hair
-#-------------------------------------------------------------------------------
-# If not already selected, switch the long and short hair on the character demo
-# then move the outline to show which length is selected. Finally, show the
-# confirm button.
-func _on_Short_pressed():
-	if $Character/Hair.frame == 1:
-		$Character/Hair.frame = 0
-		$Character/Hair.position.y = 6
-		$HairOutline.frame = 0
-		$HairOutline.position = Vector2(118, -173)
-		hair_length = 0
-		$Confirm.show()
-		set_frame(1)
-
-
-#-------------------------------------------------------------------------------
-# Changes hair length to long hair
-#-------------------------------------------------------------------------------
-# If not already selected, switch the long and short hair on the character demo
-# then move the outline to show which length is selected. Finally, show the
-# confirm button.
-func _on_Long_pressed():
-	if $Character/Hair.frame == 0:
-		$Character/Hair.frame = 1
-		$Character/Hair.position.y = 7
-		$HairOutline.frame = 1
-		$HairOutline.position = Vector2(238, -163)
-		hair_length = 1
-		$Confirm.show()
-		set_frame(1)
 
 
 #-------------------------------------------------------------------------------
@@ -174,6 +113,9 @@ func _on_Long_pressed():
 # all the changes made including the confirm button being visible then hide.
 func _on_Cancel_pressed():
 	emit_signal("character_exited")
+	$ColorDown.hide()
+	$HairColor.hide()
+	$BodyColor.hide()
 	$Confirm.hide()
 	set_frame(0)
 	load_character()
@@ -188,21 +130,26 @@ func _on_Cancel_pressed():
 # player is done editing the character, then hide menu.
 func _on_Confirm_pressed():
 	save_character()
-	emit_signal("character_confirmed")
+	emit_signal("character_confirmed") # is picked up in Player scene
+	$ColorDown.hide()
+	$HairColor.hide()
+	$BodyColor.hide()
 	$Confirm.hide()
 	set_frame(0)
-	emit_signal("character_exited")
+	emit_signal("character_exited") # is picked up in Main scene
 	hide()
 
 
 func _on_BodyColorButton_pressed():
 	$BodyColor.show()
 	$ColorDown.show()
+	$HairColor.hide()
 
 
 func _on_HairColorButton_pressed():
 	$HairColor.show()
 	$ColorDown.show()
+	$BodyColor.hide()
 
 
 func _on_ColorDown_pressed():

@@ -1,0 +1,35 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=2]
+
+[sub_resource type="Shader" id=1]
+code = "shader_type canvas_item;
+
+uniform vec4 OLDSKIN : hint_color;
+uniform vec4 NEWSKIN : hint_color;
+uniform vec4 OLDHAIR : hint_color;
+uniform vec4 NEWHAIR : hint_color;
+
+void fragment() {
+	vec4 curr_color = texture(TEXTURE, UV); // Get current color of pixel
+	// Check that current pixel color is any of the OLDCOLORs we want to swap
+	// If our pixel is an old color then swap COLOR to NEWCOLR
+	if (curr_color == OLDSKIN)
+	{
+		COLOR = NEWSKIN;
+	}
+	else if (curr_color == OLDHAIR)
+	{
+		COLOR = NEWHAIR
+	}
+	else
+	{
+		COLOR = curr_color;
+	}
+}"
+
+[resource]
+resource_local_to_scene = true
+shader = SubResource( 1 )
+shader_param/OLDSKIN = Color( 1, 0, 0, 1 )
+shader_param/NEWSKIN = null
+shader_param/OLDHAIR = Color( 0, 1, 0, 1 )
+shader_param/NEWHAIR = null

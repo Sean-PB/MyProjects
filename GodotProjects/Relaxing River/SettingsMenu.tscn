@@ -122,7 +122,7 @@ position = Vector2( 48, 48 )
 scale = Vector2( 1.5, 1.5 )
 texture = ExtResource( 3 )
 
-[node name="Death" type="TextureButton" parent="."]
+[node name="Skull" type="TextureButton" parent="."]
 margin_left = 185.0
 margin_top = -195.0
 margin_right = 285.0
@@ -133,10 +133,10 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Outline" type="Sprite" parent="Death"]
+[node name="Outline" type="Sprite" parent="Skull"]
 visible = false
-position = Vector2( 50, 50 )
-scale = Vector2( 1.5, 1.5 )
+position = Vector2( 50.0104, 49.9565 )
+scale = Vector2( 1.55801, 1.55757 )
 texture = ExtResource( 12 )
 
 [node name="Speed" type="HSlider" parent="."]
@@ -186,6 +186,6 @@ texture = ExtResource( 14 )
 [connection signal="pressed" from="Mute" to="." method="_on_Mute_pressed"]
 [connection signal="pressed" from="Sound" to="." method="_on_Sound_pressed"]
 [connection signal="pressed" from="Invincible" to="." method="_on_Invincible_pressed"]
-[connection signal="pressed" from="Death" to="." method="_on_Death_pressed"]
+[connection signal="pressed" from="Skull" to="." method="_on_Skull_pressed"]
 [connection signal="value_changed" from="Speed" to="." method="_on_Speed_value_changed"]
 [connection signal="value_changed" from="Swipe" to="." method="_on_Swipe_value_changed"]
