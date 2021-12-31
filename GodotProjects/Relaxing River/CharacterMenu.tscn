@@ -146,10 +146,10 @@ __meta__ = {
 
 [node name="HairColor" type="ColorPicker" parent="."]
 visible = false
-margin_left = -299.0
-margin_top = 244.0
-margin_right = 9.0
-margin_bottom = 706.0
+margin_left = -295.0
+margin_top = 256.0
+margin_right = 13.0
+margin_bottom = 718.0
 rect_scale = Vector2( 1.25, 1.25 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -157,10 +157,10 @@ __meta__ = {
 
 [node name="BodyColor" type="ColorPicker" parent="."]
 visible = false
-margin_left = -299.0
-margin_top = 244.0
-margin_right = 9.0
-margin_bottom = 706.0
+margin_left = -295.0
+margin_top = 256.0
+margin_right = 13.0
+margin_bottom = 718.0
 rect_scale = Vector2( 1.25, 1.25 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -168,10 +168,10 @@ __meta__ = {
 
 [node name="ColorDown" type="TextureButton" parent="."]
 visible = false
-margin_left = -313.0
-margin_top = 152.0
-margin_right = -273.0
-margin_bottom = 192.0
+margin_left = -296.0
+margin_top = 176.0
+margin_right = -256.0
+margin_bottom = 216.0
 rect_scale = Vector2( 2, 2 )
 texture_normal = ExtResource( 8 )
 expand = true

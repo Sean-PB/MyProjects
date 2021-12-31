@@ -43,6 +43,7 @@ func _ready():
 	$Camera2D/CharacterMenu.connect("character_exited", self, "exit_CharacterMenu")
 	$Camera2D/SettingsMenu.connect("settings_exited", self, "exit_Settings")
 	$Camera2D/SettingsMenu.connect("settings_confirmed", self, "confrim_settings")
+	$SplashScreen.connect("splash_done", self, "splash_done")
 	$Player.connect("crash", self, "crash")
 	
 	# Setting random length of straiht river section
@@ -53,7 +54,7 @@ func _ready():
 # ------------------------------------------------------------------------------
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 # ------------------------------------------------------------------------------
-func _process(delta):
+func _process(_delta):
 	spawn_world()
 
 	if $Player.position.y <= 475:
@@ -77,7 +78,7 @@ func _on_Start_pressed():
 	$Music.play()
 	$Music.stream_paused = not $Camera2D/SettingsMenu.sound
 	challenge_mode = $Camera2D/SettingsMenu.challenge_mode                 # Whether challenge mode is on or not
-	$Player.leave_dock = true # Telling the Player scene to leave the dock
+	$Player.leaving_dock = true # Telling the Player scene to leave the dock
 
 # ------------------------------------------------------------------------------
 # Pauses game
@@ -241,3 +242,12 @@ func _on_VisibilityNotifier2D_screen_exited():
 # ------------------------------------------------------------------------------
 func _on_Music_finished():
 	pass
+
+
+# ------------------------------------------------------------------------------
+# Makes buttons acessable after splash screen is finished
+# ------------------------------------------------------------------------------
+func splash_done():
+	$Camera2D/Start.show()
+	$Camera2D/EditCharacter.show()
+	$Camera2D/Settings.show()

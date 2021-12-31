@@ -28,7 +28,7 @@ var drag = 0
 var speed_start = 15
 var rotation_accel = 0
 var playing = false
-var leave_dock = false
+var leaving_dock = false
 
 
 # Called when the node enters the scene tree for the first time.
@@ -43,7 +43,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if leave_dock and not playing:
+	if leaving_dock and not playing:
 		leave_dock(delta)
 	if playing:
 		# Movement
@@ -151,7 +151,7 @@ func leave_dock(delta):
 	else:
 		$Character.play("straight")
 		playing = true
-		leave_dock = false
+		leaving_dock = false
 
 
 #-------------------------------------------------------------------------------
