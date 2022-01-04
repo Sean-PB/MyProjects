@@ -46,6 +46,7 @@ pointing/emulate_touch_from_mouse=true
 2d_physics/layer_2="land"
 2d_physics/layer_3="logs"
 2d_physics/layer_4="berries"
+2d_physics/layer_5="bird"
 
 [rendering]
 

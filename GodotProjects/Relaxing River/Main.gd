@@ -6,6 +6,8 @@ extends Node2D
 # ------------------------------------------------------------------------------
 const STRIP = preload("res://Strip.tscn")
 const LOG = preload("res://Log.tscn")
+const BIRD = preload("res://Bird.tscn")
+const BERRY = preload("res://Berries.tscn")
 
 var skin
 var started
@@ -35,15 +37,21 @@ func _ready():
 		river_top -= 64
 	
 	log_dist = 0             # Setting log_dist to 0 so theres a log immediately
+	#bird_dist = rng.randi_range(1, 20)
 	
 	# Loading character
 	$Player.load_character()
 	
 	# Connecting signals for Character Selection and Settings menus
+# warning-ignore:return_value_discarded
 	$Camera2D/CharacterMenu.connect("character_exited", self, "exit_CharacterMenu")
+# warning-ignore:return_value_discarded
 	$Camera2D/SettingsMenu.connect("settings_exited", self, "exit_Settings")
+# warning-ignore:return_value_discarded
 	$Camera2D/SettingsMenu.connect("settings_confirmed", self, "confrim_settings")
+# warning-ignore:return_value_discarded
 	$SplashScreen.connect("splash_done", self, "splash_done")
+# warning-ignore:return_value_discarded
 	$Player.connect("crash", self, "crash")
 	
 	# Setting random length of straiht river section
@@ -77,7 +85,7 @@ func _on_Start_pressed():
 	# Play music (CHANGE TO BE RANDOM SONG ORDER LATER) !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 	$Music.play()
 	$Music.stream_paused = not $Camera2D/SettingsMenu.sound
-	challenge_mode = $Camera2D/SettingsMenu.challenge_mode                 # Whether challenge mode is on or not
+	challenge_mode = $Camera2D/SettingsMenu.challenge_mode # Whether challenge mode is on or not
 	$Player.leaving_dock = true # Telling the Player scene to leave the dock
 
 # ------------------------------------------------------------------------------
@@ -171,23 +179,7 @@ func confrim_settings():
 # ------------------------------------------------------------------------------
 # This function spawns in the world one strip at a time.
 # ------------------------------------------------------------------------------
-# River:
-# Whenever the player has moved up 1 strip length (64), we mark down the new 
-# most recent player position benchmark to check against in the future then 
-# create a new instance of the world strip. Then we take the position of the 
-# most recent strip addition, move it up by 64, and place the new strip 
-# instance there.
-# Log:
-# Check to see if its time for a new log with log_dist. If so, make a new 
-# instance of the Log scene, randomize rng, set the new log's position to be 
-# somewhere far enough away from the previous log, spawn the log, at the rnadom
-# x position and the y position of the new river strip, then record the position
-# of the log for later. Finally, randomly choose the next amount of strips away
-# for the next log to be. If it is not time for a new log, decrement log_dist.
-# Tree: 
-# If the tree distance isn't at 0 yet, decrement tree_dist. If it is, choose a 
-# random x and y position for it within the bounds of the grass and spawn it. 
-# Then, reset the random distance until the next tree.
+# See each section below for details
 func spawn_world():
 	# If were at a position to spawn something new
 	if $Player.position.y - 576 <= river_top:
@@ -195,13 +187,26 @@ func spawn_world():
 		if straight_length > 0:    # Straight
 			rng.randomize()
 			
-			# River
+			# River:
+			# Whenever the player has moved up 1 strip length (64), we mark down
+			# the new most recent player position benchmark to check against in
+			# the future then create a new instance of the world strip. Then we
+			# take the position of the most recent strip addition, move it up by
+			# 64, and place the new strip instance there.
 			var strip = STRIP.instance()
 			strip.position.y = river_top
 			$World.add_child(strip)
 			river_top -= 64                # Adjust top of river position
 			
-			# Log
+			# Log:
+			# Check to see if its time for a new log with log_dist. If so, make
+			# a new instance of the Log scene, randomize rng, set the new log's
+			# position to be somewhere far enough away from the previous log,
+			# spawn the log, at the rnadom x position and the y position of the
+			# new river strip, then record the position of the log for later.
+			# Finally, randomly choose the next amount of strips away for the
+			# next log to be. If it is not time for a new log, decrement
+			# log_dist.
 			if log_dist == 0:
 				var new_log = LOG.instance()
 				new_log.position.x = rng.randi_range(100, 285)
@@ -211,13 +216,13 @@ func spawn_world():
 				new_log.position.y = strip.position.y + 30
 				$World.add_child(new_log)
 				old_log_x = new_log.position.x
-				log_dist = rng.randi_range(1, 4)
+				log_dist = rng.randi_range(1, 3) # Choose new log dist
 			else:
 				log_dist -= 1
 			
 			# Bird
-			#if rng.randi_range(1, 20) == 1:
-				# Make the birds position the same as the tree's that was just spawned
+			# !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+			# Spawn berry before bird but have it only visible once the bird collides with the berry
 
 
 # ------------------------------------------------------------------------------

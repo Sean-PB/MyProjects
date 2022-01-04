@@ -82,11 +82,13 @@ func _input(event):
 
 
 # ------------------------------------------------------------------------------
-# Loads settings from file
+# Loads settings from file.
 # ------------------------------------------------------------------------------
+# Gets called when Player first loads in and when settings are confirmed.
 # Check if the file exists. If it doesn't, set the default swipe and speed. If
 # the file does exist, open and read in the swipe and speed data into their 
-# respective variables. Finally, close the file.
+# respective variables. Then, close the file. Finally, set the Character's
+# paddle animation speed.
 func load_settings():
 	var f = File.new()
 	if f.file_exists(settings_file):
@@ -98,7 +100,8 @@ func load_settings():
 		f.close()
 	else:
 		swipe = 35
-		speed = 100
+		speed = 125
+	$Character.set_speed_scale(clamp(((speed + 25) / 100), 1, 1.8))
 
 
 #-------------------------------------------------------------------------------

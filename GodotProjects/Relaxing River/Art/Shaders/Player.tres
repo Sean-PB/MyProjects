@@ -18,7 +18,7 @@ void fragment() {
 	}
 	else if (curr_color == OLDHAIR)
 	{
-		COLOR = NEWHAIR
+		COLOR = NEWHAIR;
 	}
 	else
 	{
