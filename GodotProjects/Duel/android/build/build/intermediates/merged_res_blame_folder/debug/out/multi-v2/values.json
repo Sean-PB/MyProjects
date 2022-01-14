@@ -1,25 +1,8 @@
 {
     "logs": [
         {
-            "outputFile": "C:\\Users\\Sean\\Desktop\\Personal Repository\\MyProjects\\GodotProjects\\Duel\\android\\build\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values\\values.xml",
+            "outputFile": "C:\\Users\\Sean\\Desktop\\MyRepos\\PersonalProjects\\GodotProjects\\Duel\\android\\build\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values\\values.xml",
             "map": [
-                {
-                    "source": "C:\\Users\\Sean\\Desktop\\Personal Repository\\MyProjects\\GodotProjects\\Duel\\android\\build\\res\\values\\godot_project_name_string.xml",
-                    "from": {
-                        "startLines": "3",
-                        "startColumns": "1",
-                        "startOffsets": "112",
-                        "endColumns": "55",
-                        "endOffsets": "166"
-                    },
-                    "to": {
-                        "startLines": "93",
-                        "startColumns": "4",
-                        "startOffsets": "5727",
-                        "endColumns": "58",
-                        "endOffsets": "5781"
-                    }
-                },
                 {
                     "source": "C:\\Users\\Sean\\.gradle\\caches\\transforms-3\\3dc028d946a4c1298d1f908800236ba5\\transformed\\fragment-1.3.6\\res\\values\\values.xml",
                     "from": {
@@ -167,22 +150,20 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\Sean\\Desktop\\Personal Repository\\MyProjects\\GodotProjects\\Duel\\android\\build\\res\\values\\themes.xml",
+                    "source": "C:\\Users\\Sean\\Desktop\\MyRepos\\PersonalProjects\\GodotProjects\\Duel\\android\\build\\res\\values\\godot_project_name_string.xml",
                     "from": {
-                        "startLines": "3,5",
-                        "startColumns": "1,1",
-                        "startOffsets": "53,147",
-                        "endLines": "3,8",
-                        "endColumns": "92,9",
-                        "endOffsets": "144,371"
+                        "startLines": "3",
+                        "startColumns": "1",
+                        "startOffsets": "112",
+                        "endColumns": "55",
+                        "endOffsets": "166"
                     },
                     "to": {
-                        "startLines": "139,140",
-                        "startColumns": "4,4",
-                        "startOffsets": "9238,9334",
-                        "endLines": "139,143",
-                        "endColumns": "95,9",
-                        "endOffsets": "9329,9558"
+                        "startLines": "93",
+                        "startColumns": "4",
+                        "startOffsets": "5727",
+                        "endColumns": "58",
+                        "endOffsets": "5781"
                     }
                 },
                 {
@@ -217,6 +198,25 @@
                         "startOffsets": "5422,5560",
                         "endColumns": "67,166",
                         "endOffsets": "5485,5722"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\Sean\\Desktop\\MyRepos\\PersonalProjects\\GodotProjects\\Duel\\android\\build\\res\\values\\themes.xml",
+                    "from": {
+                        "startLines": "3,5",
+                        "startColumns": "1,1",
+                        "startOffsets": "53,147",
+                        "endLines": "3,8",
+                        "endColumns": "92,9",
+                        "endOffsets": "144,371"
+                    },
+                    "to": {
+                        "startLines": "139,140",
+                        "startColumns": "4,4",
+                        "startOffsets": "9238,9334",
+                        "endLines": "139,143",
+                        "endColumns": "95,9",
+                        "endOffsets": "9329,9558"
                     }
                 },
                 {

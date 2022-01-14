@@ -1,4 +1,4 @@
-[gd_scene load_steps=101 format=2]
+[gd_scene load_steps=106 format=2]
 
 [ext_resource path="res://Node2D.gd" type="Script" id=1]
 [ext_resource path="res://art/background_long_dirt.png" type="Texture" id=2]
@@ -79,6 +79,9 @@
 [ext_resource path="res://art/buttons/sound.png" type="Texture" id=77]
 [ext_resource path="res://art/buttons/mute.png" type="Texture" id=78]
 [ext_resource path="res://art/buttons/help_sign.png" type="Texture" id=79]
+[ext_resource path="res://SplashScreen.tscn" type="PackedScene" id=80]
+[ext_resource path="res://art/buttons/vibrate.png" type="Texture" id=81]
+[ext_resource path="res://art/buttons/vibrate_off.png" type="Texture" id=82]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -111,6 +114,40 @@ animations = [ {
 [sub_resource type="DynamicFont" id=2]
 size = 24
 font_data = ExtResource( 20 )
+
+[sub_resource type="Shader" id=22]
+code = "shader_type canvas_item;
+
+
+uniform float width = 0.3;
+uniform float gradient_ease = 5.0;
+uniform float fill_ratio = 0.8;
+
+
+void fragment() {
+	float fill_angle = fill_ratio * 3.141592656 * 2.0;
+	vec2 uv = UV * 2.0 - 1.0;
+	if (atan(uv.x, uv.y) + 3.141592656 < fill_angle) {
+		float inner_width = 1.0 - width;
+		inner_width *= inner_width;
+		float d = uv.x * uv.x + uv.y * uv.y;
+		if (d >= inner_width && d <= 1.0) {
+			float w = abs((1.0 + inner_width) / 2.0 - d) / (1.0 - inner_width);
+			w = 1.0 - pow(w + 0.5, gradient_ease);
+			COLOR = vec4(vec3(0.1), min(1.0, w));
+		} else {
+			COLOR.a = 0.0;
+		}
+	} else {
+		COLOR.a = 0.0;
+	}
+}"
+
+[sub_resource type="ShaderMaterial" id=23]
+shader = SubResource( 22 )
+shader_param/width = 0.4
+shader_param/gradient_ease = 5000.0
+shader_param/fill_ratio = 0.8
 
 [sub_resource type="DynamicFont" id=3]
 size = 33
@@ -151,15 +188,15 @@ animations = [ {
 "name": "Four-Five",
 "speed": 10.0
 }, {
-"frames": [ ExtResource( 4 ) ],
+"frames": [ ExtResource( 5 ), ExtResource( 15 ), ExtResource( 6 ) ],
 "loop": false,
-"name": "Empty",
-"speed": 0.0
+"name": "Three-Four",
+"speed": 10.0
 }, {
-"frames": [ ExtResource( 4 ), ExtResource( 9 ) ],
+"frames": [ ExtResource( 7 ), ExtResource( 12 ), ExtResource( 10 ) ],
 "loop": false,
-"name": "Empty-One",
-"speed": 20.0
+"name": "Five-Six",
+"speed": 10.0
 }, {
 "frames": [ ExtResource( 9 ), ExtResource( 11 ), ExtResource( 8 ) ],
 "loop": false,
@@ -171,15 +208,15 @@ animations = [ {
 "name": "Two-Three",
 "speed": 10.0
 }, {
-"frames": [ ExtResource( 5 ), ExtResource( 15 ), ExtResource( 6 ) ],
+"frames": [ ExtResource( 4 ), ExtResource( 9 ) ],
 "loop": false,
-"name": "Three-Four",
-"speed": 10.0
+"name": "Empty-One",
+"speed": 20.0
 }, {
-"frames": [ ExtResource( 7 ), ExtResource( 12 ), ExtResource( 10 ) ],
+"frames": [ ExtResource( 4 ) ],
 "loop": false,
-"name": "Five-Six",
-"speed": 10.0
+"name": "Empty",
+"speed": 0.0
 } ]
 
 [sub_resource type="Animation" id=10]
@@ -419,6 +456,18 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="PlayerMoveTimerVisual" type="Panel" parent="."]
+visible = false
+material = SubResource( 23 )
+margin_left = 226.0
+margin_top = 345.0
+margin_right = 289.0
+margin_bottom = 408.0
+rect_scale = Vector2( 0.5, 0.5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="Load" type="TouchScreenButton" parent="."]
 visible = false
 position = Vector2( 0, 740 )
@@ -629,6 +678,7 @@ normal = ExtResource( 28 )
 
 [node name="Help" type="TouchScreenButton" parent="Camera2D"]
 pause_mode = 2
+visible = false
 position = Vector2( -79.555, -400 )
 scale = Vector2( 0.5, 0.5 )
 normal = ExtResource( 79 )
@@ -653,8 +703,35 @@ normal = ExtResource( 77 )
 
 [node name="Mute" type="TouchScreenButton" parent="Camera2D"]
 pause_mode = 2
+visible = false
 position = Vector2( -225, -395 )
 normal = ExtResource( 78 )
+
+[node name="VibrateOn" type="TextureButton" parent="Camera2D"]
+pause_mode = 2
+visible = false
+margin_left = -235.0
+margin_top = -299.0
+margin_right = 315.0
+margin_bottom = 251.0
+rect_scale = Vector2( 0.15, 0.15 )
+texture_normal = ExtResource( 81 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VibrateOff" type="TextureButton" parent="Camera2D"]
+pause_mode = 2
+visible = false
+margin_left = -242.0
+margin_top = -305.0
+margin_right = 358.0
+margin_bottom = 310.0
+rect_scale = Vector2( 0.15, 0.15 )
+texture_normal = ExtResource( 82 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Instructions" type="Label" parent="Camera2D"]
 visible = false
@@ -812,6 +889,7 @@ __meta__ = {
 }
 
 [node name="Draw" type="TouchScreenButton" parent="."]
+visible = false
 position = Vector2( 65.3118, 660.061 )
 scale = Vector2( 0.75, 0.75 )
 normal = ExtResource( 26 )
@@ -895,6 +973,8 @@ volume_db = -1.0
 script = ExtResource( 33 )
 banner_id = "ca-app-pub-3940256099942544/6300978111"
 
+[node name="SplashScreen" parent="." instance=ExtResource( 80 )]
+
 [connection signal="released" from="Load" to="." method="_on_Load_released"]
 [connection signal="released" from="Dodge" to="." method="_on_Dodge_released"]
 [connection signal="released" from="Fire" to="." method="_on_Fire_released"]
@@ -905,9 +985,12 @@ banner_id = "ca-app-pub-3940256099942544/6300978111"
 [connection signal="released" from="Camera2D/Help" to="." method="_on_Help_released"]
 [connection signal="released" from="Camera2D/Sound" to="." method="_on_Sound_released"]
 [connection signal="released" from="Camera2D/Mute" to="." method="_on_Mute_released"]
+[connection signal="pressed" from="Camera2D/VibrateOn" to="." method="_on_VibrateOn_pressed"]
+[connection signal="pressed" from="Camera2D/VibrateOff" to="." method="_on_VibrateOff_pressed"]
 [connection signal="released" from="Draw" to="." method="_on_Draw_released"]
 [connection signal="timeout" from="PlayerMoveTimer" to="." method="_on_PlayerMoveTimer_timeout"]
 [connection signal="timeout" from="ShowTimer" to="." method="_on_ShowTimer_timeout"]
 [connection signal="timeout" from="Rumble1" to="." method="_on_Rumble1_timeout"]
 [connection signal="timeout" from="Rumble2" to="." method="_on_Rumble2_timeout"]
 [connection signal="timeout" from="GunfireTimer" to="." method="_on_GunfireTimer_timeout"]
+[connection signal="finished" from="Music" to="." method="_on_Music_finished"]

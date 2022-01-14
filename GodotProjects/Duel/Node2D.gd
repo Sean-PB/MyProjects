@@ -10,6 +10,7 @@ var rng = RandomNumberGenerator.new()
 var player_choice
 var random_number
 var mute
+var vibrate
 var help
 
 
@@ -22,10 +23,15 @@ func _ready():
 	$AdMob.load_banner()
 	mute = false
 	help = false
+	vibrate = false
+	$SplashScreen.connect("splash_done", self, "splash_done")
 
 
 # Game process (second by second)
 func _process(delta):
+	# Pie timer fill equal to move timer
+	$PlayerMoveTimerVisual.material.set("shader_param/fill_ratio", $PlayerMoveTimer.time_left)
+	
 	# If player dies or draws
 	if started == true and player_alive == false:
 		# Scroll camera up
@@ -73,12 +79,14 @@ func _process(delta):
 
 
 func _on_Rumble1_timeout():
-	Input.vibrate_handheld(200)
+	if vibrate: 
+		Input.vibrate_handheld(200)
 	$Rumble2.start()
 
 
 func _on_Rumble2_timeout():
-	Input.vibrate_handheld(200)
+	if vibrate: 
+		Input.vibrate_handheld(200)
 	rng.randomize()
 	
 	# 0 = Dodge
@@ -116,12 +124,14 @@ func _on_Rumble2_timeout():
 	# Start move timer
 	$PlayerMoveTimer.start()
 	
+	
 	# Enable buttons
 	if player_bullets > 0:
 		$Fire.visible = true
 	if player_bullets < 6:
 		$Load.visible = true
 	$Dodge.visible = true
+	$PlayerMoveTimerVisual.visible = true
 
 
 func _on_PlayerMoveTimer_timeout():
@@ -133,6 +143,7 @@ func show_moves():
 	$Fire.visible = false
 	$Load.visible = false
 	$Dodge.visible = false
+	$PlayerMoveTimerVisual.visible = false
 	
 	# Show enemy move
 	# 0 = Dodge
@@ -164,14 +175,14 @@ func show_moves():
 	# Victory
 	if player_choice == "SHOOT" and random_number == 1:
 		$Camera2D/MessageArt/VictoryMessage.set_text("VICTORY")
-		$Music.stop()
-		$WinSound.play()
 		$Camera2D/MessageArt.frame = 0
 		$Camera2D/Pause.visible = false
 		$Camera2D/Cylinder.visible = false
 		$Background/Foreground/Enemy.play("die")
 		$Camera2D/FadeAnimation.play("FadeToWhite")
 		$Camera2D/FadeColor.visible = true
+		$Music.stop()
+		$WinSound.play()
 		yield($Background/Foreground/Enemy, "animation_finished")
 		$FallSoundFar.play()
 		yield($Camera2D/FadeAnimation, "animation_finished")
@@ -215,6 +226,7 @@ func _on_Fire_released():
 	$Fire.visible = false
 	$Load.visible = false
 	$Dodge.visible = false
+	$PlayerMoveTimerVisual.visible = false
 	match player_bullets:
 		1:
 			$Camera2D/Cylinder.play("Empty-One", true)
@@ -241,6 +253,7 @@ func _on_Load_released():
 	$Fire.visible = false
 	$Load.visible = false
 	$Dodge.visible = false
+	$PlayerMoveTimerVisual.visible = false
 	match player_bullets:
 		0:
 			$Camera2D/Cylinder.play("Empty-One")
@@ -267,6 +280,7 @@ func _on_Dodge_released():
 	$Fire.visible = false
 	$Load.visible = false
 	$Dodge.visible = false
+	$PlayerMoveTimerVisual.visible = false
 	dodged = false
 	player_choice = "DODGE"
 	$PlayerMoveTimer.stop()
@@ -300,6 +314,7 @@ func _on_Restart_released():
 	$Load.visible = false
 	$Fire.visible = false
 	$Dodge.visible = false
+	$PlayerMoveTimerVisual.visible = false
 	$Camera2D/MessageArt.visible = false
 	$Camera2D/MessageArt/DeadMessage.visible = false
 	$Camera2D/MessageArt/VictoryMessage.visible = false
@@ -307,7 +322,12 @@ func _on_Restart_released():
 		$Camera2D/Sound.visible = true
 	else:
 		$Camera2D/Mute.visible = true
+	if vibrate:
+		$Camera2D/VibrateOff.visible = true
+	else:
+		$Camera2D/VibrateOn.visible = true
 	$Camera2D/Help.visible = true
+	
 
 
 func _on_Draw_released():
@@ -317,6 +337,8 @@ func _on_Draw_released():
 	$Draw.visible = false
 	$Camera2D/Sound.visible = false
 	$Camera2D/Mute.visible = false
+	$Camera2D/VibrateOff.visible = false
+	$Camera2D/VibrateOn.visible = false
 	$Camera2D/Help.visible = false
 	$Camera2D/Pause.visible = true
 	$Camera2D/Cylinder.visible = true
@@ -334,6 +356,10 @@ func _on_Pause_released():
 		$Camera2D/Sound.visible = true
 	else:
 		$Camera2D/Mute.visible = true
+	if vibrate:
+		$Camera2D/VibrateOff.visible = true
+	else:
+		$Camera2D/VibrateOn.visible = true
 	$Camera2D/Help.visible = true
 
 
@@ -347,6 +373,8 @@ func _on_Unpause_released():
 	$Camera2D/Pause.visible = true
 	$Camera2D/Sound.visible = false
 	$Camera2D/Mute.visible = false
+	$Camera2D/VibrateOff.visible = false
+	$Camera2D/VibrateOn.visible = false
 	$Camera2D/Help.visible = false
 
 
@@ -384,3 +412,27 @@ func _on_Help_released():
 		if started == false:     # On draw screen
 			get_tree().paused = false       # Unpause game
 			$Draw.show()
+
+func splash_done():
+	$Draw.show()
+	$Camera2D/Help.show()
+	$Camera2D/Mute.show()
+	$Camera2D/VibrateOn.show()
+
+
+func _on_VibrateOn_pressed():
+	vibrate = true
+	$Camera2D/VibrateOn.hide()
+	$Camera2D/VibrateOff.show()
+	
+
+
+func _on_VibrateOff_pressed():
+	vibrate = false
+	$Camera2D/VibrateOn.show()
+	$Camera2D/VibrateOff.hide()
+
+
+func _on_Music_finished():
+	if player_alive and not $Camera2D/FadeColor.visible:
+		$Music.play()

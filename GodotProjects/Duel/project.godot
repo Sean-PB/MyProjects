@@ -22,7 +22,8 @@ _global_script_class_icons={
 
 config/name="Duel"
 run/main_scene="res://Main.tscn"
-boot_splash/image="res://art/splash_vertical.png"
+boot_splash/image="res://art/boot_splash.png"
+boot_splash/bg_color=Color( 0, 0, 0, 1 )
 config/icon="res://art/icon/godot_app_icon.png"
 
 [display]

@@ -1,6 +1,7 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Art/World/straight_left.png" type="Texture" id=1]
+[ext_resource path="res://Bird.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Art/World/calm_water.png" type="Texture" id=3]
 [ext_resource path="res://Strip.gd" type="Script" id=4]
 [ext_resource path="res://Art/World/tree.png" type="Texture" id=5]
@@ -101,5 +102,8 @@ visible = false
 scale = Vector2( 2, 2 )
 z_index = 1
 texture = ExtResource( 5 )
+
+[node name="Bird" parent="." instance=ExtResource( 2 )]
+visible = false
 
 [connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]

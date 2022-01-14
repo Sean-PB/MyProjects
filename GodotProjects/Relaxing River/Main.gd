@@ -13,6 +13,8 @@ var skin
 var started
 var straight_length
 var log_dist            # The RNG distance from the last log to the next
+var bird_dist
+var berry_dist = 10
 var challenge_mode
 var old_log_x = 150     # The RNG x-axis of each log. Always at least half the 
 						# logs length to the side of the previous log. 150 for
@@ -37,7 +39,7 @@ func _ready():
 		river_top -= 64
 	
 	log_dist = 0             # Setting log_dist to 0 so theres a log immediately
-	#bird_dist = rng.randi_range(1, 20)
+	bird_dist = rng.randi_range(1, 5) # Setting first bird_dist to be reletivley soon
 	
 	# Loading character
 	$Player.load_character()
@@ -221,8 +223,16 @@ func spawn_world():
 				log_dist -= 1
 			
 			# Bird
-			# !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-			# Spawn berry before bird but have it only visible once the bird collides with the berry
+			# If it's not time for a bird, decrement from the counter.
+			# If it is time for a bird, make an instance, set its position to a tree, 
+			if bird_dist == 0:
+				var bird = BIRD.instance()
+				# CORRECT !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+				print("Main's left: " + str(strip.get_node("LeftTree").position))
+				print("Main's right: " + str(strip.get_node("RightTree").position))
+				bird_dist = rng.randi_range(10, 20)
+			else:
+				bird_dist -= 1
 
 
 # ------------------------------------------------------------------------------
