@@ -1,8 +1,25 @@
 {
     "logs": [
         {
-            "outputFile": "C:\\Users\\Sean\\Desktop\\Personal Repository\\MyProjects\\GodotProjects\\Hydra Invaders\\android\\build\\build\\intermediates\\incremental\\mergeReleaseResources\\merged.dir\\values-ja\\values-ja.xml",
+            "outputFile": "C:\\Users\\Sean\\Desktop\\MyRepos\\PersonalProjects\\GodotProjects\\Hydra Invaders\\android\\build\\build\\intermediates\\incremental\\mergeReleaseResources\\merged.dir\\values-ja\\values-ja.xml",
             "map": [
+                {
+                    "source": "C:\\Users\\Sean\\Desktop\\MyRepos\\PersonalProjects\\GodotProjects\\Hydra Invaders\\android\\build\\res\\values-ja\\godot_project_name_string.xml",
+                    "from": {
+                        "startLines": "3",
+                        "startColumns": "1",
+                        "startOffsets": "112",
+                        "endColumns": "65",
+                        "endOffsets": "176"
+                    },
+                    "to": {
+                        "startLines": "3",
+                        "startColumns": "4",
+                        "startOffsets": "286",
+                        "endColumns": "68",
+                        "endOffsets": "350"
+                    }
+                },
                 {
                     "source": "C:\\Users\\Sean\\.gradle\\caches\\transforms-3\\c5eaa7d939abb2d757f863a6b5340cdd\\transformed\\core-1.2.0\\res\\values-ja\\values-ja.xml",
                     "from": {
@@ -52,23 +69,6 @@
                         "startOffsets": "355,421,511,577,644,717,805",
                         "endColumns": "65,89,65,66,72,87,66",
                         "endOffsets": "416,506,572,639,712,800,867"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\Sean\\Desktop\\Personal Repository\\MyProjects\\GodotProjects\\Hydra Invaders\\android\\build\\res\\values-ja\\godot_project_name_string.xml",
-                    "from": {
-                        "startLines": "3",
-                        "startColumns": "1",
-                        "startOffsets": "112",
-                        "endColumns": "65",
-                        "endOffsets": "176"
-                    },
-                    "to": {
-                        "startLines": "3",
-                        "startColumns": "4",
-                        "startOffsets": "286",
-                        "endColumns": "68",
-                        "endOffsets": "350"
                     }
                 }
             ]

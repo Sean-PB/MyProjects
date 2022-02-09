@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "C:\\Users\\Sean\\Desktop\\Personal Repository\\MyProjects\\GodotProjects\\Hydra Invaders\\android\\build\\build\\intermediates\\incremental\\mergeReleaseResources\\merged.dir\\values\\values.xml",
+            "outputFile": "C:\\Users\\Sean\\Desktop\\MyRepos\\PersonalProjects\\GodotProjects\\Hydra Invaders\\android\\build\\build\\intermediates\\incremental\\mergeReleaseResources\\merged.dir\\values\\values.xml",
             "map": [
                 {
                     "source": "C:\\Users\\Sean\\.gradle\\caches\\transforms-3\\a2eb5ab69d423338189370f09bef4fb9\\transformed\\jetified-godot-lib.release\\res\\values\\values.xml",
@@ -95,7 +95,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\Sean\\Desktop\\Personal Repository\\MyProjects\\GodotProjects\\Hydra Invaders\\android\\build\\res\\values\\godot_project_name_string.xml",
+                    "source": "C:\\Users\\Sean\\Desktop\\MyRepos\\PersonalProjects\\GodotProjects\\Hydra Invaders\\android\\build\\res\\values\\godot_project_name_string.xml",
                     "from": {
                         "startLines": "3",
                         "startColumns": "1",
@@ -109,6 +109,25 @@
                         "startOffsets": "5727",
                         "endColumns": "68",
                         "endOffsets": "5791"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\Sean\\Desktop\\MyRepos\\PersonalProjects\\GodotProjects\\Hydra Invaders\\android\\build\\res\\values\\themes.xml",
+                    "from": {
+                        "startLines": "3,5",
+                        "startColumns": "1,1",
+                        "startOffsets": "53,147",
+                        "endLines": "3,8",
+                        "endColumns": "92,9",
+                        "endOffsets": "144,371"
+                    },
+                    "to": {
+                        "startLines": "139,140",
+                        "startColumns": "4,4",
+                        "startOffsets": "9248,9344",
+                        "endLines": "139,143",
+                        "endColumns": "95,9",
+                        "endOffsets": "9339,9568"
                     }
                 },
                 {
@@ -198,25 +217,6 @@
                         "startOffsets": "5422,5560",
                         "endColumns": "67,166",
                         "endOffsets": "5485,5722"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\Sean\\Desktop\\Personal Repository\\MyProjects\\GodotProjects\\Hydra Invaders\\android\\build\\res\\values\\themes.xml",
-                    "from": {
-                        "startLines": "3,5",
-                        "startColumns": "1,1",
-                        "startOffsets": "53,147",
-                        "endLines": "3,8",
-                        "endColumns": "92,9",
-                        "endOffsets": "144,371"
-                    },
-                    "to": {
-                        "startLines": "139,140",
-                        "startColumns": "4,4",
-                        "startOffsets": "9248,9344",
-                        "endLines": "139,143",
-                        "endColumns": "95,9",
-                        "endOffsets": "9339,9568"
                     }
                 },
                 {

@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "C:\\Users\\Sean\\Desktop\\Personal Repository\\MyProjects\\GodotProjects\\Hydra Invaders\\android\\build\\build\\intermediates\\incremental\\mergeReleaseResources\\merged.dir\\values-ca\\values-ca.xml",
+            "outputFile": "C:\\Users\\Sean\\Desktop\\MyRepos\\PersonalProjects\\GodotProjects\\Hydra Invaders\\android\\build\\build\\intermediates\\incremental\\mergeReleaseResources\\merged.dir\\values-ca\\values-ca.xml",
             "map": [
                 {
                     "source": "C:\\Users\\Sean\\.gradle\\caches\\transforms-3\\cd8b73b384c299300fd2264c8e394feb\\transformed\\jetified-play-services-basement-17.0.0\\res\\values-ca\\values.xml",
@@ -18,6 +18,23 @@
                         "startOffsets": "105",
                         "endColumns": "193",
                         "endOffsets": "294"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\Sean\\Desktop\\MyRepos\\PersonalProjects\\GodotProjects\\Hydra Invaders\\android\\build\\res\\values-ca\\godot_project_name_string.xml",
+                    "from": {
+                        "startLines": "3",
+                        "startColumns": "1",
+                        "startOffsets": "112",
+                        "endColumns": "65",
+                        "endOffsets": "176"
+                    },
+                    "to": {
+                        "startLines": "3",
+                        "startColumns": "4",
+                        "startOffsets": "299",
+                        "endColumns": "68",
+                        "endOffsets": "363"
                     }
                 },
                 {
@@ -52,23 +69,6 @@
                         "startOffsets": "1004",
                         "endColumns": "100",
                         "endOffsets": "1100"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\Sean\\Desktop\\Personal Repository\\MyProjects\\GodotProjects\\Hydra Invaders\\android\\build\\res\\values-ca\\godot_project_name_string.xml",
-                    "from": {
-                        "startLines": "3",
-                        "startColumns": "1",
-                        "startOffsets": "112",
-                        "endColumns": "65",
-                        "endOffsets": "176"
-                    },
-                    "to": {
-                        "startLines": "3",
-                        "startColumns": "4",
-                        "startOffsets": "299",
-                        "endColumns": "68",
-                        "endOffsets": "363"
                     }
                 }
             ]

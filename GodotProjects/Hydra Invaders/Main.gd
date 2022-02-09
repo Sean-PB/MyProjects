@@ -22,6 +22,8 @@ onready var admob = $AdMob
 
 func _ready():
 	loadAds()
+	$HUD.pause_mode 
+	$SplashScreen.connect("splash_done", self, "splash_done")
 
 
 func loadAds():
@@ -286,3 +288,11 @@ func _on_HUD_exit_help():            # If the exit help button is pressed
 
 func _on_AdMob_rewarded_video_loaded():
 	ad_loaded = true
+
+
+func splash_done():
+	$HUD/StartButton.show()
+	$HUD/Help.show()
+	$HUD/Mute.show()
+	$HUD/Message.show()
+	$HUD/HighScore.show()
