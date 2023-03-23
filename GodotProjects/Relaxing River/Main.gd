@@ -221,6 +221,15 @@ func spawn_world():
 				log_dist = rng.randi_range(1, 3) # Choose new log dist
 			else:
 				log_dist -= 1
+				berry_dist -= 1
+				# Berry:
+				if berry_dist <= 0:
+					var new_berry = BERRY.instance()
+					new_berry.get_child(0).frame = rng.randi_range(0, 3)
+					new_berry.position.x = rng.randi_range(100, 285)
+					new_berry.position.y = strip.position.y + 30
+					$World.add_child(new_berry)
+					berry_dist = rng.randi_range(1, 5)
 			
 			# Bird
 			# If it's not time for a bird, decrement from the counter.

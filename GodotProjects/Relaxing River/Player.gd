@@ -59,7 +59,7 @@ func _process(delta):
 		if challenge_mode:
 			for i in get_slide_count():
 				var collision = get_slide_collision(i)
-				if collision.collider.name == "Log" or collision.collider.name.begins_with("@Log"):
+				if collision.collider.get_collision_layer() == 3:
 					emit_signal("crash")
 					set_collision_mask_bit(2, false) # Turn off collsion for logs
 					# Check to see if the flash is already going before stopping player.
@@ -69,6 +69,7 @@ func _process(delta):
 						$Timer.start()
 						moving = false
 					$Character.play("flash")
+			
 
 # Swiping functionality
 func _input(event):
