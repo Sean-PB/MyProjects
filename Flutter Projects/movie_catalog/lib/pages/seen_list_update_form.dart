@@ -145,7 +145,7 @@ class _SeenListUpdateFormState extends State<SeenListUpdateForm> {
                     children: [
                       Padding(
                         padding: const EdgeInsets.all(10.0),
-                        child: ElevatedButton(
+                        child: ElevatedButton.icon(
                           onPressed: () async {
                             final database = SeenListDatabaseManager.getInstance();
                             await database.db.delete(
@@ -158,12 +158,13 @@ class _SeenListUpdateFormState extends State<SeenListUpdateForm> {
                             
                           },
                           style: ElevatedButton.styleFrom(backgroundColor: Colors.red),
-                          child: const Text('Delete Movie')
+                          icon: const Icon(Icons.delete_forever),
+                          label: const Text('Delete Movie')
                         ),
                       ),
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                        child: ElevatedButton(
+                        child: ElevatedButton.icon(
                           onPressed: () async {
                             if (formKey.currentState!.validate()){
                               formKey.currentState!.save();
@@ -185,7 +186,8 @@ class _SeenListUpdateFormState extends State<SeenListUpdateForm> {
                             }
                           },
                           style: ElevatedButton.styleFrom(backgroundColor: Colors.green),
-                          child: const Text('Save Movie')
+                          icon: const Icon(Icons.check_box),
+                          label: const Text('Save Movie')
                         ),
                       ),
                     ],

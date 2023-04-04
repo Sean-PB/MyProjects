@@ -107,7 +107,7 @@ class _WatchlistEntryForm extends State<WatchlistEntryForm> {
                     children: [
                       Padding(
                         padding: const EdgeInsets.all(10.0),
-                        child: ElevatedButton(
+                        child: ElevatedButton.icon(
                           onPressed: () async {
                             if (formKey.currentState!.validate()) {
                               formKey.currentState!.save();
@@ -117,7 +117,8 @@ class _WatchlistEntryForm extends State<WatchlistEntryForm> {
                             }
                           },
                           style: ElevatedButton.styleFrom(backgroundColor: Colors.green),
-                          child: const Text('Save Movie')
+                          icon: const Icon(Icons.check_box),
+                          label: const Text('Save Movie')
                         ),
                       )
                     ]

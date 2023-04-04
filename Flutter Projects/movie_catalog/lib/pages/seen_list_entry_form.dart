@@ -137,7 +137,7 @@ class _SeenListEntryForm extends State<SeenListEntryForm> {
                     children: [
                       Padding(
                         padding: const EdgeInsets.all(10.0),
-                        child: ElevatedButton(
+                        child: ElevatedButton.icon(
                           onPressed: () async {
                             if (formKey.currentState!.validate()) {
                               // Save the input into the seen list database
@@ -167,7 +167,8 @@ class _SeenListEntryForm extends State<SeenListEntryForm> {
                             }
                           },
                           style: ElevatedButton.styleFrom(backgroundColor: Colors.green),
-                          child: const Text('Save Movie')
+                          icon: const Icon(Icons.check_box),
+                          label: const Text('Save Movie')
                         ),
                       )
                     ],
