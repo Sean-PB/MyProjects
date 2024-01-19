@@ -7,7 +7,7 @@ var rng = RandomNumberGenerator.new()
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	rng.randomize()
-	$Sprite.set_flip_h(rng.randi_range(0, 1))
+	$Sprite2D.set_flip_h(rng.randi_range(0, 1))
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

@@ -1,4 +1,4 @@
-extends KinematicBody2D
+extends CharacterBody2D
 
 
 var light_blue = Color("0000ff")
@@ -37,36 +37,37 @@ func _ready():
 	rng.randomize()
 	var color = rng.randi_range(0, 5)
 	if color == 0:
-		$AnimatedSprite.material.set("shader_param/NEWCOLOR1", light_blue)
-		$AnimatedSprite.material.set("shader_param/NEWCOLOR2", blue)
-		$AnimatedSprite.material.set("shader_param/NEWCOLOR3", dark_blue)
+		$AnimatedSprite2D.material.set("shader_param/NEWCOLOR1", light_blue)
+		$AnimatedSprite2D.material.set("shader_param/NEWCOLOR2", blue)
+		$AnimatedSprite2D.material.set("shader_param/NEWCOLOR3", dark_blue)
 	elif color == 1:
-		$AnimatedSprite.material.set("shader_param/NEWCOLOR1", light_yellow)
-		$AnimatedSprite.material.set("shader_param/NEWCOLOR2", yellow)
-		$AnimatedSprite.material.set("shader_param/NEWCOLOR3", dark_yellow)
+		$AnimatedSprite2D.material.set("shader_param/NEWCOLOR1", light_yellow)
+		$AnimatedSprite2D.material.set("shader_param/NEWCOLOR2", yellow)
+		$AnimatedSprite2D.material.set("shader_param/NEWCOLOR3", dark_yellow)
 	elif color == 2:
-		$AnimatedSprite.material.set("shader_param/NEWCOLOR1", light_green)
-		$AnimatedSprite.material.set("shader_param/NEWCOLOR2", green)
-		$AnimatedSprite.material.set("shader_param/NEWCOLOR3", dark_green)
+		$AnimatedSprite2D.material.set("shader_param/NEWCOLOR1", light_green)
+		$AnimatedSprite2D.material.set("shader_param/NEWCOLOR2", green)
+		$AnimatedSprite2D.material.set("shader_param/NEWCOLOR3", dark_green)
 	elif color == 3:
-		$AnimatedSprite.material.set("shader_param/NEWCOLOR1", light_purple)
-		$AnimatedSprite.material.set("shader_param/NEWCOLOR2", purple)
-		$AnimatedSprite.material.set("shader_param/NEWCOLOR3", dark_purple)
+		$AnimatedSprite2D.material.set("shader_param/NEWCOLOR1", light_purple)
+		$AnimatedSprite2D.material.set("shader_param/NEWCOLOR2", purple)
+		$AnimatedSprite2D.material.set("shader_param/NEWCOLOR3", dark_purple)
 	elif color == 4:
-		$AnimatedSprite.material.set("shader_param/NEWCOLOR1", light_red)
-		$AnimatedSprite.material.set("shader_param/NEWCOLOR2", red)
-		$AnimatedSprite.material.set("shader_param/NEWCOLOR3", dark_red)
+		$AnimatedSprite2D.material.set("shader_param/NEWCOLOR1", light_red)
+		$AnimatedSprite2D.material.set("shader_param/NEWCOLOR2", red)
+		$AnimatedSprite2D.material.set("shader_param/NEWCOLOR3", dark_red)
 	else:
-		$AnimatedSprite.material.set("shader_param/NEWCOLOR1", light_grey)
-		$AnimatedSprite.material.set("shader_param/NEWCOLOR2", grey)
-		$AnimatedSprite.material.set("shader_param/NEWCOLOR3", dark_grey)
+		$AnimatedSprite2D.material.set("shader_param/NEWCOLOR1", light_grey)
+		$AnimatedSprite2D.material.set("shader_param/NEWCOLOR2", grey)
+		$AnimatedSprite2D.material.set("shader_param/NEWCOLOR3", dark_grey)
 
 
 # ------------------------------------------------------------------------------
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 # ------------------------------------------------------------------------------
 func _process(_delta):
-	move_and_slide(Vector2(0, -speed))
+	set_velocity(Vector2(0, -speed))
+	move_and_slide()
 
 
 # ------------------------------------------------------------------------------

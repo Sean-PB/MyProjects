@@ -1,16 +1,16 @@
 [gd_scene load_steps=14 format=2]
 
-[ext_resource path="res://Art/Player/left.png" type="Texture" id=1]
-[ext_resource path="res://Art/Player/left_up.png" type="Texture" id=2]
+[ext_resource path="res://Art/Player/left.png" type="Texture2D" id=1]
+[ext_resource path="res://Art/Player/left_up.png" type="Texture2D" id=2]
 [ext_resource path="res://Art/Shaders/Player.tres" type="Material" id=3]
-[ext_resource path="res://Art/Player/idle.png" type="Texture" id=4]
-[ext_resource path="res://Art/Player/front_left.png" type="Texture" id=5]
-[ext_resource path="res://Art/Player/back_left.png" type="Texture" id=6]
-[ext_resource path="res://Art/Player/player_flash.png" type="Texture" id=7]
-[ext_resource path="res://Art/Player/right_up.png" type="Texture" id=8]
-[ext_resource path="res://Art/Player/right.png" type="Texture" id=9]
-[ext_resource path="res://Art/Player/front_right.png" type="Texture" id=10]
-[ext_resource path="res://Art/Player/back_right.png" type="Texture" id=11]
+[ext_resource path="res://Art/Player/idle.png" type="Texture2D" id=4]
+[ext_resource path="res://Art/Player/front_left.png" type="Texture2D" id=5]
+[ext_resource path="res://Art/Player/back_left.png" type="Texture2D" id=6]
+[ext_resource path="res://Art/Player/player_flash.png" type="Texture2D" id=7]
+[ext_resource path="res://Art/Player/right_up.png" type="Texture2D" id=8]
+[ext_resource path="res://Art/Player/right.png" type="Texture2D" id=9]
+[ext_resource path="res://Art/Player/front_right.png" type="Texture2D" id=10]
+[ext_resource path="res://Art/Player/back_right.png" type="Texture2D" id=11]
 [ext_resource path="res://Player.gd" type="Script" id=46]
 
 [sub_resource type="SpriteFrames" id=3]
@@ -31,15 +31,15 @@ animations = [ {
 "speed": 4.5
 } ]
 
-[node name="Player" type="KinematicBody2D"]
+[node name="Player" type="CharacterBody2D"]
 collision_layer = 2147483649
 collision_mask = 14
 script = ExtResource( 46 )
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-polygon = PoolVector2Array( -0.25, -59, 12.899, -18.5121, 13.4943, 18.2958, 0.144638, 59.0145, -12.8716, 19.9814, -12.5986, -18.8097 )
+polygon = PackedVector2Array( -0.25, -59, 12.899, -18.5121, 13.4943, 18.2958, 0.144638, 59.0145, -12.8716, 19.9814, -12.5986, -18.8097 )
 
-[node name="Character" type="AnimatedSprite" parent="."]
+[node name="Character" type="AnimatedSprite2D" parent="."]
 material = ExtResource( 3 )
 scale = Vector2( 2, 2 )
 frames = SubResource( 3 )

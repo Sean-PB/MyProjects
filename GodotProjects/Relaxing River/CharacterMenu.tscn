@@ -1,16 +1,16 @@
 [gd_scene load_steps=17 format=2]
 
-[ext_resource path="res://Art/Menus/exit.png" type="Texture" id=1]
-[ext_resource path="res://Art/Menus/confirm.png" type="Texture" id=2]
-[ext_resource path="res://Art/Menus/CharacterMenuBackground2.png" type="Texture" id=3]
-[ext_resource path="res://Art/Menus/CharacterMenuBackground.png" type="Texture" id=4]
-[ext_resource path="res://Art/Player/idle.png" type="Texture" id=5]
-[ext_resource path="res://Art/Menus/skin.png" type="Texture" id=6]
-[ext_resource path="res://Art/Menus/paint_button.png" type="Texture" id=7]
-[ext_resource path="res://Art/Menus/color_down.png" type="Texture" id=8]
+[ext_resource path="res://Art/Menus/exit.png" type="Texture2D" id=1]
+[ext_resource path="res://Art/Menus/confirm.png" type="Texture2D" id=2]
+[ext_resource path="res://Art/Menus/CharacterMenuBackground2.png" type="Texture2D" id=3]
+[ext_resource path="res://Art/Menus/CharacterMenuBackground.png" type="Texture2D" id=4]
+[ext_resource path="res://Art/Player/idle.png" type="Texture2D" id=5]
+[ext_resource path="res://Art/Menus/skin.png" type="Texture2D" id=6]
+[ext_resource path="res://Art/Menus/paint_button.png" type="Texture2D" id=7]
+[ext_resource path="res://Art/Menus/color_down.png" type="Texture2D" id=8]
 [ext_resource path="res://CharacterMenu.gd" type="Script" id=9]
 [ext_resource path="res://Art/Shaders/Player.tres" type="Material" id=10]
-[ext_resource path="res://Art/Player/short_hair.png" type="Texture" id=13]
+[ext_resource path="res://Art/Player/short_hair.png" type="Texture2D" id=13]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -23,8 +23,8 @@ animations = [ {
 [sub_resource type="Shader" id=30]
 code = "shader_type canvas_item;
 
-uniform vec4 OLDSKIN : hint_color;
-uniform vec4 NEWSKIN : hint_color;
+uniform vec4 OLDSKIN : source_color;
+uniform vec4 NEWSKIN : source_color;
 
 void fragment() {
 	vec4 curr_color = texture(TEXTURE, UV); // Get current color of pixel
@@ -49,8 +49,8 @@ shader_param/NEWSKIN = null
 [sub_resource type="Shader" id=32]
 code = "shader_type canvas_item;
 
-uniform vec4 OLDHAIR : hint_color;
-uniform vec4 NEWHAIR : hint_color;
+uniform vec4 OLDHAIR : source_color;
+uniform vec4 NEWHAIR : source_color;
 
 void fragment() {
 	vec4 curr_color = texture(TEXTURE, UV); // Get current color of pixel
@@ -71,18 +71,18 @@ shader = SubResource( 32 )
 shader_param/OLDHAIR = Color( 0, 1, 0, 1 )
 shader_param/NEWHAIR = null
 
-[node name="CharacterMenu" type="AnimatedSprite"]
-pause_mode = 2
+[node name="CharacterMenu" type="AnimatedSprite2D"]
+process_mode = 3
 scale = Vector2( 0.573877, 0.611092 )
 frames = SubResource( 1 )
 script = ExtResource( 9 )
 
 [node name="Cancel" type="TextureButton" parent="."]
-margin_left = -257.0
-margin_top = -380.0
-margin_right = -217.0
-margin_bottom = -340.0
-rect_scale = Vector2( 2.5, 2.5 )
+offset_left = -257.0
+offset_top = -380.0
+offset_right = -217.0
+offset_bottom = -340.0
+scale = Vector2( 2.5, 2.5 )
 texture_normal = ExtResource( 1 )
 expand = true
 __meta__ = {
@@ -91,41 +91,41 @@ __meta__ = {
 
 [node name="Confirm" type="TextureButton" parent="."]
 visible = false
-margin_left = 155.0
-margin_top = -380.0
-margin_right = 195.0
-margin_bottom = -340.0
-rect_scale = Vector2( 2.5, 2.5 )
+offset_left = 155.0
+offset_top = -380.0
+offset_right = 195.0
+offset_bottom = -340.0
+scale = Vector2( 2.5, 2.5 )
 texture_normal = ExtResource( 2 )
 expand = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Skin" type="Sprite" parent="."]
+[node name="Skin" type="Sprite2D" parent="."]
 material = SubResource( 31 )
 position = Vector2( 175.561, 142.525 )
 scale = Vector2( 7, 7 )
 texture = ExtResource( 6 )
 
-[node name="Hair" type="Sprite" parent="."]
+[node name="Hair" type="Sprite2D" parent="."]
 material = SubResource( 33 )
 position = Vector2( 190, -160 )
 scale = Vector2( 10, 10 )
 texture = ExtResource( 13 )
 
-[node name="Character" type="Sprite" parent="."]
+[node name="Character" type="Sprite2D" parent="."]
 material = ExtResource( 10 )
 position = Vector2( -139.47, 55 )
 scale = Vector2( 7, 7 )
 texture = ExtResource( 5 )
 
 [node name="HairColorButton" type="TextureButton" parent="."]
-margin_left = 120.0
-margin_top = -90.0
-margin_right = 160.0
-margin_bottom = -50.0
-rect_scale = Vector2( 3, 3 )
+offset_left = 120.0
+offset_top = -90.0
+offset_right = 160.0
+offset_bottom = -50.0
+scale = Vector2( 3, 3 )
 texture_normal = ExtResource( 7 )
 expand = true
 __meta__ = {
@@ -133,11 +133,11 @@ __meta__ = {
 }
 
 [node name="BodyColorButton" type="TextureButton" parent="."]
-margin_left = 120.0
-margin_top = 220.0
-margin_right = 160.0
-margin_bottom = 260.0
-rect_scale = Vector2( 3, 3 )
+offset_left = 120.0
+offset_top = 220.0
+offset_right = 160.0
+offset_bottom = 260.0
+scale = Vector2( 3, 3 )
 texture_normal = ExtResource( 7 )
 expand = true
 __meta__ = {
@@ -146,33 +146,33 @@ __meta__ = {
 
 [node name="HairColor" type="ColorPicker" parent="."]
 visible = false
-margin_left = -295.0
-margin_top = 256.0
-margin_right = 13.0
-margin_bottom = 718.0
-rect_scale = Vector2( 1.25, 1.25 )
+offset_left = -295.0
+offset_top = 256.0
+offset_right = 13.0
+offset_bottom = 718.0
+scale = Vector2( 1.25, 1.25 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="BodyColor" type="ColorPicker" parent="."]
 visible = false
-margin_left = -295.0
-margin_top = 256.0
-margin_right = 13.0
-margin_bottom = 718.0
-rect_scale = Vector2( 1.25, 1.25 )
+offset_left = -295.0
+offset_top = 256.0
+offset_right = 13.0
+offset_bottom = 718.0
+scale = Vector2( 1.25, 1.25 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="ColorDown" type="TextureButton" parent="."]
 visible = false
-margin_left = -296.0
-margin_top = 176.0
-margin_right = -256.0
-margin_bottom = 216.0
-rect_scale = Vector2( 2, 2 )
+offset_left = -296.0
+offset_top = 176.0
+offset_right = -256.0
+offset_bottom = 216.0
+scale = Vector2( 2, 2 )
 texture_normal = ExtResource( 8 )
 expand = true
 __meta__ = {
@@ -180,10 +180,10 @@ __meta__ = {
 }
 
 [node name="ColorPickerBlock" type="TextureButton" parent="."]
-margin_left = -351.0
-margin_top = 576.0
-margin_right = 122.0
-margin_bottom = 816.0
+offset_left = -351.0
+offset_top = 576.0
+offset_right = 122.0
+offset_bottom = 816.0
 __meta__ = {
 "_edit_use_anchors_": false
 }

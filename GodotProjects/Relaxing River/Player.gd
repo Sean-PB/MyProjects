@@ -1,4 +1,4 @@
-extends KinematicBody2D
+extends CharacterBody2D
 
 signal crash
 
@@ -33,10 +33,10 @@ var leaving_dock = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	var Appearance = get_tree().get_root().find_node("CharacterMenu", true, false)
-	Appearance.connect("character_confirmed", self, "load_character")
-	Settings = get_tree().get_root().find_node("SettingsMenu", true, false)
-	Settings.connect("settings_confirmed", self, "load_settings")
+	var Appearance = get_tree().get_root().find_child("CharacterMenu", true, false)
+	Appearance.connect("character_confirmed", Callable(self, "load_character"))
+	Settings = get_tree().get_root().find_child("SettingsMenu", true, false)
+	Settings.connect("settings_confirmed", Callable(self, "load_settings"))
 	load_settings()
 	load_character()
 
@@ -51,17 +51,18 @@ func _process(delta):
 		rotation_degrees = clamp(rotation_degrees, -30, 30)
 # warning-ignore:return_value_discarded
 		if moving:
-			move_and_slide(Vector2(0, -speed).rotated(rotation))
+			set_velocity(Vector2(0, -speed).rotated(rotation))
+			move_and_slide()
 		
 		# If challenge mode is on, detect collisions. If collision is a log, play
 		# the flash animation, emit crash signal, stop player for a bit, and
 		# turn off collision for logs.
 		if challenge_mode:
-			for i in get_slide_count():
+			for i in get_slide_collision_count():
 				var collision = get_slide_collision(i)
 				if collision.collider.get_collision_layer() == 3:
 					emit_signal("crash")
-					set_collision_mask_bit(2, false) # Turn off collsion for logs
+					set_collision_mask_value(2, false) # Turn off collsion for logs
 					# Check to see if the flash is already going before stopping player.
 					# if it is that means the player has already been stopped and this
 					# shouldn't run
@@ -150,7 +151,8 @@ func leave_dock(delta):
 		rotation_degrees = clamp(rotation_degrees - rotation_accel, 0, 90) # Turn speed
 		speed_start = clamp(speed_start + (40 * delta), 0, 50)             # Speed
 # warning-ignore:return_value_discarded
-		move_and_slide(Vector2(0, -speed_start).rotated(rotation))
+		set_velocity(Vector2(0, -speed_start).rotated(rotation))
+		move_and_slide()
 		rotation_accel += .35 * delta
 	else:
 		$Character.play("straight")
@@ -166,7 +168,7 @@ func leave_dock(delta):
 func _on_Character_animation_finished():
 	if $Character.animation == "flash":
 		$Character.play("straight")
-		set_collision_mask_bit(2, true) # Turn on collsion for logs
+		set_collision_mask_value(2, true) # Turn on collsion for logs
 
 
 func _on_Timer_timeout():

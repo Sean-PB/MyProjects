@@ -33,7 +33,7 @@ func _ready():
 	# Loading world
 	while river_top != -64:
 		# River
-		var strip = STRIP.instance()
+		var strip = STRIP.instantiate()
 		strip.position.y = river_top
 		$World.add_child(strip)
 		river_top -= 64
@@ -46,15 +46,15 @@ func _ready():
 	
 	# Connecting signals for Character Selection and Settings menus
 # warning-ignore:return_value_discarded
-	$Camera2D/CharacterMenu.connect("character_exited", self, "exit_CharacterMenu")
+	$Camera2D/CharacterMenu.connect("character_exited", Callable(self, "exit_CharacterMenu"))
 # warning-ignore:return_value_discarded
-	$Camera2D/SettingsMenu.connect("settings_exited", self, "exit_Settings")
+	$Camera2D/SettingsMenu.connect("settings_exited", Callable(self, "exit_Settings"))
 # warning-ignore:return_value_discarded
-	$Camera2D/SettingsMenu.connect("settings_confirmed", self, "confrim_settings")
+	$Camera2D/SettingsMenu.connect("settings_confirmed", Callable(self, "confrim_settings"))
 # warning-ignore:return_value_discarded
-	$SplashScreen.connect("splash_done", self, "splash_done")
+	$SplashScreen.connect("splash_done", Callable(self, "splash_done"))
 # warning-ignore:return_value_discarded
-	$Player.connect("crash", self, "crash")
+	$Player.connect("crash", Callable(self, "crash"))
 	
 	# Setting random length of straiht river section
 	straight_length = rng.randi_range(1, 1) # set straight_length to new random number
@@ -82,7 +82,7 @@ func _on_Start_pressed():
 	$Camera2D/EditCharacter.hide()
 	$Camera2D/Blur.hide()
 	$Camera2D/Settings.hide()
-	$Camera2D/Settings.rect_position = Vector2(-64, -840)
+	$Camera2D/Settings.position = Vector2(-64, -840)
 	started = true
 	# Play music (CHANGE TO BE RANDOM SONG ORDER LATER) !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 	$Music.play()
@@ -195,7 +195,7 @@ func spawn_world():
 			# the future then create a new instance of the world strip. Then we
 			# take the position of the most recent strip addition, move it up by
 			# 64, and place the new strip instance there.
-			var strip = STRIP.instance()
+			var strip = STRIP.instantiate()
 			strip.position.y = river_top
 			$World.add_child(strip)
 			river_top -= 64                # Adjust top of river position
@@ -210,7 +210,7 @@ func spawn_world():
 			# next log to be. If it is not time for a new log, decrement
 			# log_dist.
 			if log_dist == 0:
-				var new_log = LOG.instance()
+				var new_log = LOG.instantiate()
 				new_log.position.x = rng.randi_range(100, 285)
 				# Chose a random number until its far enough away from the previous log
 				while new_log.position.x >= old_log_x - 20 and new_log.position.x <= old_log_x + 20:
@@ -224,7 +224,7 @@ func spawn_world():
 				berry_dist -= 1
 				# Berry:
 				if berry_dist <= 0:
-					var new_berry = BERRY.instance()
+					var new_berry = BERRY.instantiate()
 					new_berry.get_child(0).frame = rng.randi_range(0, 3)
 					new_berry.position.x = rng.randi_range(100, 285)
 					new_berry.position.y = strip.position.y + 30
@@ -235,7 +235,7 @@ func spawn_world():
 			# If it's not time for a bird, decrement from the counter.
 			# If it is time for a bird, make an instance, set its position to a tree, 
 			if bird_dist == 0:
-				var bird = BIRD.instance()
+				var bird = BIRD.instantiate()
 				# CORRECT !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 				print("Main's left: " + str(strip.get_node("LeftTree").position))
 				print("Main's right: " + str(strip.get_node("RightTree").position))

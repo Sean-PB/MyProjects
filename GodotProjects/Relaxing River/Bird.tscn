@@ -1,17 +1,17 @@
 [gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Bird.gd" type="Script" id=1]
-[ext_resource path="res://Art/World/bird.png" type="Texture" id=3]
+[ext_resource path="res://Art/World/bird.png" type="Texture2D" id=3]
 
 [sub_resource type="Shader" id=9]
 code = "shader_type canvas_item;
 
-uniform vec4 OLDCOLOR1 : hint_color;
-uniform vec4 OLDCOLOR2 : hint_color;
-uniform vec4 OLDCOLOR3 : hint_color;
-uniform vec4 NEWCOLOR1 : hint_color;
-uniform vec4 NEWCOLOR2 : hint_color;
-uniform vec4 NEWCOLOR3 : hint_color;
+uniform vec4 OLDCOLOR1 : source_color;
+uniform vec4 OLDCOLOR2 : source_color;
+uniform vec4 OLDCOLOR3 : source_color;
+uniform vec4 NEWCOLOR1 : source_color;
+uniform vec4 NEWCOLOR2 : source_color;
+uniform vec4 NEWCOLOR3 : source_color;
 
 void fragment() {
 	vec4 curr_color = texture(TEXTURE, UV); // Get current color of pixel
@@ -66,7 +66,7 @@ animations = [ {
 
 [sub_resource type="CapsuleShape2D" id=1]
 
-[node name="Bird" type="KinematicBody2D"]
+[node name="Bird" type="CharacterBody2D"]
 z_index = 2
 collision_layer = 16
 collision_mask = 0
@@ -75,7 +75,7 @@ __meta__ = {
 "_edit_group_": true
 }
 
-[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 material = SubResource( 10 )
 frames = SubResource( 5 )
 animation = "New Anim"
@@ -85,7 +85,7 @@ playing = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
 
-[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 scale = Vector2( 2.75, 2.75 )
 
-[connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]

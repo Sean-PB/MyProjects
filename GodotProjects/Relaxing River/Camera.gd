@@ -8,7 +8,7 @@ func _ready():
 
 
 func _process(delta):
-	offset = Vector2(rand_range(-shake_amount, shake_amount), rand_range(shake_amount, -shake_amount)) * delta + default_offset
+	offset = Vector2(randf_range(-shake_amount, shake_amount), randf_range(shake_amount, -shake_amount)) * delta + default_offset
 
 
 func shake(new_shake, shake_time = 1, shake_limit = 100):
