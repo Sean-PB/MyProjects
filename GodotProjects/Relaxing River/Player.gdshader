@@ -1,7 +1,4 @@
-[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://c784m52iemhg0"]
-
-[sub_resource type="Shader" id="1"]
-code = "shader_type canvas_item;
+shader_type canvas_item;
 
 uniform vec4 OLDSKIN : source_color;
 uniform vec4 NEWSKIN : source_color;
@@ -24,12 +21,4 @@ void fragment() {
 	{
 		COLOR = curr_color;
 	}
-}"
-
-[resource]
-resource_local_to_scene = true
-shader = SubResource("1")
-shader_parameter/OLDSKIN = Color(1, 0, 0, 1)
-shader_parameter/NEWSKIN = null
-shader_parameter/OLDHAIR = Color(0, 1, 0, 1)
-shader_parameter/NEWHAIR = null
+}

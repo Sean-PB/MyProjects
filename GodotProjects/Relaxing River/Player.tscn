@@ -1,49 +1,126 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=3 uid="uid://5o6dq0pewkmc"]
 
-[ext_resource path="res://Art/Player/left.png" type="Texture2D" id=1]
-[ext_resource path="res://Art/Player/left_up.png" type="Texture2D" id=2]
-[ext_resource path="res://Art/Shaders/Player.tres" type="Material" id=3]
-[ext_resource path="res://Art/Player/idle.png" type="Texture2D" id=4]
-[ext_resource path="res://Art/Player/front_left.png" type="Texture2D" id=5]
-[ext_resource path="res://Art/Player/back_left.png" type="Texture2D" id=6]
-[ext_resource path="res://Art/Player/player_flash.png" type="Texture2D" id=7]
-[ext_resource path="res://Art/Player/right_up.png" type="Texture2D" id=8]
-[ext_resource path="res://Art/Player/right.png" type="Texture2D" id=9]
-[ext_resource path="res://Art/Player/front_right.png" type="Texture2D" id=10]
-[ext_resource path="res://Art/Player/back_right.png" type="Texture2D" id=11]
-[ext_resource path="res://Player.gd" type="Script" id=46]
+[ext_resource type="Texture2D" uid="uid://cwdjpe5lopb3o" path="res://Art/Player/left.png" id="1"]
+[ext_resource type="Texture2D" uid="uid://ba6ussfg654dg" path="res://Art/Player/left_up.png" id="2"]
+[ext_resource type="Shader" path="res://Player.gdshader" id="2_t5g5s"]
+[ext_resource type="Texture2D" uid="uid://3gkeg1cat5bm" path="res://Art/Player/idle.png" id="4"]
+[ext_resource type="Texture2D" uid="uid://ccpbxxr7vbums" path="res://Art/Player/front_left.png" id="5"]
+[ext_resource type="Texture2D" uid="uid://by2epbhotv65e" path="res://Art/Player/back_left.png" id="6"]
+[ext_resource type="Texture2D" uid="uid://c3v1l8eslgylc" path="res://Art/Player/player_flash.png" id="7"]
+[ext_resource type="Texture2D" uid="uid://cb0fhu1cju6a1" path="res://Art/Player/right_up.png" id="8"]
+[ext_resource type="Texture2D" uid="uid://d18yt6ujikwju" path="res://Art/Player/right.png" id="9"]
+[ext_resource type="Texture2D" uid="uid://c7lfqlaediwwq" path="res://Art/Player/front_right.png" id="10"]
+[ext_resource type="Texture2D" uid="uid://bqb33djr2rfpj" path="res://Art/Player/back_right.png" id="11"]
+[ext_resource type="Script" path="res://Player.gd" id="46"]
 
-[sub_resource type="SpriteFrames" id=3]
-animations = [ {
-"frames": [ ExtResource( 4 ), ExtResource( 8 ), ExtResource( 10 ), ExtResource( 9 ), ExtResource( 11 ), ExtResource( 2 ) ],
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_p5vr0"]
+resource_local_to_scene = true
+shader = ExtResource("2_t5g5s")
+shader_parameter/OLDSKIN = Color(1, 0, 0, 1)
+shader_parameter/NEWSKIN = null
+shader_parameter/OLDHAIR = Color(0, 1, 0, 1)
+shader_parameter/NEWHAIR = null
+
+[sub_resource type="SpriteFrames" id="3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7")
+}],
 "loop": true,
-"name": "left",
+"name": &"flash",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 7 ), ExtResource( 4 ), ExtResource( 7 ), ExtResource( 4 ), ExtResource( 7 ), ExtResource( 4 ), ExtResource( 7 ), ExtResource( 4 ), ExtResource( 7 ) ],
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2")
+}],
 "loop": true,
-"name": "flash",
+"name": &"left",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 2 ), ExtResource( 5 ), ExtResource( 1 ), ExtResource( 6 ), ExtResource( 8 ), ExtResource( 10 ), ExtResource( 9 ), ExtResource( 11 ) ],
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11")
+}],
 "loop": true,
-"name": "straight",
+"name": &"straight",
 "speed": 4.5
-} ]
+}]
 
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 2147483649
-collision_mask = 14
-script = ExtResource( 46 )
+collision_mask = 15
+script = ExtResource("46")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-polygon = PackedVector2Array( -0.25, -59, 12.899, -18.5121, 13.4943, 18.2958, 0.144638, 59.0145, -12.8716, 19.9814, -12.5986, -18.8097 )
+polygon = PackedVector2Array(-0.25, -59, 12.899, -18.5121, 13.4943, 18.2958, 0.144638, 59.0145, -12.8716, 19.9814, -12.5986, -18.8097)
 
 [node name="Character" type="AnimatedSprite2D" parent="."]
-material = ExtResource( 3 )
-scale = Vector2( 2, 2 )
-frames = SubResource( 3 )
-animation = "left"
+material = SubResource("ShaderMaterial_p5vr0")
+scale = Vector2(2, 2)
+sprite_frames = SubResource("3")
+animation = &"left"
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.5

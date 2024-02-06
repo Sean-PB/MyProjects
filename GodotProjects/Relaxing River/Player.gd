@@ -48,7 +48,7 @@ func _process(delta):
 	if playing:
 		# Movement
 		rotation_degrees += drag * delta
-		rotation_degrees = clamp(rotation_degrees, -30, 30)
+		rotation_degrees = clamp(rotation_degrees, -45, 45)
 # warning-ignore:return_value_discarded
 		if moving:
 			set_velocity(Vector2(0, -speed).rotated(rotation))
@@ -92,17 +92,16 @@ func _input(event):
 # respective variables. Then, close the file. Finally, set the Character's
 # paddle animation speed.
 func load_settings():
-	var f = File.new()
-	if f.file_exists(settings_file):
-		f.open(settings_file, File.READ)
-		var content = f.get_as_text()
+	if FileAccess.file_exists(settings_file):
+		var file = FileAccess.open(settings_file, FileAccess.READ)
+		var content = file.get_as_text()
 		challenge_mode = int(content.split("/")[1])
 		swipe = int(content.split("/")[2])
 		speed = int(content.split("/")[3])
-		f.close()
+		file.close()
 	else:
-		swipe = 35
-		speed = 125
+		speed = 200
+		swipe = 65
 	$Character.set_speed_scale(clamp(((speed + 25) / 100), 1, 1.8))
 
 
@@ -115,10 +114,9 @@ func load_settings():
 # set the correct hair length.
 # If there is not a character file, set all values to default.
 func load_character():
-	var f = File.new()
-	if f.file_exists(character_file):
-		f.open(character_file, File.READ)
-		var content = f.get_as_text()
+	if FileAccess.file_exists(character_file):
+		var file = FileAccess.open(character_file, FileAccess.READ)
+		var content = file.get_as_text()
 		skin_r = float(content.split(",")[0])
 		skin_g = float(content.split(",")[1])
 		skin_b = float(content.split(",")[2])
@@ -132,6 +130,8 @@ func load_character():
 		
 		$Character.material.set("shader_param/NEWSKIN", skin_color)
 		$Character.material.set("shader_param/NEWHAIR", hair_color)
+		
+		file.close()
 	
 	else:
 		$Character.material.set("shader_param/NEWSKIN", default_skin)

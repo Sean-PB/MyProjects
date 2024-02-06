@@ -28,16 +28,15 @@ func _ready():
 # This loads in all the current settings to the menu so the player can see
 # ------------------------------------------------------------------------------
 func load_settings():
-	var f = File.new()
-	if f.file_exists(file):
-		f.open(file, File.READ)
-		var content = f.get_as_text()
+	if FileAccess.file_exists(file):
+		var file = FileAccess.open(file, FileAccess.READ)
+		var content = file.get_as_text()
 		sound = int(content.split("/")[0])
 		challenge_mode = int(content.split("/")[1])
 		$Swipe.value = int(content.split("/")[2])
 		$Speed.value = int(content.split("/")[3])
 		initial_change = false # has to be changed below the speed and swipe changes
-		f.close()
+		file.close()
 		
 		if sound:
 			$SoundMuteOutline.position = Vector2(-225, -150)
@@ -56,19 +55,18 @@ func load_settings():
 		$SoundMuteOutline.position = Vector2(-225, -150)
 		challenge_mode = 0
 		$Invincible/Outline.show()
-		$Speed.value = 125
-		$Swipe.value = 35
+		$Speed.value = 200
+		$Swipe.value = 65
 		initial_change = false # has to be changed below the speed and swipe changes
 
 
 # ------------------------------------------------------------------------------
 # ------------------------------------------------------------------------------
 func save_settings(new_sound, new_challenge_mode, new_swipe, new_speed):
-	var f = File.new()
-	f.open(file, File.WRITE)
-	f.store_string((str(new_sound) + "/" + str(new_challenge_mode) + "/" + str(new_swipe)
+	var file = FileAccess.open(file, FileAccess.WRITE)
+	file.store_string((str(new_sound) + "/" + str(new_challenge_mode) + "/" + str(new_swipe)
 		 + "/" + str(new_speed)))
-	f.close()
+	file.close()
 
 
 # ------------------------------------------------------------------------------

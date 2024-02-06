@@ -1,3 +1,11 @@
 res://default_env.tres
-res://Main.tscn
+res://CharacterMenu.tscn
 res://Art/Shaders/Player.tres
+res://CharacterMenuHair.gdshader
+res://CharacterMenuSkin.gdshader
+res://Main.tscn
+res://Strip.tscn
+res://Player.tscn
+res://CharacterMenu.gd
+res://Player.gd
+res://Player.gdshader

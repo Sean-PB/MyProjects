@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bgquw1fgs18a8"
-path="res://.godot/imported/short_hair.png-1aa7d8a59b5511d6685336c261adea09.ctex"
+uid="uid://d4ahq7u01bxwq"
+path="res://.godot/imported/hair.png-e1527c0fcc4aaa19e122ec3a2f70de27.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/Player/short_hair.png"
-dest_files=["res://.godot/imported/short_hair.png-1aa7d8a59b5511d6685336c261adea09.ctex"]
+source_file="res://Art/Menus/hair.png"
+dest_files=["res://.godot/imported/hair.png-e1527c0fcc4aaa19e122ec3a2f70de27.ctex"]
 
 [params]
 

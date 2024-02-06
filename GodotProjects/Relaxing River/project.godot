@@ -22,9 +22,9 @@ run/icon="res://icon.png"
 
 [display]
 
-window/size/viewport_width=384
-window/size/viewport_height=640
-window/stretch/mode="2d"
+window/size/viewport_width=750
+window/size/viewport_height=1250
+window/stretch/scale=2.0
 window/handheld/orientation="portrait"
 
 [global]

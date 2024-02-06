@@ -1,93 +1,67 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=3 uid="uid://c6qkb7ycjgo6i"]
 
-[ext_resource path="res://Art/Menus/exit.png" type="Texture2D" id=1]
-[ext_resource path="res://Art/Menus/confirm.png" type="Texture2D" id=2]
-[ext_resource path="res://Art/Menus/CharacterMenuBackground2.png" type="Texture2D" id=3]
-[ext_resource path="res://Art/Menus/CharacterMenuBackground.png" type="Texture2D" id=4]
-[ext_resource path="res://Art/Player/idle.png" type="Texture2D" id=5]
-[ext_resource path="res://Art/Menus/skin.png" type="Texture2D" id=6]
-[ext_resource path="res://Art/Menus/paint_button.png" type="Texture2D" id=7]
-[ext_resource path="res://Art/Menus/color_down.png" type="Texture2D" id=8]
-[ext_resource path="res://CharacterMenu.gd" type="Script" id=9]
-[ext_resource path="res://Art/Shaders/Player.tres" type="Material" id=10]
-[ext_resource path="res://Art/Player/short_hair.png" type="Texture2D" id=13]
+[ext_resource type="Texture2D" uid="uid://cgun6jqa10yoy" path="res://Art/Menus/exit.png" id="1"]
+[ext_resource type="Texture2D" uid="uid://ckdq3ra43xfpr" path="res://Art/Menus/confirm.png" id="2"]
+[ext_resource type="Texture2D" uid="uid://baytngqyk3dpm" path="res://Art/Menus/CharacterMenuBackground2.png" id="3"]
+[ext_resource type="Texture2D" uid="uid://dru216536eca" path="res://Art/Menus/CharacterMenuBackground.png" id="4"]
+[ext_resource type="Texture2D" uid="uid://3gkeg1cat5bm" path="res://Art/Player/idle.png" id="5"]
+[ext_resource type="Texture2D" uid="uid://d12dma2p83o03" path="res://Art/Menus/skin.png" id="6"]
+[ext_resource type="Shader" path="res://Player.gdshader" id="6_a5rrg"]
+[ext_resource type="Texture2D" uid="uid://cjgnxfjsxeihe" path="res://Art/Menus/paint_button.png" id="7"]
+[ext_resource type="Texture2D" uid="uid://uvtb1foqo5pl" path="res://Art/Menus/color_down.png" id="8"]
+[ext_resource type="Shader" path="res://CharacterMenuHair.gdshader" id="8_cg2dk"]
+[ext_resource type="Script" path="res://CharacterMenu.gd" id="9"]
+[ext_resource type="Shader" path="res://CharacterMenuSkin.gdshader" id="11_hnimg"]
+[ext_resource type="Texture2D" uid="uid://d4ahq7u01bxwq" path="res://Art/Menus/hair.png" id="13"]
 
-[sub_resource type="SpriteFrames" id=1]
-animations = [ {
-"frames": [ ExtResource( 4 ), ExtResource( 3 ) ],
+[sub_resource type="SpriteFrames" id="1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3")
+}],
 "loop": true,
-"name": "default",
+"name": &"default",
 "speed": 5.0
-} ]
+}]
 
-[sub_resource type="Shader" id=30]
-code = "shader_type canvas_item;
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_p5vr0"]
+resource_local_to_scene = true
+shader = ExtResource("6_a5rrg")
+shader_parameter/OLDSKIN = Color(1, 0, 0, 1)
+shader_parameter/NEWSKIN = null
+shader_parameter/OLDHAIR = Color(0, 1, 0, 1)
+shader_parameter/NEWHAIR = null
 
-uniform vec4 OLDSKIN : source_color;
-uniform vec4 NEWSKIN : source_color;
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0juvq"]
+shader = ExtResource("8_cg2dk")
+shader_parameter/OLDHAIR = Color(0, 1, 0, 1)
+shader_parameter/NEWHAIR = null
 
-void fragment() {
-	vec4 curr_color = texture(TEXTURE, UV); // Get current color of pixel
-	
-	// Check that current pixel color is any of the OLDCOLORs we want to swap
-	// If our pixel is an old color then swap COLOR to NEWCOLR
-	if (curr_color == OLDSKIN)
-	{
-		COLOR = NEWSKIN;
-	}
-	else
-	{
-		COLOR = curr_color;
-	}
-}"
-
-[sub_resource type="ShaderMaterial" id=31]
-shader = SubResource( 30 )
-shader_param/OLDSKIN = Color( 1, 0, 0, 1 )
-shader_param/NEWSKIN = null
-
-[sub_resource type="Shader" id=32]
-code = "shader_type canvas_item;
-
-uniform vec4 OLDHAIR : source_color;
-uniform vec4 NEWHAIR : source_color;
-
-void fragment() {
-	vec4 curr_color = texture(TEXTURE, UV); // Get current color of pixel
-	// Check that current pixel color is any of the OLDCOLORs we want to swap
-	// If our pixel is an old color then swap COLOR to NEWCOLR
-	if (curr_color == OLDHAIR)
-	{
-		COLOR = NEWHAIR
-	}
-	else
-	{
-		COLOR = curr_color;
-	}
-}"
-
-[sub_resource type="ShaderMaterial" id=33]
-shader = SubResource( 32 )
-shader_param/OLDHAIR = Color( 0, 1, 0, 1 )
-shader_param/NEWHAIR = null
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7blw6"]
+shader = ExtResource("11_hnimg")
+shader_parameter/OLDSKIN = Color(1, 0, 0, 1)
+shader_parameter/NEWSKIN = null
 
 [node name="CharacterMenu" type="AnimatedSprite2D"]
 process_mode = 3
-scale = Vector2( 0.573877, 0.611092 )
-frames = SubResource( 1 )
-script = ExtResource( 9 )
+position = Vector2(-6, 3)
+scale = Vector2(0.573877, 0.611092)
+sprite_frames = SubResource("1")
+script = ExtResource("9")
 
 [node name="Cancel" type="TextureButton" parent="."]
 offset_left = -257.0
 offset_top = -380.0
 offset_right = -217.0
 offset_bottom = -340.0
-scale = Vector2( 2.5, 2.5 )
-texture_normal = ExtResource( 1 )
-expand = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
+scale = Vector2(2.5, 2.5)
+texture_normal = ExtResource("1")
+ignore_texture_size = true
+stretch_mode = 0
 
 [node name="Confirm" type="TextureButton" parent="."]
 visible = false
@@ -95,103 +69,106 @@ offset_left = 155.0
 offset_top = -380.0
 offset_right = 195.0
 offset_bottom = -340.0
-scale = Vector2( 2.5, 2.5 )
-texture_normal = ExtResource( 2 )
-expand = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Skin" type="Sprite2D" parent="."]
-material = SubResource( 31 )
-position = Vector2( 175.561, 142.525 )
-scale = Vector2( 7, 7 )
-texture = ExtResource( 6 )
-
-[node name="Hair" type="Sprite2D" parent="."]
-material = SubResource( 33 )
-position = Vector2( 190, -160 )
-scale = Vector2( 10, 10 )
-texture = ExtResource( 13 )
+scale = Vector2(2.5, 2.5)
+texture_normal = ExtResource("2")
+ignore_texture_size = true
+stretch_mode = 0
 
 [node name="Character" type="Sprite2D" parent="."]
-material = ExtResource( 10 )
-position = Vector2( -139.47, 55 )
-scale = Vector2( 7, 7 )
-texture = ExtResource( 5 )
+material = SubResource("ShaderMaterial_p5vr0")
+position = Vector2(-139.47, 55)
+scale = Vector2(7, 7)
+texture = ExtResource("5")
 
 [node name="HairColorButton" type="TextureButton" parent="."]
-offset_left = 120.0
-offset_top = -90.0
-offset_right = 160.0
-offset_bottom = -50.0
-scale = Vector2( 3, 3 )
-texture_normal = ExtResource( 7 )
-expand = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
+material = SubResource("ShaderMaterial_0juvq")
+offset_left = 57.5036
+offset_top = 121.095
+offset_right = 135.504
+offset_bottom = 195.095
+scale = Vector2(3, 3)
+texture_normal = ExtResource("13")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="ColorPickerSprite" type="Sprite2D" parent="HairColorButton"]
+position = Vector2(68, 70)
+scale = Vector2(0.025, 0.025)
+texture = ExtResource("7")
+
+[node name="HairColorDown" type="TextureButton" parent="HairColorButton"]
+visible = false
+offset_left = -5.80845
+offset_top = -21.2734
+offset_right = 3.19155
+offset_bottom = -12.2734
+scale = Vector2(2, 2)
+texture_normal = ExtResource("8")
+ignore_texture_size = true
+stretch_mode = 0
 
 [node name="BodyColorButton" type="TextureButton" parent="."]
-offset_left = 120.0
-offset_top = 220.0
-offset_right = 160.0
-offset_bottom = 260.0
-scale = Vector2( 3, 3 )
-texture_normal = ExtResource( 7 )
-expand = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
+material = SubResource("ShaderMaterial_7blw6")
+offset_left = 57.5036
+offset_top = -214.37
+offset_right = 136.504
+offset_bottom = -127.37
+scale = Vector2(3, 3)
+texture_normal = ExtResource("6")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="ColorPickerSprite" type="Sprite2D" parent="BodyColorButton"]
+position = Vector2(68, 83)
+scale = Vector2(0.0249112, 0.025)
+texture = ExtResource("7")
+
+[node name="BodyColorDown" type="TextureButton" parent="BodyColorButton"]
+visible = false
+offset_left = -4.06591
+offset_top = -24.0007
+offset_right = 4.93409
+offset_bottom = -15.0007
+scale = Vector2(2, 2)
+texture_normal = ExtResource("8")
+ignore_texture_size = true
+stretch_mode = 0
 
 [node name="HairColor" type="ColorPicker" parent="."]
 visible = false
-offset_left = -295.0
-offset_top = 256.0
-offset_right = 13.0
-offset_bottom = 718.0
-scale = Vector2( 1.25, 1.25 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+offset_left = 38.3357
+offset_top = 106.367
+offset_right = 336.336
+offset_bottom = 406.367
+scale = Vector2(0.964612, 1.00436)
+color_modes_visible = false
+sliders_visible = false
+hex_visible = false
+presets_visible = false
 
 [node name="BodyColor" type="ColorPicker" parent="."]
 visible = false
-offset_left = -295.0
-offset_top = 256.0
-offset_right = 13.0
-offset_bottom = 718.0
-scale = Vector2( 1.25, 1.25 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="ColorDown" type="TextureButton" parent="."]
-visible = false
-offset_left = -296.0
-offset_top = 176.0
-offset_right = -256.0
-offset_bottom = 216.0
-scale = Vector2( 2, 2 )
-texture_normal = ExtResource( 8 )
-expand = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
+offset_left = 43.5633
+offset_top = -237.28
+offset_right = 351.563
+offset_bottom = 62.7198
+scale = Vector2(0.929107, 1.0023)
+color_modes_visible = false
+sliders_visible = false
+hex_visible = false
+presets_visible = false
 
 [node name="ColorPickerBlock" type="TextureButton" parent="."]
 offset_left = -351.0
 offset_top = 576.0
 offset_right = 122.0
 offset_bottom = 816.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [connection signal="pressed" from="Cancel" to="." method="_on_Cancel_pressed"]
 [connection signal="pressed" from="Confirm" to="." method="_on_Confirm_pressed"]
 [connection signal="pressed" from="HairColorButton" to="." method="_on_HairColorButton_pressed"]
+[connection signal="pressed" from="HairColorButton/HairColorDown" to="." method="_on_HairColorDown_pressed"]
 [connection signal="pressed" from="BodyColorButton" to="." method="_on_BodyColorButton_pressed"]
+[connection signal="pressed" from="BodyColorButton/BodyColorDown" to="." method="_on_BodyColorDown_pressed"]
 [connection signal="color_changed" from="HairColor" to="." method="_on_HairColor_color_changed"]
 [connection signal="color_changed" from="BodyColor" to="." method="_on_BodyColor_color_changed"]
-[connection signal="pressed" from="ColorDown" to="." method="_on_ColorDown_pressed"]

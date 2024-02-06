@@ -1,15 +1,15 @@
 [gd_scene load_steps=23 format=3 uid="uid://cud7a3c0nskpb"]
 
-[ext_resource type="PackedScene" uid="uid://c6qkb7ycjgo6i" path="res://CharacterMenu.tscn" id="1"]
+[ext_resource type="PackedScene" path="res://CharacterMenu.tscn" id="1"]
 [ext_resource type="AudioStream" uid="uid://ckldfueikqt35" path="res://Art/Sound/song3.wav" id="2"]
-[ext_resource type="PackedScene" uid="uid://5o6dq0pewkmc" path="res://Player.tscn" id="3"]
+[ext_resource type="PackedScene" path="res://Player.tscn" id="3"]
 [ext_resource type="Script" path="res://Main.gd" id="4"]
 [ext_resource type="Texture2D" uid="uid://ew2qf2kfle5t" path="res://Art/Menus/pause.png" id="5"]
 [ext_resource type="Texture2D" uid="uid://b4v2pmo3kla0g" path="res://Art/Menus/play.png" id="6"]
 [ext_resource type="Texture2D" uid="uid://cpyqdtnhuh3r" path="res://Art/World/Dock.png" id="7"]
 [ext_resource type="Texture2D" uid="uid://b3qroyoog7150" path="res://Art/Menus/edit.png" id="8"]
 [ext_resource type="Texture2D" uid="uid://ctahyb2y84ubp" path="res://Art/Menus/settings.png" id="9"]
-[ext_resource type="PackedScene" uid="uid://bmrn5t486eey5" path="res://SettingsMenu.tscn" id="10"]
+[ext_resource type="PackedScene" path="res://SettingsMenu.tscn" id="10"]
 [ext_resource type="Texture2D" uid="uid://dru216536eca" path="res://Art/Menus/CharacterMenuBackground.png" id="10_827ng"]
 [ext_resource type="PackedScene" path="res://Camera.tscn" id="11"]
 [ext_resource type="Texture2D" uid="uid://baytngqyk3dpm" path="res://Art/Menus/CharacterMenuBackground2.png" id="11_wqv57"]
@@ -29,7 +29,7 @@ void fragment() {
 	COLOR = custom_color;
 }"
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_r50bh"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ib1iu"]
 resource_local_to_scene = true
 shader = SubResource("1")
 shader_parameter/flash_color = Color(1, 1, 1, 1)
@@ -91,7 +91,7 @@ position = Vector2(-0.0131264, 0.148315)
 scale = Vector2(9.61658, 3.60721)
 
 [node name="Player" parent="." instance=ExtResource("3")]
-material = SubResource("ShaderMaterial_r50bh")
+material = SubResource("ShaderMaterial_ib1iu")
 position = Vector2(102.435, 587.574)
 rotation = 1.5708
 scale = Vector2(0.675, 0.675)
@@ -118,8 +118,6 @@ offset_right = 260.0
 offset_bottom = -800.0
 scale = Vector2(3, 3)
 texture_normal = ExtResource("5")
-ignore_texture_size = true
-stretch_mode = 0
 
 [node name="Play" type="TextureButton" parent="Camera2D"]
 process_mode = 3
@@ -130,8 +128,6 @@ offset_right = 260.0
 offset_bottom = -800.0
 scale = Vector2(3, 3)
 texture_normal = ExtResource("6")
-ignore_texture_size = true
-stretch_mode = 0
 
 [node name="Settings" type="TextureButton" parent="Camera2D"]
 process_mode = 3
@@ -142,8 +138,6 @@ offset_right = 260.0
 offset_bottom = -800.0
 scale = Vector2(3, 3)
 texture_normal = ExtResource("9")
-ignore_texture_size = true
-stretch_mode = 0
 
 [node name="EditCharacter" type="TextureButton" parent="Camera2D"]
 process_mode = 3
@@ -154,8 +148,6 @@ offset_right = -300.0
 offset_bottom = -825.0
 scale = Vector2(4, 4)
 texture_normal = ExtResource("8")
-ignore_texture_size = true
-stretch_mode = 0
 
 [node name="Start" type="TextureButton" parent="Camera2D"]
 visible = false
@@ -165,8 +157,6 @@ offset_right = -84.0
 offset_bottom = -310.0
 scale = Vector2(6, 6)
 texture_normal = ExtResource("6")
-ignore_texture_size = true
-stretch_mode = 0
 
 [node name="CharacterMenu" parent="Camera2D" instance=ExtResource("1")]
 visible = false
