@@ -229,17 +229,17 @@ func spawn_world():
 					new_berry.get_child(0).frame = rng.randi_range(0, 3)
 					new_berry.position.x = rng.randi_range(100, 285)
 					new_berry.position.y = strip.position.y + 30
-					$World.add_child(new_berry)
+					#$World.add_child(new_berry)
 					berry_dist = rng.randi_range(1, 5)
 			
 			# Bird
 			# If it's not time for a bird, decrement from the counter.
 			# If it is time for a bird, make an instance, set its position to a tree, 
 			if bird_dist == 0:
-				var bird = BIRD.instantiate()
+				# var bird = BIRD.instantiate()			Commented out to avoid warnings
 				# CORRECT !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-				print("Main's left: " + str(strip.get_node("LeftTree").position))
-				print("Main's right: " + str(strip.get_node("RightTree").position))
+				#print("Main's left: " + str(strip.get_node("LeftTree").position))
+				#print("Main's right: " + str(strip.get_node("RightTree").position))
 				bird_dist = rng.randi_range(10, 20)
 			else:
 				bird_dist -= 1

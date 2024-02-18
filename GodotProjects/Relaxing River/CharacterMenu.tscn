@@ -6,12 +6,12 @@
 [ext_resource type="Texture2D" uid="uid://dru216536eca" path="res://Art/Menus/CharacterMenuBackground.png" id="4"]
 [ext_resource type="Texture2D" uid="uid://3gkeg1cat5bm" path="res://Art/Player/idle.png" id="5"]
 [ext_resource type="Texture2D" uid="uid://d12dma2p83o03" path="res://Art/Menus/skin.png" id="6"]
-[ext_resource type="Shader" path="res://Player.gdshader" id="6_a5rrg"]
+[ext_resource type="Shader" path="res://Art/Shaders/Player.gdshader" id="6_jprvg"]
 [ext_resource type="Texture2D" uid="uid://cjgnxfjsxeihe" path="res://Art/Menus/paint_button.png" id="7"]
 [ext_resource type="Texture2D" uid="uid://uvtb1foqo5pl" path="res://Art/Menus/color_down.png" id="8"]
-[ext_resource type="Shader" path="res://CharacterMenuHair.gdshader" id="8_cg2dk"]
+[ext_resource type="Shader" path="res://Art/Shaders/CharacterMenuHair.gdshader" id="8_qe7rp"]
 [ext_resource type="Script" path="res://CharacterMenu.gd" id="9"]
-[ext_resource type="Shader" path="res://CharacterMenuSkin.gdshader" id="11_hnimg"]
+[ext_resource type="Shader" path="res://Art/Shaders/CharacterMenuSkin.gdshader" id="12_ei7fn"]
 [ext_resource type="Texture2D" uid="uid://d4ahq7u01bxwq" path="res://Art/Menus/hair.png" id="13"]
 
 [sub_resource type="SpriteFrames" id="1"]
@@ -28,23 +28,22 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_p5vr0"]
-resource_local_to_scene = true
-shader = ExtResource("6_a5rrg")
-shader_parameter/OLDSKIN = Color(1, 0, 0, 1)
-shader_parameter/NEWSKIN = null
-shader_parameter/OLDHAIR = Color(0, 1, 0, 1)
-shader_parameter/NEWHAIR = null
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ymhac"]
+shader = ExtResource("6_jprvg")
+shader_parameter/Old_Skin = Color(1, 0, 0, 1)
+shader_parameter/New_Skin = null
+shader_parameter/Old_Hair = Color(0, 1, 0, 1)
+shader_parameter/New_Hair = null
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0juvq"]
-shader = ExtResource("8_cg2dk")
-shader_parameter/OLDHAIR = Color(0, 1, 0, 1)
-shader_parameter/NEWHAIR = null
+shader = ExtResource("8_qe7rp")
+shader_parameter/Old_Hair = Color(0, 1, 0, 1)
+shader_parameter/New_Hair = null
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_7blw6"]
-shader = ExtResource("11_hnimg")
-shader_parameter/OLDSKIN = Color(1, 0, 0, 1)
-shader_parameter/NEWSKIN = null
+shader = ExtResource("12_ei7fn")
+shader_parameter/Old_Skin = Color(1, 0, 0, 1)
+shader_parameter/New_Skin = null
 
 [node name="CharacterMenu" type="AnimatedSprite2D"]
 process_mode = 3
@@ -75,9 +74,9 @@ ignore_texture_size = true
 stretch_mode = 0
 
 [node name="Character" type="Sprite2D" parent="."]
-material = SubResource("ShaderMaterial_p5vr0")
+material = SubResource("ShaderMaterial_ymhac")
 position = Vector2(-139.47, 55)
-scale = Vector2(7, 7)
+scale = Vector2(0.7, 0.7)
 texture = ExtResource("5")
 
 [node name="HairColorButton" type="TextureButton" parent="."]
@@ -98,6 +97,7 @@ texture = ExtResource("7")
 
 [node name="HairColorDown" type="TextureButton" parent="HairColorButton"]
 visible = false
+layout_mode = 0
 offset_left = -5.80845
 offset_top = -21.2734
 offset_right = 3.19155
@@ -125,6 +125,7 @@ texture = ExtResource("7")
 
 [node name="BodyColorDown" type="TextureButton" parent="BodyColorButton"]
 visible = false
+layout_mode = 0
 offset_left = -4.06591
 offset_top = -24.0007
 offset_right = 4.93409

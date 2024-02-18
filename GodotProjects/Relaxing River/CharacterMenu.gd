@@ -37,30 +37,32 @@ func load_character():
 	if FileAccess.file_exists(character_file):
 		var file = FileAccess.open(character_file, FileAccess.READ)
 		var content = file.get_as_text()
-		skin_r = float(content.split(",")[0])
+		
+		skin_r = float(content.split(",")[0].substr(1))
 		skin_g = float(content.split(",")[1])
 		skin_b = float(content.split(",")[2])
 		skin_a = float(content.split(",")[3])
 		skin_color = Color(skin_r, skin_g, skin_b, skin_a)
-		hair_r = float(content.split(",")[4])
+		
+		hair_r = float(content.split(",")[4].substr(1))
 		hair_g = float(content.split(",")[5])
 		hair_b = float(content.split(",")[6])
 		hair_a = float(content.split(",")[7])
 		hair_color = Color(hair_r, hair_g, hair_b, hair_a)
 		
-		$Character.material.set("shader_param/NEWSKIN", skin_color)
-		$Character.material.set("shader_param/NEWHAIR", hair_color)
-		$BodyColorButton.material.set("shader_param/NEWSKIN", skin_color)
-		$HairColorButton.material.set("shader_param/NEWHAIR", hair_color)
+		$Character.material.set("shader_parameter/New_Skin", skin_color)
+		$Character.material.set("shader_parameter/New_Hair", hair_color)
+		$BodyColorButton.material.set("shader_parameter/New_Skin", skin_color)
+		$HairColorButton.material.set("shader_parameter/New_Hair", hair_color)
 		
 		$HairColor.color = hair_color
 		$BodyColor.color = skin_color
 		file.close()
 	else:
-		$Character.material.set("shader_param/NEWSKIN", default_skin)
-		$Character.material.set("shader_param/NEWHAIR", default_hair)
-		$BodyColorButton.material.set("shader_param/NEWSKIN", default_skin)
-		$HairColorButton.material.set("shader_param/NEWHAIR", default_hair)
+		$Character.material.set("shader_parameter/New_Skin", default_skin)
+		$Character.material.set("shader_parameter/New_Hair", default_hair)
+		$BodyColorButton.material.set("shader_parameter/New_Skin", default_skin)
+		$HairColorButton.material.set("shader_parameter/New_Hair", default_hair)
 		
 		$HairColor.color = default_hair
 		$BodyColor.color = default_skin
@@ -83,8 +85,8 @@ func save_character():
 # long and short hair buttons. Then save the color into the hair_color variable.
 # Finally, show the confirm button
 func _on_HairColor_color_changed(color):
-	$Character.material.set("shader_param/NEWHAIR", color)
-	$HairColorButton.material.set("shader_param/NEWHAIR", color)
+	$Character.material.set("shader_parameter/New_Hair", color)
+	$HairColorButton.material.set("shader_parameter/New_Hair", color)
 	hair_color = color
 	$Confirm.show()
 	set_frame(1)
@@ -97,8 +99,8 @@ func _on_HairColor_color_changed(color):
 # Change the body color of the character demo and skin symbol. Finally, show the
 # confirm button
 func _on_BodyColor_color_changed(color):
-	$Character.material.set("shader_param/NEWSKIN", color)
-	$BodyColorButton.material.set("shader_param/NEWSKIN", color)
+	$Character.material.set("shader_parameter/New_Skin", color)
+	$BodyColorButton.material.set("shader_parameter/New_Skin", color)
 	skin_color = color
 	$Confirm.show()
 	set_frame(1)
@@ -143,13 +145,11 @@ func _on_Confirm_pressed():
 func _on_BodyColorButton_pressed():
 	$BodyColor.show()
 	$BodyColorButton/BodyColorDown.show()
-	$HairColor.hide()
 
 
 func _on_HairColorButton_pressed():
 	$HairColor.show()
 	$HairColorButton/HairColorDown.show()
-	$BodyColor.hide()
 
 
 func _on_HairColorDown_pressed():

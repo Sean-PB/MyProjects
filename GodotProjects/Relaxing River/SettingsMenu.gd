@@ -8,7 +8,7 @@ signal settings_exited
 # ------------------------------------------------------------------------------
 # Variables
 # ------------------------------------------------------------------------------
-var file = "user://settings.txt"   # Declaring file to save settings and score
+var file_path = "user://settings.txt"   # Declaring file to save settings and score
 var sound
 var challenge_mode
 var sound_outline_pos = Vector2(-225, -150)
@@ -28,8 +28,8 @@ func _ready():
 # This loads in all the current settings to the menu so the player can see
 # ------------------------------------------------------------------------------
 func load_settings():
-	if FileAccess.file_exists(file):
-		var file = FileAccess.open(file, FileAccess.READ)
+	if FileAccess.file_exists(file_path):
+		var file = FileAccess.open(file_path, FileAccess.READ)
 		var content = file.get_as_text()
 		sound = int(content.split("/")[0])
 		challenge_mode = int(content.split("/")[1])
@@ -63,7 +63,7 @@ func load_settings():
 # ------------------------------------------------------------------------------
 # ------------------------------------------------------------------------------
 func save_settings(new_sound, new_challenge_mode, new_swipe, new_speed):
-	var file = FileAccess.open(file, FileAccess.WRITE)
+	var file = FileAccess.open(file_path, FileAccess.WRITE)
 	file.store_string((str(new_sound) + "/" + str(new_challenge_mode) + "/" + str(new_swipe)
 		 + "/" + str(new_speed)))
 	file.close()

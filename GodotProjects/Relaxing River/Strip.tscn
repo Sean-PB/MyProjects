@@ -1,7 +1,7 @@
 [gd_scene load_steps=12 format=3 uid="uid://df3h0jfmxyb7c"]
 
 [ext_resource type="Texture2D" uid="uid://8ur2bw67jsde" path="res://Art/World/straight_left.png" id="1"]
-[ext_resource type="PackedScene" path="res://Bird.tscn" id="2"]
+[ext_resource type="PackedScene" uid="uid://cvcqcvq48btro" path="res://Bird.tscn" id="2"]
 [ext_resource type="Texture2D" uid="uid://ctkfhh0b3m8ur" path="res://Art/World/calm_water.png" id="3"]
 [ext_resource type="Script" path="res://Strip.gd" id="4"]
 [ext_resource type="Texture2D" uid="uid://duc0olk1ds0lq" path="res://Art/World/tree.png" id="5"]

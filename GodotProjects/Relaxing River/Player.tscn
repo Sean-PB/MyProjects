@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://cwdjpe5lopb3o" path="res://Art/Player/left.png" id="1"]
 [ext_resource type="Texture2D" uid="uid://ba6ussfg654dg" path="res://Art/Player/left_up.png" id="2"]
-[ext_resource type="Shader" path="res://Player.gdshader" id="2_t5g5s"]
+[ext_resource type="Shader" path="res://Art/Shaders/Player.gdshader" id="2_kw746"]
 [ext_resource type="Texture2D" uid="uid://3gkeg1cat5bm" path="res://Art/Player/idle.png" id="4"]
 [ext_resource type="Texture2D" uid="uid://ccpbxxr7vbums" path="res://Art/Player/front_left.png" id="5"]
 [ext_resource type="Texture2D" uid="uid://by2epbhotv65e" path="res://Art/Player/back_left.png" id="6"]
@@ -15,15 +15,48 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_p5vr0"]
 resource_local_to_scene = true
-shader = ExtResource("2_t5g5s")
-shader_parameter/OLDSKIN = Color(1, 0, 0, 1)
-shader_parameter/NEWSKIN = null
-shader_parameter/OLDHAIR = Color(0, 1, 0, 1)
-shader_parameter/NEWHAIR = null
+shader = ExtResource("2_kw746")
+shader_parameter/Old_Skin = Color(1, 0, 0, 1)
+shader_parameter/New_Skin = null
+shader_parameter/Old_Hair = Color(0, 1, 0, 1)
+shader_parameter/New_Hair = null
 
 [sub_resource type="SpriteFrames" id="3"]
 animations = [{
 "frames": [{
+"duration": 1.0,
+"texture": ExtResource("4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4")
+}, {
 "duration": 1.0,
 "texture": ExtResource("7")
 }, {
@@ -51,7 +84,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("7")
 }],
-"loop": true,
+"loop": false,
 "name": &"flash",
 "speed": 5.0
 }, {
@@ -118,9 +151,9 @@ polygon = PackedVector2Array(-0.25, -59, 12.899, -18.5121, 13.4943, 18.2958, 0.1
 
 [node name="Character" type="AnimatedSprite2D" parent="."]
 material = SubResource("ShaderMaterial_p5vr0")
-scale = Vector2(2, 2)
+scale = Vector2(0.2, 0.2)
 sprite_frames = SubResource("3")
-animation = &"left"
+animation = &"flash"
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.5

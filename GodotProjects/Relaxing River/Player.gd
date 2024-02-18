@@ -60,9 +60,10 @@ func _process(delta):
 		if challenge_mode:
 			for i in get_slide_collision_count():
 				var collision = get_slide_collision(i)
-				if collision.collider.get_collision_layer() == 3:
+				var collider = collision.get_collider() # Retrieve the collider node
+				if collider and collider.is_in_group("log"): # Check if collider belongs to "logs" group
 					emit_signal("crash")
-					set_collision_mask_value(2, false) # Turn off collsion for logs
+					set_collision_mask_value(3, false) # Turn off collsion for logs
 					# Check to see if the flash is already going before stopping player.
 					# if it is that means the player has already been stopped and this
 					# shouldn't run
@@ -70,7 +71,7 @@ func _process(delta):
 						$Timer.start()
 						moving = false
 					$Character.play("flash")
-			
+
 
 # Swiping functionality
 func _input(event):
@@ -117,25 +118,27 @@ func load_character():
 	if FileAccess.file_exists(character_file):
 		var file = FileAccess.open(character_file, FileAccess.READ)
 		var content = file.get_as_text()
-		skin_r = float(content.split(",")[0])
+		
+		skin_r = float(content.split(",")[0].substr(1))
 		skin_g = float(content.split(",")[1])
 		skin_b = float(content.split(",")[2])
 		skin_a = float(content.split(",")[3])
 		skin_color = Color(skin_r, skin_g, skin_b, skin_a)
-		hair_r = float(content.split(",")[4])
+		
+		hair_r = float(content.split(",")[4].substr(1))
 		hair_g = float(content.split(",")[5])
 		hair_b = float(content.split(",")[6])
 		hair_a = float(content.split(",")[7])
 		hair_color = Color(hair_r, hair_g, hair_b, hair_a)
 		
-		$Character.material.set("shader_param/NEWSKIN", skin_color)
-		$Character.material.set("shader_param/NEWHAIR", hair_color)
+		$Character.material.set("shader_parameter/New_Skin", skin_color)
+		$Character.material.set("shader_parameter/New_Hair", hair_color)
 		
 		file.close()
 	
 	else:
-		$Character.material.set("shader_param/NEWSKIN", default_skin)
-		$Character.material.set("shader_param/NEWHAIR", default_hair)
+		$Character.material.set("shader_parameter/New_Skin", default_skin)
+		$Character.material.set("shader_parameter/New_Hair", default_hair)
 
 
 #-------------------------------------------------------------------------------
@@ -144,12 +147,12 @@ func load_character():
 #-------------------------------------------------------------------------------
 # If the player hasn't turned to be straight yet, accelerate their speed and 
 # turning rate. Else, just have the player go straight until they reach the
-# starting spot. Speed clamped at 50.
+# starting spot. Speed clamped at 100.
 func leave_dock(delta):
 	if rotation_degrees > 0:
 		$Character.play("left")
 		rotation_degrees = clamp(rotation_degrees - rotation_accel, 0, 90) # Turn speed
-		speed_start = clamp(speed_start + (40 * delta), 0, 50)             # Speed
+		speed_start = clamp(speed_start + (40 * delta), 0, 100)             # Speed
 # warning-ignore:return_value_discarded
 		set_velocity(Vector2(0, -speed_start).rotated(rotation))
 		move_and_slide()
@@ -163,13 +166,13 @@ func leave_dock(delta):
 #-------------------------------------------------------------------------------
 # When the flashing animaiton ends
 #-------------------------------------------------------------------------------
-# If the animation that finished is flash, change the animation back to straight 
-# and turn collision for logs back on
+# If the animation that finished is flash, change the animation back to straight
+# and make the player move again
 func _on_Character_animation_finished():
 	if $Character.animation == "flash":
 		$Character.play("straight")
-		set_collision_mask_value(2, true) # Turn on collsion for logs
+		set_collision_mask_value(3, true) # Turn on collsion for logs
 
-
+# Turn collision for logs back on after the post-collision timer timesout
 func _on_Timer_timeout():
-	moving = true
+		moving = true

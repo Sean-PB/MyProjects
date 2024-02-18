@@ -5,15 +5,16 @@
 [ext_resource type="PackedScene" uid="uid://5o6dq0pewkmc" path="res://Player.tscn" id="3"]
 [ext_resource type="Script" path="res://Main.gd" id="4"]
 [ext_resource type="Texture2D" uid="uid://ew2qf2kfle5t" path="res://Art/Menus/pause.png" id="5"]
+[ext_resource type="Shader" path="res://Art/Shaders/Blur.gdshader" id="5_3u04j"]
 [ext_resource type="Texture2D" uid="uid://b4v2pmo3kla0g" path="res://Art/Menus/play.png" id="6"]
 [ext_resource type="Texture2D" uid="uid://cpyqdtnhuh3r" path="res://Art/World/Dock.png" id="7"]
 [ext_resource type="Texture2D" uid="uid://b3qroyoog7150" path="res://Art/Menus/edit.png" id="8"]
 [ext_resource type="Texture2D" uid="uid://ctahyb2y84ubp" path="res://Art/Menus/settings.png" id="9"]
 [ext_resource type="PackedScene" uid="uid://bmrn5t486eey5" path="res://SettingsMenu.tscn" id="10"]
 [ext_resource type="Texture2D" uid="uid://dru216536eca" path="res://Art/Menus/CharacterMenuBackground.png" id="10_827ng"]
-[ext_resource type="PackedScene" path="res://Camera.tscn" id="11"]
+[ext_resource type="PackedScene" uid="uid://gdcdh7kevx7o" path="res://Camera.tscn" id="11"]
 [ext_resource type="Texture2D" uid="uid://baytngqyk3dpm" path="res://Art/Menus/CharacterMenuBackground2.png" id="11_wqv57"]
-[ext_resource type="PackedScene" path="res://SplashScreen.tscn" id="12"]
+[ext_resource type="PackedScene" uid="uid://cp3vbd5114sxe" path="res://SplashScreen.tscn" id="12"]
 [ext_resource type="Texture2D" uid="uid://b2ywxwfjgfvpp" path="res://Art/Menus/SettingsBackground.png" id="13_g75qp"]
 [ext_resource type="Texture2D" uid="uid://byptwpvkyjalt" path="res://Art/Menus/SettingsBackground2.png" id="14_50rrn"]
 
@@ -29,24 +30,15 @@ void fragment() {
 	COLOR = custom_color;
 }"
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_r50bh"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7nsxy"]
 resource_local_to_scene = true
 shader = SubResource("1")
 shader_parameter/flash_color = Color(1, 1, 1, 1)
 shader_parameter/flash_modifier = 1.0
 
-[sub_resource type="Shader" id="4"]
-code = "shader_type canvas_item;
-
-uniform float blur: hint_range(0.0, 5) = 0.0;
-
-void fragment(){
-	vec4 color = texture(SCREEN_TEXTURE, SCREEN_UV, blur);
-	COLOR = color;
-}"
-
 [sub_resource type="ShaderMaterial" id="2"]
-shader = SubResource("4")
+shader = ExtResource("5_3u04j")
+shader_parameter/blur = 1.429
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_exkeo"]
 animations = [{
@@ -91,7 +83,7 @@ position = Vector2(-0.0131264, 0.148315)
 scale = Vector2(9.61658, 3.60721)
 
 [node name="Player" parent="." instance=ExtResource("3")]
-material = SubResource("ShaderMaterial_r50bh")
+material = SubResource("ShaderMaterial_7nsxy")
 position = Vector2(102.435, 587.574)
 rotation = 1.5708
 scale = Vector2(0.675, 0.675)
@@ -103,10 +95,10 @@ z_index = 1
 
 [node name="Blur" type="ColorRect" parent="Camera2D"]
 material = SubResource("2")
-offset_left = -214.0
+offset_left = -574.0
 offset_top = -1124.0
-offset_right = 551.0
-offset_bottom = 207.0
+offset_right = 550.0
+offset_bottom = 851.0
 scale = Vector2(1.00409, 0.961829)
 color = Color(1, 1, 1, 0)
 
