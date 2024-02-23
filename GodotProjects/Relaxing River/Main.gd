@@ -21,6 +21,8 @@ var old_log_x = 150     # The RNG x-axis of each log. Always at least half the
 						# roughly middle of the screen during first spawning.
 var river_top = 576
 var rng = RandomNumberGenerator.new()
+var songs = []
+var current_song = 0
 
 
 # ------------------------------------------------------------------------------
@@ -39,7 +41,7 @@ func _ready():
 		river_top -= 64
 	
 	log_dist = 0             # Setting log_dist to 0 so theres a log immediately
-	bird_dist = rng.randi_range(1, 5) # Setting first bird_dist to be reletivley soon
+	bird_dist = rng.randi_range(10, 20) # Setting first bird_dist to be reletivley soon
 	
 	# Loading character
 	$Player.load_character()
@@ -59,6 +61,12 @@ func _ready():
 	# Setting random length of straiht river section
 	straight_length = rng.randi_range(1, 1) # set straight_length to new random number
 	
+	# Randomizing song order and get first song ready
+	songs.append("res://Art/Sound/song1.wav")
+	songs.append("res://Art/Sound/song2.wav")
+	songs.append("res://Art/Sound/song3.wav")
+	songs.shuffle()
+	$Music.stream = load(songs[current_song])
 
 
 # ------------------------------------------------------------------------------
@@ -84,7 +92,6 @@ func _on_Start_pressed():
 	$Camera2D/Settings.hide()
 	$Camera2D/Settings.position = Vector2(-64, -840)
 	started = true
-	# Play music (CHANGE TO BE RANDOM SONG ORDER LATER) !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 	$Music.play()
 	$Music.stream_paused = not $Camera2D/SettingsMenu.sound
 	challenge_mode = $Camera2D/SettingsMenu.challenge_mode # Whether challenge mode is on or not
@@ -201,7 +208,7 @@ func spawn_world():
 			$World.add_child(strip)
 			river_top -= 64                # Adjust top of river position
 			
-			# Log:
+			# Log or Berry:
 			# Check to see if its time for a new log with log_dist. If so, make
 			# a new instance of the Log scene, randomize rng, set the new log's
 			# position to be somewhere far enough away from the previous log,
@@ -219,28 +226,33 @@ func spawn_world():
 				new_log.position.y = strip.position.y + 30
 				$World.add_child(new_log)
 				old_log_x = new_log.position.x
-				log_dist = rng.randi_range(1, 3) # Choose new log dist
+				log_dist = rng.randi_range(1, 2) # Choose new log dist
 			else:
 				log_dist -= 1
 				berry_dist -= 1
 				# Berry:
 				if berry_dist <= 0:
 					var new_berry = BERRY.instantiate()
-					new_berry.get_child(0).frame = rng.randi_range(0, 3)
 					new_berry.position.x = rng.randi_range(100, 285)
 					new_berry.position.y = strip.position.y + 30
-					#$World.add_child(new_berry)
-					berry_dist = rng.randi_range(1, 5)
+					$World.add_child(new_berry)
+					berry_dist = rng.randi_range(5, 10)
 			
 			# Bird
 			# If it's not time for a bird, decrement from the counter.
-			# If it is time for a bird, make an instance, set its position to a tree, 
+			# If it is time for a bird, make an instance, set its position to one side, 
 			if bird_dist == 0:
-				# var bird = BIRD.instantiate()			Commented out to avoid warnings
-				# CORRECT !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-				#print("Main's left: " + str(strip.get_node("LeftTree").position))
-				#print("Main's right: " + str(strip.get_node("RightTree").position))
-				bird_dist = rng.randi_range(10, 20)
+				var bird = BIRD.instantiate()
+				var bird_x = rng.randi_range(1, 2)
+				if bird_x == 1:
+					bird.position.x = -10
+					bird.rotation_degrees = randi_range(15, 105)
+				else:
+					bird.position.x = 600
+					bird.rotation_degrees = randi_range(-15, -105)
+				bird.position.y = $Player.position.y - randi_range(250, 650)
+				$World.add_child(bird)
+				bird_dist = rng.randi_range(30, 60)
 			else:
 				bird_dist -= 1
 
@@ -266,7 +278,14 @@ func _on_VisibilityNotifier2D_screen_exited():
 # Maybe I can use this to make the 3 random order songs follow each other.
 # ------------------------------------------------------------------------------
 func _on_Music_finished():
-	pass
+	if (current_song == len(songs) - 1):
+		current_song = 0
+	else:
+		current_song += 1
+	
+	$Music.stream = load(songs[current_song])
+	$Music.play()
+	$Music.stream_paused = not $Camera2D/SettingsMenu.sound
 
 
 # ------------------------------------------------------------------------------

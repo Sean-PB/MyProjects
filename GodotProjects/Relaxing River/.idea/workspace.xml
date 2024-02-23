@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="NONE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="95179cd2-8bd0-4962-99a8-38b27a67a5db" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.godot/editor/Berries.tscn-editstate-58ff41e87c4501b8099492f9c10b154a.cfg" beforeDir="false" afterPath="$PROJECT_DIR$/.godot/editor/Berries.tscn-editstate-58ff41e87c4501b8099492f9c10b154a.cfg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.godot/editor/Berries.tscn-folding-58ff41e87c4501b8099492f9c10b154a.cfg" beforeDir="false" afterPath="$PROJECT_DIR$/.godot/editor/Berries.tscn-folding-58ff41e87c4501b8099492f9c10b154a.cfg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.godot/editor/Bird.tscn-editstate-a88b414eb10511aef312fa346aaf406f.cfg" beforeDir="false" afterPath="$PROJECT_DIR$/.godot/editor/Bird.tscn-editstate-a88b414eb10511aef312fa346aaf406f.cfg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.godot/editor/Camera.tscn-editstate-eeea1d831563f520ad1197294b72b423.cfg" beforeDir="false" afterPath="$PROJECT_DIR$/.godot/editor/Camera.tscn-editstate-eeea1d831563f520ad1197294b72b423.cfg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.godot/editor/Log.tscn-editstate-d5d0326a975fd6ae5682bf8b9257fda1.cfg" beforeDir="false" afterPath="$PROJECT_DIR$/.godot/editor/Log.tscn-editstate-d5d0326a975fd6ae5682bf8b9257fda1.cfg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.godot/editor/Log.tscn-folding-d5d0326a975fd6ae5682bf8b9257fda1.cfg" beforeDir="false" afterPath="$PROJECT_DIR$/.godot/editor/Log.tscn-folding-d5d0326a975fd6ae5682bf8b9257fda1.cfg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.godot/editor/Main.tscn-editstate-bcb0d2eb5949c52b6a65bfe9de3e985b.cfg" beforeDir="false" afterPath="$PROJECT_DIR$/.godot/editor/Main.tscn-editstate-bcb0d2eb5949c52b6a65bfe9de3e985b.cfg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.godot/editor/Main.tscn-folding-bcb0d2eb5949c52b6a65bfe9de3e985b.cfg" beforeDir="false" afterPath="$PROJECT_DIR$/.godot/editor/Main.tscn-folding-bcb0d2eb5949c52b6a65bfe9de3e985b.cfg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.godot/editor/Player.tscn-editstate-90e1ff3baa03524a506ff0f7a9d78dcf.cfg" beforeDir="false" afterPath="$PROJECT_DIR$/.godot/editor/Player.tscn-editstate-90e1ff3baa03524a506ff0f7a9d78dcf.cfg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.godot/editor/create_recent.Node" beforeDir="false" afterPath="$PROJECT_DIR$/.godot/editor/create_recent.Node" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.godot/editor/editor_layout.cfg" beforeDir="false" afterPath="$PROJECT_DIR$/.godot/editor/editor_layout.cfg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.godot/editor/filesystem_cache8" beforeDir="false" afterPath="$PROJECT_DIR$/.godot/editor/filesystem_cache8" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.godot/editor/filesystem_update4" beforeDir="false" afterPath="$PROJECT_DIR$/.godot/editor/filesystem_update4" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.godot/editor/project_metadata.cfg" beforeDir="false" afterPath="$PROJECT_DIR$/.godot/editor/project_metadata.cfg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.godot/editor/recent_dirs" beforeDir="false" afterPath="$PROJECT_DIR$/.godot/editor/recent_dirs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.godot/editor/script_editor_cache.cfg" beforeDir="false" afterPath="$PROJECT_DIR$/.godot/editor/script_editor_cache.cfg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.godot/imported/blue_berries.png-5694e915eae1950f8b660e919be7dcb0.ctex" beforeDir="false" afterPath="$PROJECT_DIR$/.godot/imported/blue_berries.png-5694e915eae1950f8b660e919be7dcb0.ctex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.godot/imported/blue_berries.png-5694e915eae1950f8b660e919be7dcb0.md5" beforeDir="false" afterPath="$PROJECT_DIR$/.godot/imported/blue_berries.png-5694e915eae1950f8b660e919be7dcb0.md5" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.godot/imported/cherries.png-8f11fff3ca72e18e116dfa02e39a51c5.ctex" beforeDir="false" afterPath="$PROJECT_DIR$/.godot/imported/cherries.png-8f11fff3ca72e18e116dfa02e39a51c5.ctex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.godot/imported/cherries.png-8f11fff3ca72e18e116dfa02e39a51c5.md5" beforeDir="false" afterPath="$PROJECT_DIR$/.godot/imported/cherries.png-8f11fff3ca72e18e116dfa02e39a51c5.md5" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.godot/imported/grape.png-eba01173988b8a2b1be27c8156f1ca9a.ctex" beforeDir="false" afterPath="$PROJECT_DIR$/.godot/imported/grape.png-eba01173988b8a2b1be27c8156f1ca9a.ctex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.godot/imported/grape.png-eba01173988b8a2b1be27c8156f1ca9a.md5" beforeDir="false" afterPath="$PROJECT_DIR$/.godot/imported/grape.png-eba01173988b8a2b1be27c8156f1ca9a.md5" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.godot/imported/strawberry.png-bcbe8052f13b415ca5e3c1b88e825ba8.ctex" beforeDir="false" afterPath="$PROJECT_DIR$/.godot/imported/strawberry.png-bcbe8052f13b415ca5e3c1b88e825ba8.ctex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.godot/imported/strawberry.png-bcbe8052f13b415ca5e3c1b88e825ba8.md5" beforeDir="false" afterPath="$PROJECT_DIR$/.godot/imported/strawberry.png-bcbe8052f13b415ca5e3c1b88e825ba8.md5" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.godot/uid_cache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.godot/uid_cache.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Art/World/Berries/blue_berries.png" beforeDir="false" afterPath="$PROJECT_DIR$/Art/World/Berries/blue_berries.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Art/World/Berries/cherries.png" beforeDir="false" afterPath="$PROJECT_DIR$/Art/World/Berries/cherries.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Art/World/Berries/grape.png" beforeDir="false" afterPath="$PROJECT_DIR$/Art/World/Berries/grape.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Art/World/Berries/strawberry.png" beforeDir="false" afterPath="$PROJECT_DIR$/Art/World/Berries/strawberry.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Berries.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/Berries.tscn" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Bird.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/Bird.tscn" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Log.gd" beforeDir="false" afterPath="$PROJECT_DIR$/Log.gd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Main.gd" beforeDir="false" afterPath="$PROJECT_DIR$/Main.gd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Main.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/Main.tscn" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Player.gd" beforeDir="false" afterPath="$PROJECT_DIR$/Player.gd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Player.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/Player.tscn" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/export_presets.cfg" beforeDir="false" afterPath="$PROJECT_DIR$/export_presets.cfg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project.godot" beforeDir="false" afterPath="$PROJECT_DIR$/project.godot" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ClangdSettings">
+    <option name="formatViaClangd" value="false" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="ProjectId" id="2cfKsmL6OGjuwGIrgAyWJsv3aD6" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.cidr.known.project.marker": "true",
+    "cf.first.check.clang-format": "false",
+    "cidr.known.project.marker": "true",
+    "git-widget-placeholder": "master",
+    "settings.editor.selected.configurable": "AndroidSdkUpdater"
+  }
+}]]></component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="95179cd2-8bd0-4962-99a8-38b27a67a5db" name="Changes" comment="" />
+      <created>1708497402621</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1708497402621</updated>
+    </task>
+    <servers />
+  </component>
+</project>

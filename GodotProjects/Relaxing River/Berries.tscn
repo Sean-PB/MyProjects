@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://k7ksw7j444nx"]
+[gd_scene load_steps=8 format=3 uid="uid://k7ksw7j444nx"]
 
 [ext_resource type="Texture2D" uid="uid://c27w27uv0pyde" path="res://Art/World/Berries/strawberry.png" id="1"]
+[ext_resource type="Script" path="res://Berries.gd" id="1_bf53f"]
 [ext_resource type="Texture2D" uid="uid://cojv1hqwcbi0e" path="res://Art/World/Berries/blue_berries.png" id="2"]
 [ext_resource type="Texture2D" uid="uid://b7oxa62l3gs5q" path="res://Art/World/Berries/grape.png" id="3"]
 [ext_resource type="Texture2D" uid="uid://cyho5bgwr67xj" path="res://Art/World/Berries/cherries.png" id="4"]
@@ -26,15 +27,22 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="2"]
-radius = 17.5472
+radius = 12.0
 
-[node name="Berries" type="Area2D"]
+[node name="Berries" type="StaticBody2D" groups=["berry"]]
+texture_filter = 1
+scale = Vector2(1.5, 1.5)
 collision_layer = 8
 collision_mask = 0
+script = ExtResource("1_bf53f")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-scale = Vector2(0.6, 0.6)
+scale = Vector2(0.06, 0.06)
 sprite_frames = SubResource("1")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("2")
+
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
+
+[connection signal="screen_exited" from="VisibleOnScreenEnabler2D" to="." method="_on_visible_on_screen_enabler_2d_screen_exited"]

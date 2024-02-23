@@ -26,7 +26,7 @@ var grey = Color("3e3e3e")
 var dark_grey = Color("202020")
 
 var rng = RandomNumberGenerator.new()
-var speed = 225
+var speed = 150
 
 
 # --------------------------------------------------------------------------------------------------
@@ -60,13 +60,15 @@ func _ready():
 		$AnimatedSprite2D.material.set("shader_parameter/NEWCOLOR1", light_grey)
 		$AnimatedSprite2D.material.set("shader_parameter/NEWCOLOR2", grey)
 		$AnimatedSprite2D.material.set("shader_parameter/NEWCOLOR3", dark_grey)
+		
+	$AnimatedSprite2D.play("Flying")
 
 
 # ------------------------------------------------------------------------------
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 # ------------------------------------------------------------------------------
 func _process(_delta):
-	set_velocity(Vector2(0, -speed))
+	set_velocity(Vector2(0, -speed).rotated(rotation))
 	move_and_slide()
 
 

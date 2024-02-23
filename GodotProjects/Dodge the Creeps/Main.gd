@@ -1,6 +1,6 @@
 extends Node
 
-export(PackedScene) var Mob  # Allows us to choose the Mob scene we want to instance.
+@export var Mob: PackedScene  # Allows us to choose the Mob scene we want to instance.
 var score
 
 func _ready():
@@ -19,7 +19,7 @@ func game_over():           # When the hit signal is recieved, run this method
 func new_game():      # Connected to the HUDs custom start_game signal
 	score = 0
 	$Player.start($StartPosition.position)
-	$Player/AnimatedSprite.flip_v = false
+	$Player/AnimatedSprite2D.flip_v = false
 	$StartTimer.start()
 	$HUD.update_score(score)
 	$HUD.show_message("Get Ready")
@@ -30,17 +30,17 @@ func _on_MobTimer_timeout():
 	# Choose a random location on Path2D.
 	$MobPath/MobSpawnLocation.offset = randi()
 	# Create a Mob instance and add it to the scene.
-	var mob = Mob.instance()
+	var mob = Mob.instantiate()
 	add_child(mob)
 	# Set the mob's direction perpendicular to the path direction.
 	var direction = $MobPath/MobSpawnLocation.rotation + PI / 2
 	# Set the mob's position to a random location.
 	mob.position = $MobPath/MobSpawnLocation.position
 	# Add some randomness to the direction.
-	direction += rand_range(-PI / 4, PI / 4)
+	direction += randf_range(-PI / 4, PI / 4)
 	mob.rotation = direction
 	# Set the velocity (speed & direction)
-	mob.linear_velocity = Vector2(rand_range(mob.min_speed, mob.max_speed), 0)
+	mob.linear_velocity = Vector2(randf_range(mob.min_speed, mob.max_speed), 0)
 	mob.linear_velocity = mob.linear_velocity.rotated(direction)
 	
 

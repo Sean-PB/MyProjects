@@ -56,7 +56,7 @@ func load_settings():
 		challenge_mode = 0
 		$Invincible/Outline.show()
 		$Speed.value = 200
-		$Swipe.value = 65
+		$Swipe.value = 28
 		initial_change = false # has to be changed below the speed and swipe changes
 
 

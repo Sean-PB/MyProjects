@@ -1,7 +1,6 @@
-[gd_scene load_steps=23 format=3 uid="uid://cud7a3c0nskpb"]
+[gd_scene load_steps=22 format=3 uid="uid://cud7a3c0nskpb"]
 
 [ext_resource type="PackedScene" uid="uid://c6qkb7ycjgo6i" path="res://CharacterMenu.tscn" id="1"]
-[ext_resource type="AudioStream" uid="uid://ckldfueikqt35" path="res://Art/Sound/song3.wav" id="2"]
 [ext_resource type="PackedScene" uid="uid://5o6dq0pewkmc" path="res://Player.tscn" id="3"]
 [ext_resource type="Script" path="res://Main.gd" id="4"]
 [ext_resource type="Texture2D" uid="uid://ew2qf2kfle5t" path="res://Art/Menus/pause.png" id="5"]
@@ -30,7 +29,7 @@ void fragment() {
 	COLOR = custom_color;
 }"
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_7nsxy"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mldts"]
 resource_local_to_scene = true
 shader = SubResource("1")
 shader_parameter/flash_color = Color(1, 1, 1, 1)
@@ -74,6 +73,7 @@ script = ExtResource("4")
 [node name="World" type="Node2D" parent="."]
 
 [node name="Dock" type="Sprite2D" parent="."]
+texture_filter = 1
 position = Vector2(69.7819, 560.022)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("7")
@@ -83,7 +83,7 @@ position = Vector2(-0.0131264, 0.148315)
 scale = Vector2(9.61658, 3.60721)
 
 [node name="Player" parent="." instance=ExtResource("3")]
-material = SubResource("ShaderMaterial_7nsxy")
+material = SubResource("ShaderMaterial_mldts")
 position = Vector2(102.435, 587.574)
 rotation = 1.5708
 scale = Vector2(0.675, 0.675)
@@ -104,6 +104,7 @@ color = Color(1, 1, 1, 0)
 
 [node name="Pause" type="TextureButton" parent="Camera2D"]
 visible = false
+texture_filter = 2
 offset_left = 220.0
 offset_top = -840.0
 offset_right = 260.0
@@ -116,6 +117,7 @@ stretch_mode = 0
 [node name="Play" type="TextureButton" parent="Camera2D"]
 process_mode = 3
 visible = false
+texture_filter = 2
 offset_left = 220.0
 offset_top = -840.0
 offset_right = 260.0
@@ -128,6 +130,7 @@ stretch_mode = 0
 [node name="Settings" type="TextureButton" parent="Camera2D"]
 process_mode = 3
 visible = false
+texture_filter = 2
 offset_left = 220.0
 offset_top = -840.0
 offset_right = 260.0
@@ -140,6 +143,7 @@ stretch_mode = 0
 [node name="EditCharacter" type="TextureButton" parent="Camera2D"]
 process_mode = 3
 visible = false
+texture_filter = 2
 offset_left = -340.0
 offset_top = -865.0
 offset_right = -300.0
@@ -151,6 +155,7 @@ stretch_mode = 0
 
 [node name="Start" type="TextureButton" parent="Camera2D"]
 visible = false
+texture_filter = 2
 offset_left = -124.0
 offset_top = -350.0
 offset_right = -84.0
@@ -173,7 +178,6 @@ position = Vector2(0, -250)
 sprite_frames = SubResource("SpriteFrames_4e023")
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("2")
 volume_db = -20.0
 
 [node name="SplashScreen" parent="." instance=ExtResource("12")]

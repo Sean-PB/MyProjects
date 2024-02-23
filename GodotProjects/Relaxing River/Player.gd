@@ -29,6 +29,7 @@ var speed_start = 15
 var rotation_accel = 0
 var playing = false
 var leaving_dock = false
+var prev_log_hit = 0
 
 
 # Called when the node enters the scene tree for the first time.
@@ -57,11 +58,11 @@ func _process(delta):
 		# If challenge mode is on, detect collisions. If collision is a log, play
 		# the flash animation, emit crash signal, stop player for a bit, and
 		# turn off collision for logs.
-		if challenge_mode:
-			for i in get_slide_collision_count():
-				var collision = get_slide_collision(i)
-				var collider = collision.get_collider() # Retrieve the collider node
-				if collider and collider.is_in_group("log"): # Check if collider belongs to "logs" group
+		for i in get_slide_collision_count():
+			var collision = get_slide_collision(i)
+			var collider = collision.get_collider() # Retrieve the collider node
+			if collider and collider.is_in_group("log"): # Check if collider belongs to "logs" group
+				if challenge_mode:
 					emit_signal("crash")
 					set_collision_mask_value(3, false) # Turn off collsion for logs
 					# Check to see if the flash is already going before stopping player.
@@ -70,7 +71,23 @@ func _process(delta):
 					if $Character.animation != "flash":
 						$Timer.start()
 						moving = false
+						if get_parent().get_node("Camera2D/SettingsMenu").sound:
+							$SoundFX.stream = load("res://Art/Sound/log_thud.wav")
+							$SoundFX.play()
 					$Character.play("flash")
+				else:
+					if get_parent().get_node("Camera2D/SettingsMenu").sound:
+						if prev_log_hit != collider.get_instance_id():
+							$SoundFX.stream = load("res://Art/Sound/log_thud.wav")
+							$SoundFX.play()
+				prev_log_hit = collider.get_instance_id()
+			if collider and collider.is_in_group("berry"): # Check if collider belongs to "berries" group
+				collider.queue_free()
+				$SoundFX.stream = load("res://Art/Sound/berry_collected.wav")
+				$SoundFX.play()
+				if challenge_mode:
+					pass
+					# Add points
 
 
 # Swiping functionality

@@ -6,16 +6,12 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_rn1ex"]
 shader = ExtResource("2_nopte")
-shader_parameter/OLDCOLOR1 = null
-shader_parameter/OLDCOLOR2 = null
-shader_parameter/OLDCOLOR3 = null
+shader_parameter/OLDCOLOR1 = Color(1, 0, 0, 1)
+shader_parameter/OLDCOLOR2 = Color(0, 1, 0, 1)
+shader_parameter/OLDCOLOR3 = Color(0, 0, 1, 1)
 shader_parameter/NEWCOLOR1 = null
 shader_parameter/NEWCOLOR2 = null
 shader_parameter/NEWCOLOR3 = null
-
-[sub_resource type="AtlasTexture" id="6"]
-atlas = ExtResource("3")
-region = Rect2(0, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="7"]
 atlas = ExtResource("3")
@@ -25,24 +21,13 @@ region = Rect2(32, 0, 32, 32)
 atlas = ExtResource("3")
 region = Rect2(64, 0, 32, 32)
 
+[sub_resource type="AtlasTexture" id="6"]
+atlas = ExtResource("3")
+region = Rect2(0, 0, 32, 32)
+
 [sub_resource type="SpriteFrames" id="5"]
 animations = [{
 "frames": [{
-"duration": 1.0,
-"texture": SubResource("6")
-}, {
-"duration": 1.0,
-"texture": SubResource("6")
-}, {
-"duration": 1.0,
-"texture": SubResource("6")
-}, {
-"duration": 1.0,
-"texture": SubResource("6")
-}, {
-"duration": 1.0,
-"texture": SubResource("6")
-}, {
 "duration": 1.0,
 "texture": SubResource("7")
 }, {
@@ -51,25 +36,69 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("7")
+}, {
+"duration": 1.0,
+"texture": SubResource("6")
+}, {
+"duration": 1.0,
+"texture": SubResource("6")
+}, {
+"duration": 1.0,
+"texture": SubResource("6")
+}, {
+"duration": 1.0,
+"texture": SubResource("6")
+}, {
+"duration": 1.0,
+"texture": SubResource("6")
+}, {
+"duration": 1.0,
+"texture": SubResource("6")
+}, {
+"duration": 1.0,
+"texture": SubResource("6")
+}, {
+"duration": 1.0,
+"texture": SubResource("6")
+}, {
+"duration": 1.0,
+"texture": SubResource("6")
+}, {
+"duration": 1.0,
+"texture": SubResource("6")
+}, {
+"duration": 1.0,
+"texture": SubResource("6")
+}, {
+"duration": 1.0,
+"texture": SubResource("6")
+}, {
+"duration": 1.0,
+"texture": SubResource("6")
+}, {
+"duration": 1.0,
+"texture": SubResource("6")
 }],
 "loop": true,
-"name": &"New Anim",
-"speed": 8.0
+"name": &"Flying",
+"speed": 14.0
 }]
 
 [sub_resource type="CapsuleShape2D" id="1"]
 
 [node name="Bird" type="CharacterBody2D"]
-z_index = 2
+z_index = 1
+scale = Vector2(1.25, 1.25)
 collision_layer = 16
 collision_mask = 0
 script = ExtResource("1")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
 material = SubResource("ShaderMaterial_rn1ex")
 sprite_frames = SubResource("5")
-animation = &"New Anim"
-frame = 1
+animation = &"Flying"
+frame_progress = 0.240618
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("1")

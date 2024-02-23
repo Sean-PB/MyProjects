@@ -1,7 +1,6 @@
-[gd_scene load_steps=12 format=3 uid="uid://df3h0jfmxyb7c"]
+[gd_scene load_steps=11 format=3 uid="uid://df3h0jfmxyb7c"]
 
 [ext_resource type="Texture2D" uid="uid://8ur2bw67jsde" path="res://Art/World/straight_left.png" id="1"]
-[ext_resource type="PackedScene" uid="uid://cvcqcvq48btro" path="res://Bird.tscn" id="2"]
 [ext_resource type="Texture2D" uid="uid://ctkfhh0b3m8ur" path="res://Art/World/calm_water.png" id="3"]
 [ext_resource type="Script" path="res://Strip.gd" id="4"]
 [ext_resource type="Texture2D" uid="uid://duc0olk1ds0lq" path="res://Art/World/tree.png" id="5"]
@@ -160,16 +159,15 @@ layer_0/tile_data = PackedInt32Array(-65536, 1, 0, -65531, 0, 0, 0, 1, 0, 5, 0, 
 [node name="LeftTree" type="Sprite2D" parent="."]
 visible = false
 z_index = 1
+texture_filter = 1
 scale = Vector2(2, 2)
 texture = ExtResource("5")
 
 [node name="RightTree" type="Sprite2D" parent="."]
 visible = false
 z_index = 1
+texture_filter = 1
 scale = Vector2(2, 2)
 texture = ExtResource("5")
-
-[node name="Bird" parent="." instance=ExtResource("2")]
-visible = false
 
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]

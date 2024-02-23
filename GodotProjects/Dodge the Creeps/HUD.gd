@@ -25,12 +25,12 @@ func show_game_over():
 		$HighScore.text = $HighScore.text.substr(0, 12) + str(high_score)
 	$HighScore.show()
 	# Wait until the Message Timer has counted down
-	yield($MessageTimer, "timeout")
+	await $MessageTimer.timeout
 	
 	$Message.text = "Dodge the\nCreeps!"
 	$Message.show()
 	# Make a one-shot timer and wait for it to finish
-	yield(get_tree().create_timer(1), "timeout")
+	await get_tree().create_timer(1).timeout
 	$StartButton.show()
 
 func update_score(score):

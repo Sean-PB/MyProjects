@@ -47,12 +47,14 @@ shader_parameter/New_Skin = null
 
 [node name="CharacterMenu" type="AnimatedSprite2D"]
 process_mode = 3
+texture_filter = 2
 position = Vector2(-6, 3)
 scale = Vector2(0.573877, 0.611092)
 sprite_frames = SubResource("1")
 script = ExtResource("9")
 
 [node name="Cancel" type="TextureButton" parent="."]
+texture_filter = 2
 offset_left = -257.0
 offset_top = -380.0
 offset_right = -217.0
@@ -64,6 +66,7 @@ stretch_mode = 0
 
 [node name="Confirm" type="TextureButton" parent="."]
 visible = false
+texture_filter = 2
 offset_left = 155.0
 offset_top = -380.0
 offset_right = 195.0
@@ -74,12 +77,14 @@ ignore_texture_size = true
 stretch_mode = 0
 
 [node name="Character" type="Sprite2D" parent="."]
+texture_filter = 1
 material = SubResource("ShaderMaterial_ymhac")
 position = Vector2(-139.47, 55)
 scale = Vector2(0.7, 0.7)
 texture = ExtResource("5")
 
 [node name="HairColorButton" type="TextureButton" parent="."]
+texture_filter = 1
 material = SubResource("ShaderMaterial_0juvq")
 offset_left = 57.5036
 offset_top = 121.095
@@ -108,6 +113,7 @@ ignore_texture_size = true
 stretch_mode = 0
 
 [node name="BodyColorButton" type="TextureButton" parent="."]
+texture_filter = 1
 material = SubResource("ShaderMaterial_7blw6")
 offset_left = 57.5036
 offset_top = -214.37
@@ -119,6 +125,7 @@ ignore_texture_size = true
 stretch_mode = 0
 
 [node name="ColorPickerSprite" type="Sprite2D" parent="BodyColorButton"]
+texture_filter = 1
 position = Vector2(68, 83)
 scale = Vector2(0.0249112, 0.025)
 texture = ExtResource("7")
