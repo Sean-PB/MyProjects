@@ -29,7 +29,7 @@ void fragment() {
 	COLOR = custom_color;
 }"
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_mldts"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qvmrq"]
 resource_local_to_scene = true
 shader = SubResource("1")
 shader_parameter/flash_color = Color(1, 1, 1, 1)
@@ -83,7 +83,7 @@ position = Vector2(-0.0131264, 0.148315)
 scale = Vector2(9.61658, 3.60721)
 
 [node name="Player" parent="." instance=ExtResource("3")]
-material = SubResource("ShaderMaterial_mldts")
+material = SubResource("ShaderMaterial_qvmrq")
 position = Vector2(102.435, 587.574)
 rotation = 1.5708
 scale = Vector2(0.675, 0.675)
@@ -118,10 +118,10 @@ stretch_mode = 0
 process_mode = 3
 visible = false
 texture_filter = 2
-offset_left = 220.0
-offset_top = -840.0
-offset_right = 260.0
-offset_bottom = -800.0
+offset_left = -120.0
+offset_top = -650.0
+offset_right = -40.0
+offset_bottom = -570.0
 scale = Vector2(3, 3)
 texture_normal = ExtResource("6")
 ignore_texture_size = true
@@ -129,12 +129,11 @@ stretch_mode = 0
 
 [node name="Settings" type="TextureButton" parent="Camera2D"]
 process_mode = 3
-visible = false
 texture_filter = 2
-offset_left = 220.0
-offset_top = -840.0
-offset_right = 260.0
-offset_bottom = -800.0
+offset_left = -300.0
+offset_top = -225.0
+offset_right = -230.0
+offset_bottom = -155.0
 scale = Vector2(3, 3)
 texture_normal = ExtResource("9")
 ignore_texture_size = true
@@ -142,24 +141,22 @@ stretch_mode = 0
 
 [node name="EditCharacter" type="TextureButton" parent="Camera2D"]
 process_mode = 3
-visible = false
 texture_filter = 2
-offset_left = -340.0
-offset_top = -865.0
-offset_right = -300.0
-offset_bottom = -825.0
+offset_left = 120.0
+offset_top = -250.0
+offset_right = 175.0
+offset_bottom = -195.0
 scale = Vector2(4, 4)
 texture_normal = ExtResource("8")
 ignore_texture_size = true
 stretch_mode = 0
 
 [node name="Start" type="TextureButton" parent="Camera2D"]
-visible = false
 texture_filter = 2
-offset_left = -124.0
-offset_top = -350.0
-offset_right = -84.0
-offset_bottom = -310.0
+offset_left = -120.0
+offset_top = -650.0
+offset_right = -80.0
+offset_bottom = -610.0
 scale = Vector2(6, 6)
 texture_normal = ExtResource("6")
 ignore_texture_size = true
@@ -176,6 +173,25 @@ process_mode = 3
 visible = false
 position = Vector2(0, -250)
 sprite_frames = SubResource("SpriteFrames_4e023")
+
+[node name="Score" type="Label" parent="Camera2D"]
+visible = false
+offset_left = -240.0
+offset_top = -820.0
+offset_right = -203.0
+offset_bottom = -732.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 64
+text = "0"
+
+[node name="HighScore" type="Label" parent="Camera2D"]
+offset_left = -240.0
+offset_top = -725.0
+offset_right = -203.0
+offset_bottom = -637.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/font_size = 64
+text = "0"
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
 volume_db = -20.0

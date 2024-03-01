@@ -4,6 +4,8 @@ extends Node2D
 # ------------------------------------------------------------------------------
 # Variables
 # ------------------------------------------------------------------------------
+var high_score_file = "user://high_score.txt"   # Declaring file to save high score
+
 const STRIP = preload("res://Strip.tscn")
 const LOG = preload("res://Log.tscn")
 const BIRD = preload("res://Bird.tscn")
@@ -46,6 +48,11 @@ func _ready():
 	# Loading character
 	$Player.load_character()
 	
+	# Load high score
+	if FileAccess.file_exists(high_score_file):
+		var file = FileAccess.open(high_score_file, FileAccess.READ)
+		$Camera2D/HighScore.text = file.get_as_text()
+	
 	# Connecting signals for Character Selection and Settings menus
 # warning-ignore:return_value_discarded
 	$Camera2D/CharacterMenu.connect("character_exited", Callable(self, "exit_CharacterMenu"))
@@ -57,6 +64,7 @@ func _ready():
 	$SplashScreen.connect("splash_done", Callable(self, "splash_done"))
 # warning-ignore:return_value_discarded
 	$Player.connect("crash", Callable(self, "crash"))
+	$Player.connect("score", Callable(self, "increment_score"))
 	
 	# Setting random length of straiht river section
 	straight_length = rng.randi_range(1, 1) # set straight_length to new random number
@@ -90,11 +98,16 @@ func _on_Start_pressed():
 	$Camera2D/EditCharacter.hide()
 	$Camera2D/Blur.hide()
 	$Camera2D/Settings.hide()
-	$Camera2D/Settings.position = Vector2(-64, -840)
+	$Camera2D/Score.show()
+	$Camera2D/HighScore.hide()
 	started = true
 	$Music.play()
 	$Music.stream_paused = not $Camera2D/SettingsMenu.sound
 	challenge_mode = $Camera2D/SettingsMenu.challenge_mode # Whether challenge mode is on or not
+	if challenge_mode:
+		$Camera2D/Score.show()
+	else:
+		$Camera2D/Score.hide()
 	$Player.leaving_dock = true # Telling the Player scene to leave the dock
 
 # ------------------------------------------------------------------------------
@@ -107,6 +120,7 @@ func _on_Pause_pressed():
 	$Camera2D/EditCharacter.show()
 	$Camera2D/Blur.show()
 	$Camera2D/Settings.show()
+	$Camera2D/HighScore.show()
 
 
 # ------------------------------------------------------------------------------
@@ -123,6 +137,7 @@ func _on_Play_pressed():
 	$Camera2D/EditCharacter.hide()
 	$Camera2D/Blur.hide()
 	$Camera2D/Settings.hide()
+	$Camera2D/HighScore.hide()
 	$Music.stream_paused = not $Camera2D/SettingsMenu.sound
 
 
@@ -135,6 +150,7 @@ func _on_EditCharacter_pressed():
 	$Camera2D/Start.hide()
 	$Camera2D/EditCharacter.hide()
 	$Camera2D/CharacterMenu.show()
+	$Camera2D/Play.hide()
 	if $Camera2D/SettingsMenu.visible:
 		$Camera2D/SettingsMenu._on_Cancel_pressed()
 
@@ -148,6 +164,8 @@ func _on_EditCharacter_pressed():
 # up.
 func exit_CharacterMenu():
 	$Camera2D/EditCharacter.show()
+	if get_tree().paused == true:
+		$Camera2D/Play.show()
 	if not started and $Camera2D/SettingsMenu.visible == false:
 		$Camera2D/Start.show()
 
@@ -161,6 +179,7 @@ func _on_Settings_pressed():
 	$Camera2D/Start.hide()
 	$Camera2D/Settings.hide()
 	$Camera2D/SettingsMenu.show()
+	$Camera2D/Play.hide()
 	if $Camera2D/CharacterMenu.visible:
 		$Camera2D/CharacterMenu._on_Cancel_pressed()
 
@@ -174,6 +193,8 @@ func _on_Settings_pressed():
 # up.
 func exit_Settings():
 	$Camera2D/Settings.show()
+	if get_tree().paused == true:
+		$Camera2D/Play.show()
 	if not started and $Camera2D/CharacterMenu.visible == false:
 		$Camera2D/Start.show()
 
@@ -183,6 +204,10 @@ func exit_Settings():
 # ------------------------------------------------------------------------------
 func confrim_settings():
 	challenge_mode = $Camera2D/SettingsMenu.challenge_mode
+	if challenge_mode:
+		$Camera2D/Score.show()
+	else:
+		$Camera2D/Score.hide()
 	
 
 
@@ -265,6 +290,21 @@ func spawn_world():
 # Reset score
 func crash():
 	$Camera2D.shake(100, 0.5)
+	if int($Camera2D/Score.text) > int($Camera2D/HighScore.text):
+		var file = FileAccess.open(high_score_file, FileAccess.WRITE)
+		file.store_string($Camera2D/Score.text)
+		file.close()
+		$Camera2D/HighScore.text = $Camera2D/Score.text
+	$Camera2D/Score.text = str(0)
+	$Camera2D/Score.modulate = Color("white")
+
+# ------------------------------------------------------------------------------
+# When the player gets a berry this function deals with changing the score
+# ------------------------------------------------------------------------------
+func increment_score():
+	$Camera2D/Score.text = str(int($Camera2D/Score.text) + 1)
+	if int($Camera2D/Score.text) > int($Camera2D/HighScore.text):
+		$Camera2D/Score.modulate = Color("red")
 
 
 # ------------------------------------------------------------------------------

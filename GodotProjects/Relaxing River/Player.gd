@@ -1,10 +1,15 @@
 extends CharacterBody2D
 
 signal crash
+signal score
 
 #-------------------------------------------------------------------------------
 # Variables
 #-------------------------------------------------------------------------------
+var score_signal_wait = 0.5
+var current_time
+var current_time_dict
+var prev_time
 var character_file = "user://character.txt"   # Declaring file to save character
 var settings_file = "user://settings.txt"
 var skin_r
@@ -40,6 +45,7 @@ func _ready():
 	Settings.connect("settings_confirmed", Callable(self, "load_settings"))
 	load_settings()
 	load_character()
+	prev_time = 0
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -86,9 +92,12 @@ func _process(delta):
 				$SoundFX.stream = load("res://Art/Sound/berry_collected.wav")
 				$SoundFX.play()
 				if challenge_mode:
-					pass
-					# Add points
-
+					# prevents signal from being sent twice for one berry
+					current_time_dict = Time.get_time_dict_from_system()
+					current_time = int(str(current_time_dict.hour, current_time_dict.minute, current_time_dict.second))
+					if current_time - prev_time > 1:
+						emit_signal("score")
+						prev_time = current_time
 
 # Swiping functionality
 func _input(event):
