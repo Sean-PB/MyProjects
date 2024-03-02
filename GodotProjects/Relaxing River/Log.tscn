@@ -1,20 +1,35 @@
-[gd_scene load_steps=3 format=3 uid="uid://6e6hrpwjxc0b"]
+[gd_scene load_steps=5 format=3 uid="uid://6e6hrpwjxc0b"]
 
 [ext_resource type="Texture2D" uid="uid://fdjbbw13202w" path="res://Art/World/log.png" id="1"]
 [ext_resource type="Script" path="res://Log.gd" id="2"]
+[ext_resource type="Texture2D" uid="uid://kvmef3i2l70d" path="res://Art/World/rock.png" id="3_g0gay"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_s6427"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_g0gay")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="Log" type="StaticBody2D" groups=["log"]]
 collision_layer = 4
 collision_mask = 0
 script = ExtResource("2")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
-scale = Vector2(2, 2)
-texture = ExtResource("1")
+scale = Vector2(0.2, 0.2)
+sprite_frames = SubResource("SpriteFrames_s6427")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-polygon = PackedVector2Array(-32.0566, 11.8251, -27.9619, 16.0773, 24.0886, 15.9985, 32.1206, 9.85643, 32.0419, -1.95533, 25.9741, -7.85151, -27.633, -7.74639, -31.9779, -2.03408)
+polygon = PackedVector2Array(-32, 16, -27.9619, 16.0773, 32, 16, 29, 2, 20, -9, -18, -9, -27, 2)
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 position = Vector2(0.222733, -1.33635)

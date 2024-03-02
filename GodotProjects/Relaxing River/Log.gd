@@ -6,6 +6,7 @@ var rng = RandomNumberGenerator.new()
 func _ready():
 	rng.randomize()
 	$Sprite2D.set_flip_h(rng.randi_range(0, 1))
+	$Sprite2D.frame = rng.randi_range(0,1)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

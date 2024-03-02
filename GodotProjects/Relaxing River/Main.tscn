@@ -29,7 +29,7 @@ void fragment() {
 	COLOR = custom_color;
 }"
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_qvmrq"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_c6ges"]
 resource_local_to_scene = true
 shader = SubResource("1")
 shader_parameter/flash_color = Color(1, 1, 1, 1)
@@ -83,7 +83,7 @@ position = Vector2(-0.0131264, 0.148315)
 scale = Vector2(9.61658, 3.60721)
 
 [node name="Player" parent="." instance=ExtResource("3")]
-material = SubResource("ShaderMaterial_qvmrq")
+material = SubResource("ShaderMaterial_c6ges")
 position = Vector2(102.435, 587.574)
 rotation = 1.5708
 scale = Vector2(0.675, 0.675)

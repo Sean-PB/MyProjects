@@ -89,8 +89,10 @@ func _process(delta):
 				prev_log_hit = collider.get_instance_id()
 			if collider and collider.is_in_group("berry"): # Check if collider belongs to "berries" group
 				collider.queue_free()
-				$SoundFX.stream = load("res://Art/Sound/berry_collected.wav")
-				$SoundFX.play()
+				if get_parent().get_node("Camera2D/SettingsMenu").sound:
+					$SoundFX.stream = load("res://Art/Sound/berry_collected.wav")
+					$SoundFX.play()
+				$HappyAnimation.play("Happy Animation")
 				if challenge_mode:
 					# prevents signal from being sent twice for one berry
 					current_time_dict = Time.get_time_dict_from_system()
@@ -129,6 +131,7 @@ func load_settings():
 	else:
 		speed = 200
 		swipe = 65
+		challenge_mode = 1
 	$Character.set_speed_scale(clamp(((speed + 25) / 100), 1, 1.8))
 
 

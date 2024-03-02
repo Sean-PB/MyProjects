@@ -53,8 +53,8 @@ func load_settings():
 	else:
 		sound = 1
 		$SoundMuteOutline.position = Vector2(-225, -150)
-		challenge_mode = 0
-		$Invincible/Outline.show()
+		challenge_mode = 1
+		$Skull/Outline.show()
 		$Speed.value = 250
 		$Swipe.value = 35
 		initial_change = false # has to be changed below the speed and swipe changes

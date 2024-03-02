@@ -16,17 +16,19 @@ var rng = RandomNumberGenerator.new()
 func _ready():
 	rng.randomize()
 	if rng.randi_range(0, 1):
-		var left_scale = rng.randf_range(1.5, 2.25)
+		var left_scale = rng.randf_range(0.075, 0.11)
 		$LeftTree.scale.x = left_scale
 		$LeftTree.scale.y = left_scale
 		$LeftTree.position = Vector2(rng.randi_range(-10, 35), rng.randi_range(4, 60))
+		$LeftTree.frame = rng.randi_range(0, 16)
 		$LeftTree.show()
 	rng.randomize()
 	if rng.randi_range(0, 1):
-		var right_scale = rng.randf_range(1.5, 2.25)
+		var right_scale = rng.randf_range(0.075, 0.11)
 		$RightTree.scale.x = right_scale
 		$RightTree.scale.y = right_scale
 		$RightTree.position = Vector2(rng.randi_range(345, 395), rng.randi_range(4, 60))
+		$RightTree.frame = rng.randi_range(0, 16)
 		$RightTree.show()
 	
 

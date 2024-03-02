@@ -36,14 +36,14 @@ var speed = 150
 func _ready():
 	rng.randomize()
 	var color = rng.randi_range(0, 5)
-	if color == 0:
+	if color == 0: # Blue
 		$AnimatedSprite2D.material.set("shader_parameter/NEWCOLOR1", light_blue)
 		$AnimatedSprite2D.material.set("shader_parameter/NEWCOLOR2", blue)
-		$AnimatedSprite2D.material.set("shader_parameter/NEWCOLOR3", dark_blue)
-	elif color == 1:
+		$AnimatedSprite2D.material.set("shader_parameter/NEWCOLOR3", light_grey)
+	elif color == 1: # Yellow
 		$AnimatedSprite2D.material.set("shader_parameter/NEWCOLOR1", light_yellow)
 		$AnimatedSprite2D.material.set("shader_parameter/NEWCOLOR2", yellow)
-		$AnimatedSprite2D.material.set("shader_parameter/NEWCOLOR3", dark_yellow)
+		$AnimatedSprite2D.material.set("shader_parameter/NEWCOLOR3", grey)
 	elif color == 2:
 		$AnimatedSprite2D.material.set("shader_parameter/NEWCOLOR1", light_green)
 		$AnimatedSprite2D.material.set("shader_parameter/NEWCOLOR2", green)
@@ -54,12 +54,12 @@ func _ready():
 		$AnimatedSprite2D.material.set("shader_parameter/NEWCOLOR3", dark_purple)
 	elif color == 4:
 		$AnimatedSprite2D.material.set("shader_parameter/NEWCOLOR1", light_red)
-		$AnimatedSprite2D.material.set("shader_parameter/NEWCOLOR2", red)
-		$AnimatedSprite2D.material.set("shader_parameter/NEWCOLOR3", dark_red)
-	else:
-		$AnimatedSprite2D.material.set("shader_parameter/NEWCOLOR1", light_grey)
-		$AnimatedSprite2D.material.set("shader_parameter/NEWCOLOR2", grey)
-		$AnimatedSprite2D.material.set("shader_parameter/NEWCOLOR3", dark_grey)
+		$AnimatedSprite2D.material.set("shader_parameter/NEWCOLOR2", dark_red)
+		$AnimatedSprite2D.material.set("shader_parameter/NEWCOLOR3", light_grey)
+	elif color == 5:
+		$AnimatedSprite2D.material.set("shader_parameter/NEWCOLOR1", red)
+		$AnimatedSprite2D.material.set("shader_parameter/NEWCOLOR2", green)
+		$AnimatedSprite2D.material.set("shader_parameter/NEWCOLOR3", blue)
 		
 	$AnimatedSprite2D.play("Flying")
 

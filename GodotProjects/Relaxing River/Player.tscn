@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://5o6dq0pewkmc"]
+[gd_scene load_steps=21 format=3 uid="uid://5o6dq0pewkmc"]
 
 [ext_resource type="Texture2D" uid="uid://cwdjpe5lopb3o" path="res://Art/Player/left.png" id="1"]
 [ext_resource type="Texture2D" uid="uid://ba6ussfg654dg" path="res://Art/Player/left_up.png" id="2"]
@@ -11,6 +11,11 @@
 [ext_resource type="Texture2D" uid="uid://d18yt6ujikwju" path="res://Art/Player/right.png" id="9"]
 [ext_resource type="Texture2D" uid="uid://c7lfqlaediwwq" path="res://Art/Player/front_right.png" id="10"]
 [ext_resource type="Texture2D" uid="uid://bqb33djr2rfpj" path="res://Art/Player/back_right.png" id="11"]
+[ext_resource type="Texture2D" uid="uid://bm37s7216xb1r" path="res://Art/Player/happy_animation0.png" id="13_oipfk"]
+[ext_resource type="Texture2D" uid="uid://dqxq2dy1mdr8e" path="res://Art/Player/happy_animation1.png" id="14_hoxic"]
+[ext_resource type="Texture2D" uid="uid://d0lvvpxnuwas2" path="res://Art/Player/happy_animation2.png" id="15_otoeh"]
+[ext_resource type="Texture2D" uid="uid://b5xforngtmhak" path="res://Art/Player/happy_animation3.png" id="16_2u2jx"]
+[ext_resource type="Texture2D" uid="uid://8h3gl443yfq5" path="res://Art/Player/happy_animation4.png" id="17_85y12"]
 [ext_resource type="Script" path="res://Player.gd" id="46"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_p5vr0"]
@@ -141,6 +146,44 @@ animations = [{
 "speed": 4.5
 }]
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_7gob0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": null
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_oipfk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_hoxic")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_otoeh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_2u2jx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_2u2jx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_85y12")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_85y12")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_85y12")
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": false,
+"name": &"Happy Animation",
+"speed": 18.0
+}]
+
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 2147483649
 collision_mask = 15
@@ -155,6 +198,13 @@ material = SubResource("ShaderMaterial_p5vr0")
 scale = Vector2(0.2, 0.2)
 sprite_frames = SubResource("3")
 animation = &"flash"
+
+[node name="HappyAnimation" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.02, 0.02)
+sprite_frames = SubResource("SpriteFrames_7gob0")
+animation = &"Happy Animation"
+frame = 9
+frame_progress = 1.0
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.5
