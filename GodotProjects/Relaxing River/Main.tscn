@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://cud7a3c0nskpb"]
+[gd_scene load_steps=23 format=3 uid="uid://cud7a3c0nskpb"]
 
 [ext_resource type="PackedScene" uid="uid://c6qkb7ycjgo6i" path="res://CharacterMenu.tscn" id="1"]
 [ext_resource type="PackedScene" uid="uid://5o6dq0pewkmc" path="res://Player.tscn" id="3"]
@@ -16,6 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://cp3vbd5114sxe" path="res://SplashScreen.tscn" id="12"]
 [ext_resource type="Texture2D" uid="uid://b2ywxwfjgfvpp" path="res://Art/Menus/SettingsBackground.png" id="13_g75qp"]
 [ext_resource type="Texture2D" uid="uid://byptwpvkyjalt" path="res://Art/Menus/SettingsBackground2.png" id="14_50rrn"]
+[ext_resource type="FontFile" uid="uid://bieoqje3ne14g" path="res://Art/Fonts/times new roman bold.ttf" id="17_ki7h6"]
 
 [sub_resource type="Shader" id="1"]
 code = "shader_type canvas_item;
@@ -29,7 +30,7 @@ void fragment() {
 	COLOR = custom_color;
 }"
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_c6ges"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_degl7"]
 resource_local_to_scene = true
 shader = SubResource("1")
 shader_parameter/flash_color = Color(1, 1, 1, 1)
@@ -83,7 +84,7 @@ position = Vector2(-0.0131264, 0.148315)
 scale = Vector2(9.61658, 3.60721)
 
 [node name="Player" parent="." instance=ExtResource("3")]
-material = SubResource("ShaderMaterial_c6ges")
+material = SubResource("ShaderMaterial_degl7")
 position = Vector2(102.435, 587.574)
 rotation = 1.5708
 scale = Vector2(0.675, 0.675)
@@ -174,22 +175,23 @@ visible = false
 position = Vector2(0, -250)
 sprite_frames = SubResource("SpriteFrames_4e023")
 
+[node name="HighScore" type="Label" parent="Camera2D"]
+offset_left = -240.0
+offset_top = -730.0
+offset_right = -203.0
+offset_bottom = -642.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_fonts/font = ExtResource("17_ki7h6")
+theme_override_font_sizes/font_size = 64
+text = "0"
+
 [node name="Score" type="Label" parent="Camera2D"]
-visible = false
 offset_left = -240.0
 offset_top = -820.0
 offset_right = -203.0
 offset_bottom = -732.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 64
-text = "0"
-
-[node name="HighScore" type="Label" parent="Camera2D"]
-offset_left = -240.0
-offset_top = -725.0
-offset_right = -203.0
-offset_bottom = -637.0
-theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_fonts/font = ExtResource("17_ki7h6")
 theme_override_font_sizes/font_size = 64
 text = "0"
 

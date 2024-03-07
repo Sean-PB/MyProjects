@@ -265,11 +265,11 @@ func spawn_world():
 			
 			# Bird
 			# If it's not time for a bird, decrement from the counter.
-			# If it is time for a bird, make an instance, set its position to one side, 
+			# If it is time for a bird, make an instance, set its position to one side,
 			if bird_dist == 0:
 				var bird = BIRD.instantiate()
-				var bird_x = rng.randi_range(1, 2)
-				if bird_x == 1:
+				var bird_side = rng.randi_range(1, 2)
+				if bird_side == 1:
 					bird.position.x = -10
 					bird.rotation_degrees = randi_range(15, 105)
 				else:
@@ -277,7 +277,7 @@ func spawn_world():
 					bird.rotation_degrees = randi_range(-15, -105)
 				bird.position.y = $Player.position.y - randi_range(250, 650)
 				$World.add_child(bird)
-				bird_dist = rng.randi_range(30, 60)
+				bird_dist = rng.randi_range(30, 40)
 			else:
 				bird_dist -= 1
 
@@ -305,7 +305,6 @@ func increment_score():
 	$Camera2D/Score.text = str(int($Camera2D/Score.text) + 1)
 	if int($Camera2D/Score.text) > int($Camera2D/HighScore.text):
 		$Camera2D/Score.modulate = Color("red")
-
 
 # ------------------------------------------------------------------------------
 # De-spawns dock when off screen
@@ -335,3 +334,4 @@ func splash_done():
 	$Camera2D/Start.show()
 	$Camera2D/EditCharacter.show()
 	$Camera2D/Settings.show()
+	

@@ -16,7 +16,7 @@ var rng = RandomNumberGenerator.new()
 func _ready():
 	rng.randomize()
 	if rng.randi_range(0, 1):
-		var left_scale = rng.randf_range(0.075, 0.11)
+		var left_scale = rng.randf_range(0.075, 0.12)
 		$LeftTree.scale.x = left_scale
 		$LeftTree.scale.y = left_scale
 		$LeftTree.position = Vector2(rng.randi_range(-10, 35), rng.randi_range(4, 60))
@@ -24,7 +24,7 @@ func _ready():
 		$LeftTree.show()
 	rng.randomize()
 	if rng.randi_range(0, 1):
-		var right_scale = rng.randf_range(0.075, 0.11)
+		var right_scale = rng.randf_range(0.075, 0.12)
 		$RightTree.scale.x = right_scale
 		$RightTree.scale.y = right_scale
 		$RightTree.position = Vector2(rng.randi_range(345, 395), rng.randi_range(4, 60))

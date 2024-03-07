@@ -87,7 +87,7 @@ func _process(delta):
 							$SoundFX.stream = load("res://Art/Sound/log_thud.wav")
 							$SoundFX.play()
 				prev_log_hit = collider.get_instance_id()
-			if collider and collider.is_in_group("berry"): # Check if collider belongs to "berries" group
+			elif collider and collider.is_in_group("berry"): # Check if collider belongs to "berries" group
 				collider.queue_free()
 				if get_parent().get_node("Camera2D/SettingsMenu").sound:
 					$SoundFX.stream = load("res://Art/Sound/berry_collected.wav")
@@ -96,7 +96,7 @@ func _process(delta):
 				if challenge_mode:
 					# prevents signal from being sent twice for one berry
 					current_time_dict = Time.get_time_dict_from_system()
-					current_time = int(str(current_time_dict.hour, current_time_dict.minute, current_time_dict.second))
+					current_time = current_time_dict.hour * 3600 + current_time_dict.minute * 60 + current_time_dict.second
 					if current_time - prev_time > 1:
 						emit_signal("score")
 						prev_time = current_time

@@ -193,7 +193,7 @@ script = ExtResource("46")
 polygon = PackedVector2Array(-0.25, -59, 12.899, -18.5121, 13.4943, 18.2958, 0.144638, 59.0145, -12.8716, 19.9814, -12.5986, -18.8097)
 
 [node name="Character" type="AnimatedSprite2D" parent="."]
-texture_filter = 1
+texture_filter = 2
 material = SubResource("ShaderMaterial_p5vr0")
 scale = Vector2(0.2, 0.2)
 sprite_frames = SubResource("3")
